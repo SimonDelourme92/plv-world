@@ -1,0 +1,42 @@
+{
+  "base": "f7dd5bcd813981532dbd166b920b9cac1b8e7743",
+  "viewport": [
+    960,
+    600
+  ],
+  "qualite": "medium",
+  "ratio": 1,
+  "distance": 350,
+  "backend": "Chromium headless / SwiftShader (logiciel)",
+  "echantillonsParVue": 9,
+  "mesures": [
+    {
+      "version": "avant",
+      "vue": "sol",
+      "fps": 2.3301875801002,
+      "drawCallsMax": 95,
+      "drawCallsMean": 95
+    },
+    {
+      "version": "avant",
+      "vue": "drone",
+      "fps": 1.8677624206200951,
+      "drawCallsMax": 105,
+      "drawCallsMean": 105
+    },
+    {
+      "version": "apres",
+      "vue": "sol",
+      "fps": 0.6857417153829012,
+      "drawCallsMax": 96,
+      "drawCallsMean": 96
+    },
+    {
+      "version": "apres",
+      "vue": "drone",
+      "fps": 1.0256804748900603,
+      "drawCallsMax": 106,
+      "drawCallsMean": 106
+    }
+  ]
+}
