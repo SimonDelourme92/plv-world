@@ -15,6 +15,16 @@ assets/textures/      textures sol 1K couleur / normal / rugosité (ambientCG, C
 assets/decor/         modèles low-poly Kenney (.glb, texture intégrée) — voir LICENSE_Kenney.md
 ```
 
+## Quartier pilote — Parvis Méridien
+Dans le menu, **Découvrir le Parvis Méridien** ouvre une vue d’ensemble au sol. La place centrale accueille une proposition architecturale limitée : portique, six bâtiments, galeries, jardins et mobilier. Les PLV restent dans leurs quartiers d’exposition, à leurs dimensions réelles. Le reste du monde attend validation.
+
+Analyse, périmètre et validation : [docs/QUARTIER_PILOTE.md](docs/QUARTIER_PILOTE.md). Sources et licences : [CREDITS.md](CREDITS.md).
+
+## Ciel et éclairage
+L’éclairage et les reflets de fin d’après-midi chargent `assets/ciel/coucher_soleil_1k.hdr`. Si ce fichier est indisponible ou invalide, le ciel nuageux local prend le relais, puis le ciel procédural. Le ciel visible reste procédural pour éviter les bâtiments photographiés du HDRI derrière la cité. Le soleil est adouci et la lumière ambiante du HDRI préfiltrée une seule fois au chargement. Aucun appel à Poly Haven n’est nécessaire.
+
+Les réglages HDRI, exposition, heure, ombres et ancien rendu restent disponibles. Le cache local utilise des clés propres à ces fichiers, sans modifier les lots, les sauvegardes ni le schéma IndexedDB. Three.js reste chargé depuis le CDN.
+
 ## Règles pour les assistants (ChatGPT, Claude…)
 1. **Aucun asset en base64 dans le code.** Tout fichier binaire va dans `assets/` et se charge par chemin relatif (`fetch`, loaders three.js).
 2. **Une étape à la fois.** Proposer, modifier, puis attendre la validation de Simon avant l'étape suivante. Chaque modification = un commit avec un message clair en français.
