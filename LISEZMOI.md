@@ -32,3 +32,6 @@ assets/decor/         modèles low-poly Kenney (.glb, texture intégrée) — vo
 
 ## Crédits
 Ciels : Poly Haven (CC0). Textures : ambientCG (CC0). Décor : Kenney (voir licence). Moteur : three.js (MIT).
+
+## Feuille de route
+Voir **FEUILLE_DE_ROUTE.md** (version détaillée « un monde qui claque »).
