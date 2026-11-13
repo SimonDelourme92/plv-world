@@ -1,4 +1,4 @@
-# Crédits — quartier pilote et éclairage
+# Crédits — PLV WORLD
 
 ## Nouveaux éléments
 
@@ -28,3 +28,17 @@ Les textures ambientCG et modèles Kenney préexistants ne sont pas intégrés a
 | `assets/validation/pilote/apres-sol.png` | 283,011 octets |
 | `assets/validation/pilote/avant-drone.png` | 363,063 octets |
 | `assets/validation/pilote/avant-sol.png` | 252,788 octets |
+
+## Correction de l’interface, des commandes et de l’horizon
+
+- `assets/interface/interface.css` et `interface.js` : interface originale, polices système uniquement. Aucune bibliothèque d’icônes, police distante ou ressource graphique tierce.
+- `assets/horizon/horizon.js` : reliefs, skyline et navettes procéduraux originaux, sans fichier 3D ni texture tiers. Les géométries et visuels générés sont mis à disposition sous CC0 1.0.
+- `assets/validation/correction/` : captures de la scène et de l’interface réalisées avec les données de démonstration du dépôt. Aucun inventaire réel privé utilisé.
+
+Aucun nouvel asset externe. Les licences des ressources existantes restent inchangées.
+
+| Nouveau fichier de présentation | Taille |
+|---|---:|
+| `assets/interface/interface.css` | 14,405 octets |
+| `assets/interface/interface.js` | 10,645 octets |
+| `assets/horizon/horizon.js` | 6,864 octets |

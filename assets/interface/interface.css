@@ -1,0 +1,743 @@
+/* Création originale. Aucun chargement de police ni d'icône externe. */
+body.refined-ui {
+  --ink: #edf2f5;
+  --muted: #9eafb9;
+  --accent: #a8e3e9;
+  --line: #e5f3ff1a;
+  --panel: #101a23;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 14px;
+}
+.refined-ui button,
+.refined-ui select {
+  border-radius: 6px;
+  border-color: #d4e8f224;
+  background: #eef6ff07;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.refined-ui button:hover {
+  background: #e1f5ff12;
+  border-color: #c7e9f34d;
+}
+.refined-ui button.primary {
+  background: #d9eef0;
+  color: #11232c;
+  border: 0;
+  font-weight: 600;
+}
+.refined-ui button.primary:hover {
+  background: #effcfd;
+}
+.refined-ui .glass {
+  background: #101b24bd;
+  border: 1px solid #def3ff17;
+  box-shadow: 0 8px 25px #07121b15;
+  backdrop-filter: blur(12px);
+  border-radius: 9px;
+}
+.refined-ui #hud {
+  top: 26px;
+  left: 28px;
+  min-width: 202px;
+  max-width: 240px;
+  padding: 14px 16px;
+  background: #101b24b8;
+  pointer-events: none;
+}
+.refined-ui #hud h1 {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  margin: 4px 0 12px;
+}
+.refined-ui #hud > .eyebrow {
+  font-size: 8px;
+  color: #a3bac5;
+  letter-spacing: 0.16em;
+}
+.refined-ui #hud > .row {
+  display: none;
+}
+.refined-ui #hud > .hud-essential {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  margin: 4px 0;
+}
+.refined-ui #hud > .hud-essential > .muted {
+  display: none;
+}
+.refined-ui #mode {
+  font-size: 10px;
+  font-weight: 400;
+  color: #adced8;
+}
+.refined-ui #quarter {
+  font-size: 12px;
+}
+.refined-ui #total:after {
+  content: " exemplaires";
+  color: #96aeb9;
+  font-weight: 400;
+  font-size: 10px;
+}
+.refined-ui #hud > .line {
+  display: none;
+}
+.refined-ui #perf {
+  display: none;
+}
+.refined-ui.show-diagnostics #perf {
+  display: block;
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.refined-ui.show-diagnostics #hud > .row {
+  display: flex;
+}
+.refined-ui.show-diagnostics #hud > .row > .muted {
+  display: inline;
+}
+.refined-ui #saveHud {
+  font-size: 12px !important;
+  color: #b9d7cf;
+  padding: 12px 0;
+}
+.refined-ui #toolbar {
+  top: 26px;
+  right: 28px;
+  gap: 6px;
+  max-width: 60vw;
+}
+.refined-ui #toolbar button {
+  padding: 9px 12px;
+  background: #101b24b8;
+  border: 1px solid #def3ff17;
+  box-shadow: none;
+  font-size: 11px;
+  font-weight: 500;
+  backdrop-filter: blur(12px);
+}
+.refined-ui kbd {
+  font-family: inherit;
+}
+.refined-ui #toolbar kbd {
+  font-size: 9px;
+  opacity: 0.5;
+  margin-left: 12px;
+}
+.refined-ui #bottom {
+  bottom: 22px;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  color: #e4eff5ba;
+  font-size: 10px;
+  opacity: 0;
+  transition: opacity 0.35s;
+  text-shadow: 0 1px 5px #000b;
+}
+.refined-ui.show-command-hint #bottom,
+.refined-ui.is-map #bottom,
+.refined-ui.is-driving #bottom {
+  opacity: 1;
+}
+.refined-ui #bottom kbd {
+  padding: 3px 6px;
+  border: 1px solid #cfe1eb55;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+.refined-ui #cross {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffffffa0;
+}
+.refined-ui #cross:before,
+.refined-ui #cross:after {
+  display: none;
+}
+.refined-ui #miniMap {
+  left: 28px;
+  bottom: 26px;
+  width: 146px;
+  padding: 9px;
+  border-radius: 12px;
+}
+.refined-ui #miniMap canvas {
+  width: 126px;
+  height: 126px;
+  border-radius: 7px;
+  opacity: 0.93;
+}
+.refined-ui #miniMap .minihead {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: #acc4cf;
+}
+.refined-ui #miniMap .minifoot {
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  color: #93aeba;
+}
+.refined-ui #lotFocus {
+  right: 28px;
+  bottom: 26px;
+  width: 255px;
+  padding: 14px 17px;
+  background: #101b24e6;
+  border: 1px solid #def3ff20;
+  border-left: 2px solid var(--lot-accent);
+  border-radius: 8px;
+  box-shadow: none;
+}
+.refined-ui #lotFocus h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+.refined-ui #lotFocus .focusQty {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 9px 0;
+}
+.refined-ui #lotFocus .detail {
+  font-size: 11px;
+  color: #a9bdc8;
+}
+.refined-ui #focusDims,
+.refined-ui #focusDate {
+  display: none;
+}
+.refined-ui #lotFocus .eyebrow {
+  font-size: 9px;
+}
+.refined-ui #lotFocus .focusHint {
+  color: #b5d4dc;
+  font-size: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.refined-ui #pause {
+  background: linear-gradient(90deg, #07111cdf, #07111c80 65%, #07111c30);
+  padding: 4vh 4vw;
+  z-index: 7;
+  place-items: center;
+}
+.refined-ui #pause > .panel {
+  width: min(1080px, 100%);
+  max-height: 90dvh;
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr);
+  padding: 0;
+  background: #101923ef;
+  border: 1px solid #def3ff1c;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px #0004;
+}
+.refined-ui .menu-rail {
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-right: 1px solid var(--line);
+  background: #0d161e88;
+}
+.refined-ui .menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 40px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.refined-ui .brand-mark {
+  font-size: 12px;
+  border: 1px solid #a2c3d34d;
+  border-radius: 6px;
+  padding: 10px 8px;
+  color: #c9e3eb;
+  white-space: nowrap;
+}
+.refined-ui .menu-brand small {
+  display: block;
+  font-size: 8px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.refined-ui .menu-rail > button {
+  text-align: left;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  color: #a6b7c2;
+  font-size: 12px;
+}
+.refined-ui .menu-rail > button[aria-current="page"] {
+  background: #d4ecf10c;
+  color: #e8f5f8;
+  box-shadow: inset 2px 0 #a8dfe8;
+}
+.refined-ui .menu-footer {
+  margin-top: auto;
+  padding: 70px 8px 0;
+  font-size: 9px;
+  line-height: 1.6;
+  color: #718e9f;
+}
+.refined-ui .menu-pages {
+  min-width: 0;
+  max-height: 82dvh;
+  overflow: auto;
+  padding: 38px 40px 32px;
+}
+.refined-ui .menu-page > h2 {
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  max-width: 460px;
+  margin: 10px 0 18px;
+}
+.refined-ui .menu-page > .eyebrow {
+  font-size: 9px;
+  color: #8eacba;
+  letter-spacing: 0.2em;
+}
+.refined-ui .menu-intro {
+  font-size: 12px;
+  color: #a2b5c2;
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+.refined-ui #page-explore > .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 28px;
+}
+.refined-ui #page-explore > .actions > button {
+  font-size: 12px;
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 400;
+}
+.refined-ui #page-explore #play {
+  grid-column: 1/-1;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 19px 18px;
+  margin-bottom: 12px;
+}
+.refined-ui .menu-page .actions {
+  gap: 8px;
+}
+.refined-ui .menu-page .actions button {
+  font-size: 12px;
+  padding: 12px;
+}
+.refined-ui #status {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0 22px;
+  line-height: 2.6;
+  font-size: 11px;
+  max-height: 90px;
+  overflow: auto;
+  background: #b3e3e908;
+}
+.refined-ui #status:empty {
+  display: none;
+}
+.refined-ui .settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px 24px;
+  margin-top: 28px;
+}
+.refined-ui .setting {
+  margin: 0;
+  min-width: 0;
+}
+.refined-ui .setting label {
+  font-size: 11px;
+  color: #b0c4cf;
+  margin-bottom: 8px;
+}
+.refined-ui .setting input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+.refined-ui .setting select {
+  padding: 8px;
+  font-size: 11px;
+}
+.refined-ui .settings-grid > p {
+  grid-column: 1/-1;
+  font-size: 10px !important;
+  color: #839cab;
+}
+.refined-ui .advanced-tools {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  margin-top: 28px;
+}
+.refined-ui summary {
+  font-size: 11px;
+  color: #8aa6b7;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.refined-ui .advanced-tools .testbox {
+  font-size: 11px;
+  background: none;
+}
+.refined-ui .advanced-tools button {
+  font-size: 11px;
+}
+.refined-ui .help {
+  gap: 14px 20px;
+  font-size: 12px;
+  margin-top: 28px;
+}
+.refined-ui .help .key {
+  background: #d5ebf009;
+  border: 1px solid #d5ebf024;
+  border-radius: 5px;
+  font-size: 10px;
+  padding: 6px 8px;
+  color: #c2d9e2;
+}
+.refined-ui .menu-page .data {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  margin-top: 24px;
+  gap: 8px;
+}
+.refined-ui .menu-page .data button {
+  padding: 9px 11px;
+}
+.refined-ui #manager {
+  background: #07111c99;
+}
+.refined-ui .manager-panel {
+  background: #101923f7;
+  border: 1px solid #def3ff20;
+  border-radius: 12px;
+  box-shadow: 0 24px 80px #0004;
+}
+.refined-ui .manager-head h2 {
+  font-size: 26px;
+  font-weight: 400;
+}
+.refined-ui .tabs {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.refined-ui .tabs button {
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  color: #9fb5c1;
+}
+.refined-ui .tabs button.active {
+  background: #d4ecf10e;
+  color: #e3f4f7;
+  box-shadow: inset 0 -1px #91c9d4;
+}
+.refined-ui .field input,
+.refined-ui .field select,
+.refined-ui .field textarea,
+.refined-ui .filters input,
+.refined-ui .filters select {
+  background: #0b151e;
+  border: 1px solid #d4ecf122;
+  border-radius: 5px;
+}
+.refined-ui th {
+  background: #15222d;
+  color: #acc6d4;
+  font-weight: 500;
+}
+.refined-ui .tablewrap {
+  border-color: var(--line);
+  border-radius: 6px;
+}
+.refined-ui .detail-metric {
+  background: #d5eaf806;
+  border-color: var(--line);
+}
+.refined-ui .detail-metric strong {
+  font-weight: 400;
+}
+.refined-ui #photoPanel {
+  background: #101923ee;
+  border: 1px solid #def3ff24;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+.refined-ui #photoPanel .photoHint {
+  font-size: 10px;
+  color: #8da7b8;
+}
+.refined-ui #photoPanel button {
+  font-size: 11px;
+}
+.refined-ui #tourPanel {
+  border-radius: 8px;
+}
+.refined-ui #mapBanner {
+  top: 26px;
+  font-size: 10px;
+  border-radius: 7px;
+  background: #101b24ce;
+}
+.refined-ui #mapBanner b {
+  font-size: 10px;
+  letter-spacing: 0.17em;
+  font-weight: 500;
+}
+.refined-ui #mapLegend {
+  left: 28px;
+  bottom: 26px;
+  background: #101b24d9;
+  border: 1px solid var(--line);
+  font-size: 10px;
+  border-radius: 7px;
+}
+.refined-ui #toast {
+  background: #101b24ed;
+  border: 1px solid var(--line);
+  box-shadow: none;
+  border-radius: 6px;
+  font-size: 11px;
+}
+.refined-ui #loading {
+  background: radial-gradient(ellipse at 20% 10%, #203647, #0b141e 75%);
+}
+.refined-ui #loading .panel {
+  background: #101923;
+  border-radius: 10px;
+}
+.refined-ui #loading h2 {
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+.refined-ui #loadTrack {
+  height: 3px;
+}
+.refined-ui #loadFill {
+  background: #a8dfe8;
+}
+@media (max-width: 760px) {
+  .refined-ui #pause {
+    padding: 12px;
+  }
+  .refined-ui #pause > .panel {
+    grid-template-columns: 1fr;
+    max-height: 94dvh;
+  }
+  .refined-ui .menu-rail {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 12px;
+    gap: 3px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .refined-ui .menu-brand,
+  .refined-ui .menu-footer {
+    display: none;
+  }
+  .refined-ui .menu-rail > button {
+    text-align: center;
+    padding: 10px 5px;
+    font-size: 11px;
+  }
+  .refined-ui .menu-rail > button[aria-current="page"] {
+    box-shadow: inset 0 -1px #a8dfe8;
+  }
+  .refined-ui .menu-pages {
+    padding: 24px 20px;
+    max-height: 77dvh;
+  }
+  .refined-ui .menu-page > h2 {
+    font-size: 30px;
+  }
+  .refined-ui #hud {
+    left: 14px;
+    top: 14px;
+    min-width: 150px;
+    max-width: 170px;
+    padding: 10px 12px;
+  }
+  .refined-ui #hud h1 {
+    font-size: 11px;
+  }
+  .refined-ui #hud > .eyebrow {
+    display: none;
+  }
+  .refined-ui #hud > .hud-essential {
+    font-size: 10px;
+  }
+  .refined-ui #toolbar {
+    right: 14px;
+    top: 14px;
+    max-width: 48vw;
+    gap: 4px;
+  }
+  .refined-ui #toolbar button {
+    font-size: 10px;
+    padding: 8px;
+  }
+  .refined-ui #toolbar kbd {
+    display: none;
+  }
+  .refined-ui #miniMap {
+    left: 14px;
+    bottom: 16px;
+    width: 112px;
+    padding: 7px;
+  }
+  .refined-ui #miniMap canvas {
+    width: 96px;
+    height: 96px;
+  }
+  .refined-ui #miniMap .minifoot {
+    display: none;
+  }
+  .refined-ui #lotFocus {
+    right: 14px;
+    bottom: 16px;
+    width: 210px;
+  }
+  .refined-ui #lotFocus .detail {
+    font-size: 10px;
+  }
+  .refined-ui #bottom {
+    bottom: 6px;
+    font-size: 9px;
+  }
+  .refined-ui #mapBanner {
+    top: auto;
+    bottom: 35px;
+    max-width: 90vw;
+    white-space: normal;
+  }
+  .refined-ui .settings-grid {
+    gap: 14px;
+  }
+  .refined-ui #photoPanel .photoHint {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .refined-ui .settings-grid {
+    grid-template-columns: 1fr;
+  }
+  .refined-ui #page-explore > .actions {
+    grid-template-columns: 1fr;
+  }
+  .refined-ui #lotFocus {
+    width: 180px;
+  }
+  .refined-ui .menu-page > h2 {
+    font-size: 26px;
+  }
+  .refined-ui .help {
+    gap: 12px;
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .refined-ui * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.refined-ui .explore-tools {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.refined-ui .explore-tools .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.refined-ui #page-explore #pilotBtn {
+  grid-column: 1/-1;
+  color: #b9d8e2;
+  font-size: 11px;
+}
+.refined-ui .menu-rail > .resume-menu {
+  margin-top: 24px;
+  border: 1px solid #b1d7e035;
+  color: #d3e9ee;
+  text-align: center;
+  font-size: 11px;
+}
+.refined-ui #loading .panel h2 {
+  font-weight: 400;
+}
+@media (max-width: 760px) {
+  .refined-ui .menu-rail > .resume-menu {
+    grid-column: 1/-1;
+    margin-top: 8px;
+  }
+  .refined-ui .menu-footer {
+    display: none;
+  }
+}
+
+.refined-ui.is-driving #speedRow,
+.refined-ui.is-fly #hud > .row:has(#altitude) {
+  display: flex;
+  font-size: 11px;
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+}
+
+.refined-ui #mapBanner {
+  top: auto;
+  bottom: 58px;
+  width: 260px;
+  white-space: normal;
+  padding: 10px 14px;
+}
+.refined-ui #mapBanner > span {
+  display: block;
+  margin: 4px 0;
+  color: #9cb6c5;
+  font-size: 9px;
+}
+.refined-ui #mapScale {
+  font-size: 9px;
+  color: #87a2b1;
+}
+@media (max-width: 760px) {
+  .refined-ui #mapBanner {
+    bottom: 32px;
+    width: 240px;
+  }
+  .refined-ui #mapLegend {
+    left: 14px;
+    bottom: 130px;
+    max-width: 155px;
+    font-size: 9px;
+  }
+}

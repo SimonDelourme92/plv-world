@@ -15,6 +15,13 @@ assets/textures/      textures sol 1K couleur / normal / rugosité (ambientCG, C
 assets/decor/         modèles low-poly Kenney (.glb, texture intégrée) — voir LICENSE_Kenney.md
 ```
 
+## Interface, commandes et horizon
+Le menu distingue **Explorer**, **Inventaire**, **Réglages** et **Commandes**. Les mesures techniques sont masquées au départ et accessibles avec **F**. L’aide complète s’ouvre avec **H** ; les formulaires conservent la saisie normale.
+
+ZQSD / WASD et souris pour marcher ; Maj pour courir, Espace pour sauter, **E** ou clic pour examiner une PLV. **C** prend / quitte le véhicule et restitue le point de vue précédent. **T** change de vue, **V** bascule en drone, **M** ouvre la carte, **O** le mode photo, **P** capture l’écran, Échap ouvre le menu. Sur la carte, la téléportation demande **Maj + clic** ; un clic sur un lot ouvre sa fiche.
+
+La sensibilité souris et l’horizon sont réglables dans **Réglages**. Le fond réunit une skyline, deux reliefs lointains et quelques navettes, sans occuper de surface d’exposition. Sources, vérifications et limites de performance : [docs/CORRECTION_INTERFACE_HORIZON.md](docs/CORRECTION_INTERFACE_HORIZON.md).
+
 ## Quartier pilote — Parvis Méridien
 Dans le menu, **Découvrir le Parvis Méridien** ouvre une vue d’ensemble au sol. La place centrale accueille une proposition architecturale limitée : portique, six bâtiments, galeries, jardins et mobilier. Les PLV restent dans leurs quartiers d’exposition, à leurs dimensions réelles. Le reste du monde attend validation.
 

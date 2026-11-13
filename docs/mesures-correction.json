@@ -1,0 +1,40 @@
+{
+  "base": "47b248efcfbc26cd5417a78652267755ca845552",
+  "backend": "Chromium headless / SwiftShader (logiciel)",
+  "viewport": [
+    960,
+    600
+  ],
+  "qualite": "Moyenne",
+  "ratio": 1,
+  "distance_m": 350,
+  "camera": {
+    "position": [
+      50,
+      1.7,
+      94
+    ],
+    "visee": [
+      50,
+      6,
+      -30
+    ]
+  },
+  "echantillons": 9,
+  "mesures": [
+    {
+      "version": "avant",
+      "fps": 0.5897052211026014,
+      "appelsMax": 96,
+      "appelsMoy": 96,
+      "triangles": 35092
+    },
+    {
+      "version": "apres",
+      "fps": 0.6316022169237816,
+      "appelsMax": 104,
+      "appelsMoy": 104,
+      "triangles": 41772
+    }
+  ]
+}
