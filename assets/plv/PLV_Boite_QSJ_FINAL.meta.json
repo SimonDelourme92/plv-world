@@ -1,0 +1,32 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "Boîte QSJ – FINAL",
+  "typeModele": "comptoir-bois",
+  "glb": "PLV_Boite_QSJ_FINAL.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.266,
+    "p": 0.246,
+    "h": 0.11
+  },
+  "poidsCharge_kg": 7.1,
+  "capacite_livres": 48,
+  "facings": 2,
+  "matieres": {
+    "caisson": "Contreplaqué bouleau 6,5 mm",
+    "dos": "Contreplaqué bouleau 6,5 mm",
+    "separateur": "Contreplaqué bouleau 6,5 mm"
+  },
+  "crea": [
+    {
+      "face": "avant",
+      "nom": "Que sais-je ? (BAT Miletis)"
+    }
+  ],
+  "source": "Configurateur PLV 3D · PLV_Boite_QSJ_-_FINAL_2026-11-13.json",
+  "export": "2026-11-13"
+}
