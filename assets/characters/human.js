@@ -322,5 +322,7 @@ export function cloneHuman(THREE,kit,{tint=null,scale=1}={}) {
   root.scale.multiplyScalar(scale);
   root.traverse(o=>{if(!o.isMesh)return;o.castShadow=false;o.receiveShadow=true;if(tint && /^(Object_11|Object_13|Object_17)$/.test(o.name)){if(!palette.has(o.material)){const material=o.material.clone();material.color.multiply(new THREE.Color(tint));palette.set(o.material,material);}o.material=palette.get(o.material);}});
   for(const [name,clip] of Object.entries(kit.clips))actions[name]=mixer.clipAction(clip);
+  // Préparer les liaisons d’animation une fois, avant l’affichage du visiteur.
+  for(const action of Object.values(actions)){action.play();mixer.update(0);action.stop();}
   return {root,mixer,actions};
 }
