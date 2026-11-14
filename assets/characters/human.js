@@ -1,3 +1,4 @@
+import { clone as cloneSkeleton } from "three/addons/utils/SkeletonUtils.js";
 const CHARACTER_URL = new URL("./homme-contemporain.glb", import.meta.url);
 const ANIMATIONS_URL = new URL("./UAL1_Standard.glb", import.meta.url);
 
@@ -55,12 +56,16 @@ const CLIPS = {
   jump: "Jump_Loop",
   land: "Jump_Land",
   sitting: "Sitting_Idle_Loop",
+  walkCasual: "Walk_Loop",
+  talk: "Idle_Talking_Loop",
+  interact: "Interact",
+  push: "Push_Loop",
 };
 function load(loader, url) {
   return new Promise((resolve, reject) => loader.load(url.href, resolve, undefined, reject));
 }
 
-export async function loadHuman(THREE, GLTFLoader, parent) {
+async function buildHuman(THREE, GLTFLoader, parent) {
   const loader = new GLTFLoader();
   const [character, library] = await Promise.all([
     load(loader, CHARACTER_URL),
@@ -183,6 +188,33 @@ export async function loadHuman(THREE, GLTFLoader, parent) {
     }
   });
 
+  // Calculer une seule fois les bras du groupe, sans toucher aux clips du joueur.
+  let bakedClips;
+  function bakeCrowdClips(){
+  if(bakedClips)return bakedClips;
+  const preparedClips = {};
+  const bakeMixer = new THREE.AnimationMixer(root);
+  for (const [state, original] of Object.entries(actions)) {
+    if (!['idle','walk','walkCasual','talk','interact','push','sitting'].includes(state)) continue;
+    const clip=original.getClip(), action=bakeMixer.clipAction(clip), frames=Math.max(2,Math.ceil(clip.duration*30));
+    const times=Float32Array.from({length:frames},(_,i)=>Math.min(clip.duration-1e-5,i*clip.duration/(frames-1)));
+    const names=armParts.flatMap(p=>[p.arm,p.fore]);
+    const values=names.map(()=>new Float32Array(frames*4));action.play();
+    for(let f=0;f<frames;f++){
+      bakeMixer.setTime(times[f]);parent.updateWorldMatrix(true,false);parent.getWorldQuaternion(avatarFrame);avatarFrameInverse.copy(avatarFrame).invert();root.updateMatrixWorld(true);
+      const swing=(state==='walk'||state==='walkCasual')?.5:0;let phase=0;
+      if(footL&&footR&&swing){footL.getWorldPosition(p0);footR.getWorldPosition(p1);phase=THREE.MathUtils.clamp(p0.sub(p1).applyQuaternion(avatarFrameInverse).z/.5,-1,1);}
+      for(const {side,arm,fore,hand} of armParts){const bone=targetBones.get(arm),lower=targetBones.get(fore),end=targetBones.get(hand);if(!bone||!lower||!end)continue;const a=swing*phase*side;aim(bone,lower,want.set(side*.12,-1,-a*.55));aim(lower,end,want.set(side*.05,-.9,-(.3+.35*Math.max(0,a))));}
+      names.forEach((name,i)=>targetBones.get(name)?.quaternion.toArray(values[i],f*4));
+    }
+    action.stop();const tracks=clip.tracks.filter(t=>!names.some(n=>t.name===n+'.quaternion'));
+    names.forEach((name,i)=>{if(targetBones.has(name))tracks.push(new THREE.QuaternionKeyframeTrack(name+'.quaternion',times,values[i]));});
+    preparedClips[state]=new THREE.AnimationClip(clip.name+'-visiteur',clip.duration,tracks);
+  }
+  bakeMixer.stopAllAction();
+  bakedClips=preparedClips;
+  return bakedClips;
+  }
   parent.add(root);
   let active = null;
   let wasAirborne = false;
@@ -198,6 +230,8 @@ export async function loadHuman(THREE, GLTFLoader, parent) {
 
   return {
     root,
+    getCrowdClips: bakeCrowdClips,
+    reparent(next){ next.add(root); parent=next; },
     update(dt, { speed = 0, running = false, airborne = false } = {}) {
       if (airborne) {
         if (!wasAirborne) {
@@ -266,4 +300,27 @@ export async function loadHuman(THREE, GLTFLoader, parent) {
       return active;
     },
   };
+}
+
+let basePromise,sharedKitPromise;
+function loadBase(THREE,GLTFLoader){
+  if(!basePromise)basePromise=buildHuman(THREE,GLTFLoader,new THREE.Group()).catch(error=>{basePromise=null;throw error;});
+  return basePromise;
+}
+export function loadHumanKit(THREE, GLTFLoader) {
+  if(!sharedKitPromise)sharedKitPromise=loadBase(THREE,GLTFLoader).then(controller=>({template:controller.root,clips:controller.getCrowdClips(),controller})).catch(error=>{sharedKitPromise=null;throw error;});
+  return sharedKitPromise;
+}
+export async function loadHuman(THREE, GLTFLoader, parent) {
+  const controller=await loadBase(THREE,GLTFLoader);
+  controller.reparent(parent);
+  return controller;
+}
+export function cloneHuman(THREE,kit,{tint=null,scale=1}={}) {
+  const root=cloneSkeleton(kit.template), mixer=new THREE.AnimationMixer(root), actions={};
+  kit.palettes??=new Map();const key=tint||"default";if(!kit.palettes.has(key))kit.palettes.set(key,new Map());const palette=kit.palettes.get(key);
+  root.scale.multiplyScalar(scale);
+  root.traverse(o=>{if(!o.isMesh)return;o.castShadow=false;o.receiveShadow=true;if(tint && /^(Object_11|Object_13|Object_17)$/.test(o.name)){if(!palette.has(o.material)){const material=o.material.clone();material.color.multiply(new THREE.Color(tint));palette.set(o.material,material);}o.material=palette.get(o.material);}});
+  for(const [name,clip] of Object.entries(kit.clips))actions[name]=mixer.clipAction(clip);
+  return {root,mixer,actions};
 }
