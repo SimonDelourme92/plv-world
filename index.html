@@ -524,7 +524,7 @@ let remaining=min;for(let i=nearest+1;i<points.length;i++)remaining+=Math.hypot(
 function ensurePlayerOutside(){if(mode==='car'){if(carBlocked(camera.position.x,camera.position.z,carYaw)&&!spawnCar()){mode='walk';camera.position.set(start.x,EYE,start.z);setToast('Pas de place pour la voiture. Retour à pied.');}return;}if((mode!=='walk'&&mode!=='third')||!collides(camera.position.x,camera.position.z,camera.position.y))return;const p=safePosition(camera.position.x,camera.position.z);camera.position.set(p.x,EYE,p.z);vertical=0;onGround=true;}
 function home(){camera.position.set(start.x,EYE,start.z);camera.rotation.set(0,0,0,'YXZ');vertical=0;onGround=true;}
 // Lit sec : le sol et les déplacements partagent la même altitude.
-try{const {createRiverbed}=await import('./assets/river/riverbed.js');terrain=createRiverbed({THREE,scene,ground,reservations:()=>[...obstacles,...records.map(r=>r.bounds)]});terrainSampler=terrain.height;}catch(e){console.warn('Lit de rivière indisponible : terrain plat conservé.',e);}
+try{const [{createRiverbed},{createRelief}]=await Promise.all([import('./assets/river/riverbed.js'),import('./assets/terrain/relief.js')]);const reservations=()=>[...obstacles,...records.map(r=>r.bounds)];terrain=createRiverbed({THREE,scene,ground,reservations});const relief=createRelief({reservations});terrainSampler=(x,z)=>{const bed=terrain.height(x,z);return bed<0.05?bed:bed+relief(x,z);};}catch(e){console.warn('Relief ou lit de rivière indisponible : terrain plat conservé.',e);}
 home();
 // ============================================================================
 // DÉCOR VIVANT — phase 3 : props futuristes instanciés, chunks visibles de près.
