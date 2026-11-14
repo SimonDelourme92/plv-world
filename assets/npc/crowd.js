@@ -24,6 +24,9 @@ export function createCrowd({THREE,scene,kit,getRecords,terrainHeight,collides,r
   const inside=(x,z,y=terrainHeight(x,z))=>{bounds.center.set(x,y+.9,z);return frustum.intersectsSphere(bounds);};
   const dry=(x,z)=>terrainHeight(x,z)>=waterLevel+.15;
   function safe(x,z){const h=terrainHeight(x,z),y=h+1.7;return h>=waterLevel+.15&&!collides(x,z,y)&&!collides(x+.4,z,y)&&!collides(x-.4,z,y)&&!collides(x,z+.4,y)&&!collides(x,z-.4,y);}
+  function clearOfPeople(p,x,z){for(let i=0;i<people.length;i++){const q=people[i];if(q===p||!q.active)continue;const before=(p.x-q.x)**2+(p.z-q.z)**2,after=(x-q.x)**2+(z-q.z)**2;if(after<1.44&&after<=before)return false;}return true;}
+  function outsideCar(x,z,car){if(!car||!car.active)return true;const c=Math.cos(car.yaw),s=Math.sin(car.yaw),dx=x-car.x,dz=z-car.z;return Math.abs(c*dx-s*dz)>=1.5||Math.abs(s*dx+c*dz)>=2.6;}
+  function clearSpawn(p,x,z,player,car){if(Math.hypot(x-player.x,z-player.z)<.8||!outsideCar(x,z,car)||!safe(x,z))return false;for(let i=0;i<people.length;i++){const q=people[i];if(q!==p&&q.active&&(q.x-x)**2+(q.z-z)**2<1.44)return false;}return true;}
   function assign(p, player, records, blockers){
     const lot=chooseNextLot(records,p.history,player.x,player.z,random);if(!lot){p.waiting=false;p.stop=3+random()*5;p.anim='idle';return;}
     const dest=chooseStop(lot.bounds,blockers,terrainHeight,waterLevel,random);if(!dest){p.waiting=false;p.stop=2;p.anim='idle';return;}
@@ -33,11 +36,11 @@ export function createCrowd({THREE,scene,kit,getRecords,terrainHeight,collides,r
     if(!route||route.points.some(q=>!dry(q.x,q.z))){p.waiting=false;p.stop=2;p.anim='idle';return;}
     p.lot=lot;p.path=route.points;p.index=1;p.waiting=false;p.stop=0;p.anim='walk';p.history.unshift(lot.lot.id);if(p.history.length>3)p.history.pop();
   }
-  function spawn(p,player,camera){
-    if(p.buddy>=0&&people[p.buddy].active){const leader=people[p.buddy],x=leader.x+1.3*Math.cos(leader.yaw),z=leader.z-1.3*Math.sin(leader.yaw);if(canSpawn(x,z,player.x,player.z,inside)&&safe(x,z)){p.x=x;p.z=z;p.y=terrainHeight(x,z);p.active=true;p.waiting=true;p.path=null;p.stop=0;return true;}}
+  function spawn(p,player,camera,car){
+    if(p.buddy>=0&&people[p.buddy].active){const leader=people[p.buddy],x=leader.x+1.3*Math.cos(leader.yaw),z=leader.z-1.3*Math.sin(leader.yaw);if(canSpawn(x,z,player.x,player.z,inside)&&clearSpawn(p,x,z,player,car)){p.x=x;p.z=z;p.y=terrainHeight(x,z);p.active=true;p.waiting=true;p.path=null;p.stop=0;return true;}}
     const records=getRecords();let near=null,seen=0;for(let i=0;i<records.length;i++){const r=records[i];if(r.isTest)continue;const b=r.bounds,x=(b.min.x+b.max.x)/2,z=(b.min.z+b.max.z)/2;if((x-player.x)**2+(z-player.z)**2<14400&&random()<1/++seen)near=r;}
     const cx=near?(near.bounds.min.x+near.bounds.max.x)/2:player.x,cz=near?(near.bounds.min.z+near.bounds.max.z)/2:player.z;
-    for(let i=0;i<14;i++){const a=random()*Math.PI*2,r=near?8+random()*30:25+random()*55,x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r;if(Math.hypot(x-player.x,z-player.z)>120||Math.abs(x)>router.halfExtent-2||Math.abs(z)>router.halfExtent-2||!canSpawn(x,z,player.x,player.z,inside)||!safe(x,z))continue;p.x=x;p.z=z;p.y=terrainHeight(x,z);p.active=true;p.waiting=true;p.path=null;p.stop=0;return true;}return false;
+    for(let i=0;i<14;i++){const a=random()*Math.PI*2,r=near?8+random()*30:25+random()*55,x=cx+Math.cos(a)*r,z=cz+Math.sin(a)*r;if(Math.hypot(x-player.x,z-player.z)>120||Math.abs(x)>router.halfExtent-2||Math.abs(z)>router.halfExtent-2||!canSpawn(x,z,player.x,player.z,inside)||!clearSpawn(p,x,z,player,car))continue;p.x=x;p.z=z;p.y=terrainHeight(x,z);p.active=true;p.waiting=true;p.path=null;p.stop=0;return true;}return false;
   }
   // Préparer l’itinéraire hors de la boucle de rendu, un seul à la fois.
   let routing=false,routePerson=null,routePlayer=null;
@@ -47,7 +50,7 @@ export function createCrowd({THREE,scene,kit,getRecords,terrainHeight,collides,r
     if(!enabled||!renderable){root.visible=false;return;}root.visible=true;const start=performance.now(),player=getPlayer(),car=getCar(),records=getRecords();camera.updateMatrixWorld();matrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);frustum.setFromProjectionMatrix(matrix);frame++;
     let closeLots=0;for(let i=0;i<records.length;i++){const r=records[i];if(r.isTest)continue;const x=(r.bounds.min.x+r.bounds.max.x)/2,z=(r.bounds.min.z+r.bounds.max.z)/2;if((x-player.x)**2+(z-player.z)**2<14400)closeLots++;}
     const limit=closeLots?count:Math.min(count,4);let assigned=false;pending=actifs=0;
-    for(let i=0;i<40;i++){const p=people[i];if(i>=limit){p.active=false;continue;}if(!p.active||shouldRecycle(p.x,p.z,player.x,player.z)){p.active=false;if(spawn(p,player,camera))p.lastSim=now;}if(!p.active)continue;if(p.lot&&!records.includes(p.lot)){p.lot=null;p.path=null;p.waiting=true;p.stop=0;}
+    for(let i=0;i<40;i++){const p=people[i];if(i>=limit){p.active=false;continue;}if(!p.active||shouldRecycle(p.x,p.z,player.x,player.z)){p.active=false;if(spawn(p,player,camera,car))p.lastSim=now;}if(!p.active)continue;if(p.lot&&!records.includes(p.lot)){p.lot=null;p.path=null;p.waiting=true;p.stop=0;}
       let dx=p.x-player.x,dz=p.z-player.z,near=Math.hypot(dx,dz);
       if(near<.8&&near>.001){const nx=player.x+dx/near*.85,nz=player.z+dz/near*.85;if(safe(nx,nz)){p.x=nx;p.z=nz;p.y=terrainHeight(nx,nz);}}
       if(car&&car.active){const c=Math.cos(car.yaw),s=Math.sin(car.yaw),rx=p.x-car.x,rz=p.z-car.z,lx=c*rx-s*rz,lz=s*rx+c*rz;if(Math.abs(lx)<1.5&&Math.abs(lz)<2.6){const shift=(Math.sign(lx)||1)*1.55-lx,nx=p.x+c*shift,nz=p.z-s*shift;if(safe(nx,nz)){p.x=nx;p.z=nz;p.y=terrainHeight(nx,nz);}}}
@@ -62,7 +65,7 @@ export function createCrowd({THREE,scene,kit,getRecords,terrainHeight,collides,r
       for(let j=0;j<limit;j++){const other=people[j];if(j===i||!other.active)continue;const ax=p.x-other.x,az=p.z-other.z,d2=ax*ax+az*az;if(d2>.0001&&d2<1.44){const k=(1.2-Math.sqrt(d2))*1.4/Math.sqrt(d2);sx+=ax*k;sz+=az*k;}}
       const pd=Math.hypot(dx,dz);if(pd<1.4&&pd>.01){sx+=dx/pd*(1.4-pd)*2;sz+=dz/pd*(1.4-pd)*2;}
       if(car&&car.active){const cx=p.x-car.x,cz=p.z-car.z,cd=Math.hypot(cx,cz);if(cd<3&&cd>.01){sx+=cx/cd*(3-cd)*2;sz+=cz/cd*(3-cd)*2;}if(Math.abs(car.speed)>.3&&cd<10&&cd>.01){const approach=(-Math.sin(car.yaw)*cx-Math.cos(car.yaw)*cz)*Math.sign(car.speed||1);if(approach>0){const side=Math.sign(Math.cos(car.yaw)*cx-Math.sin(car.yaw)*cz)||1;sx+=Math.cos(car.yaw)*side*1.5;sz-=Math.sin(car.yaw)*side*1.5;}}}
-      const norm=Math.hypot(sx,sz)||1,nx=p.x+sx/norm*p.speed*step,nz=p.z+sz/norm*p.speed*step;if(safe(nx,nz)&&Math.hypot(nx-player.x,nz-player.z)>.8){p.x=nx;p.z=nz;p.y=terrainHeight(nx,nz);}else p.waiting=true;
+      const norm=Math.hypot(sx,sz)||1,nx=p.x+sx/norm*p.speed*step,nz=p.z+sz/norm*p.speed*step;if(!safe(nx,nz))p.waiting=true;else if(clearOfPeople(p,nx,nz)&&outsideCar(nx,nz,car)&&Math.hypot(nx-player.x,nz-player.z)>.8){p.x=nx;p.z=nz;p.y=terrainHeight(nx,nz);}
       const heading=Math.atan2(-sx,-sz);p.yaw+=Math.atan2(Math.sin(heading-p.yaw),Math.cos(heading-p.yaw))*Math.min(1,step*4);p.phase+=step*p.speed*5;
     }
     for(let i=0;i<slots.length;i++){slots[i].owner=-1;slots[i].root.visible=false;}
