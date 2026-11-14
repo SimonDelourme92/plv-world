@@ -1,0 +1,24 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "Tourniquet Hannecke U – Turquoise (QSJ 2027)",
+  "op": "OP QSJ 2027",
+  "editeur": "PUF",
+  "typeModele": "tourniquet-hannecke-u",
+  "glb": "PLV_Tourniquet_Hannecke_U_Turquoise.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.43,
+    "p": 0.43,
+    "h": 1.838
+  },
+  "capacite_livres": null,
+  "livres": "non inclus",
+  "matieres": "Tourniquet de sol : pied caisson bois sur roulettes, 7 étages de poches plexi, header turquoise",
+  "categorie": "sol",
+  "source": "Configurateur PLV 3D",
+  "export": "2026-11-14"
+}

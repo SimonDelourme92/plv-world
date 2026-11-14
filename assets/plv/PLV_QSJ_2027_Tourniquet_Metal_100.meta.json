@@ -1,0 +1,24 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "Tourniquet comptoir 100 vol. Métal – QSJ 2027",
+  "op": "OP QSJ 2027",
+  "editeur": "PUF",
+  "typeModele": "tourniquet-moulinet",
+  "glb": "PLV_QSJ_2027_Tourniquet_Metal_100.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.269,
+    "p": 0.269,
+    "h": 0.694
+  },
+  "capacite_livres": null,
+  "livres": "non inclus",
+  "matieres": "Tourniquet métal filaire noir, 3 étages de poches, fronton 25 × 7 cm",
+  "categorie": "comptoir",
+  "source": "Configurateur PLV 3D",
+  "export": "2026-11-14"
+}
