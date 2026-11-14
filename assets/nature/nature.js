@@ -16,6 +16,20 @@ export async function createNature({ THREE, scene, terrainHeight, reservations =
       mesh.instanceMatrix.needsUpdate = true; mesh.castShadow = species !== 2; mesh.receiveShadow = true;
     }
   }
-  const colliders = items.filter((_, i) => i % 5 === 0 && items[i].species % 3 !== 2).map(item => ({ min: { x: item.x - .18, z: item.z - .18, y: 0 }, max: { x: item.x + .18, z: item.z + .18, y: 4 } }));
-  return { root, colliders, statistics: { arbres: items.length, especes: 10 }, update() {}, refresh() {} };
+  const grid = new Map(), cellSize = 10;
+  for (const item of items) {
+    if (item.species % 3 === 2) continue;
+    const cx = Math.floor(item.x / cellSize), cz = Math.floor(item.z / cellSize);
+    const key = `${cx},${cz}`;
+    if (!grid.has(key)) grid.set(key, []);
+    grid.get(key).push(item);
+  }
+  function collides(x, z, radius = .4) {
+    const cx = Math.floor(x / cellSize), cz = Math.floor(z / cellSize);
+    for (let dz = -1; dz <= 1; dz++) for (let dx = -1; dx <= 1; dx++)
+      for (const item of grid.get(`${cx + dx},${cz + dz}`) || [])
+        if (Math.hypot(item.x - x, item.z - z) < radius + .22 * item.scale) return true;
+    return false;
+  }
+  return { root, collides, statistics: { arbres: items.length, especes: 3 }, update() {}, refresh() {} };
 }

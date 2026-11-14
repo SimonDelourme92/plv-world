@@ -508,13 +508,13 @@ function updateLOD(activeCam){activeCam.updateMatrixWorld();proj.multiplyMatrice
 // ============================================================================
 // CONTRÔLES — marche, vol, carte, collisions AABB, transitions Pointer Lock.
 // ============================================================================
-const obstacles=[]; const natureColliders=[]; // collision repères fixes et troncs proches.
+const obstacles=[]; // collision repères fixes et troncs proches.
 gpsRouter=new NavigationRouter({halfExtent:HALF,cellSize:10,districtSize:CELL});
 function obstacle(x,z,w,d,h){obstacles.push({min:{x:x-w/2,z:z-d/2,y:0},max:{x:x+w/2,z:z+d/2,y:h}});}
 // Collisions alignées sur les repères existants (conservés à leurs coordonnées).
 // Les repères décoratifs sont retirés avec leurs collisions.
 function overlap(b,x,z,y){return x>b.min.x-playerRadius&&x<b.max.x+playerRadius&&z>b.min.z-playerRadius&&z<b.max.z+playerRadius&&y-EYE<b.max.y&&y+.12>b.min.y;}
-function collides(x,z,y){for(let i=0;i<obstacles.length;i++)if(overlap(obstacles[i],x,z,y))return true;for(let i=0;i<records.length;i++)if(overlap(records[i].bounds,x,z,y))return true;for(let i=0;i<natureColliders.length;i++)if(overlap(natureColliders[i],x,z,y))return true;return false;}
+function collides(x,z,y){for(let i=0;i<obstacles.length;i++)if(overlap(obstacles[i],x,z,y))return true;for(let i=0;i<records.length;i++)if(overlap(records[i].bounds,x,z,y))return true;return !!natureLandscape?.collides(x,z,playerRadius);}
 function safePosition(x,z){x=clamp(x,-HALF+1,HALF-1);z=clamp(z,-HALF+1,HALF-1);for(let pass=0;pass<12;pass++){let found=false;for(let j=0;j<records.length+obstacles.length;j++){const b=j<records.length?records[j].bounds:obstacles[j-records.length];if(!overlap(b,x,z,EYE))continue;found=true;const a=x-b.min.x,bb=b.max.x-x,c=z-b.min.z,dd=b.max.z-z;const m=Math.min(a,bb,c,dd);if(m===a)x=b.min.x-.5;else if(m===bb)x=b.max.x+.5;else if(m===c)z=b.min.z-.5;else z=b.max.z+.5;x=clamp(x,-HALF+.5,HALF-.5);z=clamp(z,-HALF+.5,HALF-.5);break;}if(!found)return {x,z};}return {x:start.x,z:start.z};}
 function gpsBlockers(){return [...obstacles,...records.filter(r=>!r.isTest).map(r=>r.bounds)];}
 function cancelGps(arrived=false){if(!gpsDestination)return;const op=gpsDestination.lot.op||CATALOGUE[gpsDestination.lot.type]?.nom||'Destination';gpsDestination=null;gpsRoute=null;if(gpsLine){scene.remove(gpsLine);gpsLine.geometry.dispose();gpsLine.material.dispose();gpsLine=null;}if(gpsMarker){scene.remove(gpsMarker);gpsMarker.traverse(o=>{o.geometry?.dispose();if(o.material&&!Array.isArray(o.material))o.material.dispose();});gpsMarker=null;}$('gpsPanel').hidden=true;if(arrived)setToast('Vous êtes arrivé · '+op);}
@@ -524,12 +524,12 @@ let remaining=min;for(let i=nearest+1;i<points.length;i++)remaining+=Math.hypot(
 function ensurePlayerOutside(){if(mode==='car'){if(carBlocked(camera.position.x,camera.position.z,carYaw)&&!spawnCar()){mode='walk';camera.position.set(start.x,EYE,start.z);setToast('Pas de place pour la voiture. Retour à pied.');}return;}if((mode!=='walk'&&mode!=='third')||!collides(camera.position.x,camera.position.z,camera.position.y))return;const p=safePosition(camera.position.x,camera.position.z);camera.position.set(p.x,EYE,p.z);vertical=0;onGround=true;}
 function home(){camera.position.set(start.x,EYE,start.z);camera.rotation.set(0,0,0,'YXZ');vertical=0;onGround=true;}
 // Lit sec : le sol et les déplacements partagent la même altitude.
-try{const [{createRiverbed},{createRelief}]=await Promise.all([import('./assets/river/riverbed.js'),import('./assets/terrain/relief.js')]);const reservations=()=>[...obstacles,...records.map(r=>r.bounds)];terrain=createRiverbed({THREE,scene,ground,reservations});const relief=createRelief({reservations});terrainSampler=(x,z)=>{const bed=terrain.height(x,z);return bed<0.05?bed:bed+relief(x,z);};}catch(e){console.warn('Relief ou lit de rivière indisponible : terrain plat conservé.',e);}
+try{const [{createRiverbed},{createRelief}]=await Promise.all([import('./assets/river/riverbed.js'),import('./assets/terrain/relief.js')]);const reservations=()=>[...obstacles,...records.map(r=>r.bounds)];const relief=createRelief({reservations});const surfaceHeight=(x,z,bed)=>bed+relief(x,z)*Math.min(1,Math.max(0,(bed+0.5)/0.5));terrain=createRiverbed({THREE,scene,ground,reservations,surfaceHeight});terrainSampler=terrain.height;}catch(e){console.warn('Relief ou lit de rivière indisponible : terrain plat conservé.',e);}
 let roadsLandscape=null;
 try{const {createRoads}=await import('./assets/roads/roads.js');roadsLandscape=createRoads({THREE,scene,heightAt:terrainHeight,reservations:records.map(r=>r.bounds),water:(x,z)=>terrainHeight(x,z)<-0.7});}catch(e){console.warn('Routes indisponibles : monde sans routes conservé.',e);}
 if(roadsLandscape?.network?.roads)gpsRouter.roads=roadsLandscape.network.roads;
 let natureLandscape=null;
-try{const {createNature}=await import('./assets/nature/nature.js');natureLandscape=await createNature({THREE,scene,terrainHeight,reservations:records.map(r=>r.bounds),routes:roadsLandscape?.network?.roads||[],water:(x,z)=>terrainHeight(x,z)<-0.7,density:cfg.decorDensity});natureColliders.push(...(natureLandscape.colliders||[]));}catch(e){console.warn('Végétation indisponible : monde sans arbres conservé.',e);}
+try{const {createNature}=await import('./assets/nature/nature.js');natureLandscape=await createNature({THREE,scene,terrainHeight,reservations:records.map(r=>r.bounds),routes:roadsLandscape?.network?.roads||[],water:(x,z)=>terrainHeight(x,z)<-0.7,density:cfg.decorDensity});}catch(e){console.warn('Végétation indisponible : monde sans arbres conservé.',e);}
 home();
 // ============================================================================
 // DÉCOR VIVANT — phase 3 : props futuristes instanciés, chunks visibles de près.

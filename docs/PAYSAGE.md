@@ -7,9 +7,9 @@ La branche ajoute un relief déterministe, un réseau de routes sinueuses et une
 - `assets/terrain/relief.js` : bruit multi-octaves, déformation du domaine, réservations planes et bornes d'altitude.
 - `assets/roads/network.js` : boucle principale et liaisons secondaires déterministes.
 - `assets/roads/roads.js` : rubans de chaussée, bas-côtés, lampadaires instanciés et franchissement léger.
-- `assets/nature/scatter.js` et `nature.js` : répartition déterministe de pins, feuillus et buissons avec dix silhouettes de variation.
+- `assets/nature/scatter.js` et `nature.js` : répartition déterministe de trois modèles existants, avec des tailles et orientations variables.
 - Le GPS voiture favorise les segments routiers ; les piétons gardent le calcul de trajet existant.
-- Une partie des troncs est ajoutée à une liste de collision légère ; les buissons restent traversables.
+- Les troncs sont recherchés dans une grille spatiale de 10 m ; les buissons restent traversables.
 
 ## Validation
 
@@ -19,4 +19,4 @@ Les captures et mesures sur un Mac réel restent à produire. Les mesures préc�
 
 ## Limites connues
 
-La végétation réutilise les trois modèles locaux disponibles et crée des variations de silhouette ; elle ne constitue pas encore une bibliothèque de dix modèles source différents. Le maillage des routes n'est pas encore ajouté comme réservation aux futurs placements. Le relief et les routes sont générés au démarrage, sans streaming par tuile complet. Ces points doivent être traités avant de considérer la feuille de route terminée.
+La végétation réutilise trois modèles locaux : elle ne constitue pas encore une bibliothèque de dix espèces différentes. Le maillage des routes n'est pas encore ajouté comme réservation aux futurs placements. Le relief et les routes sont générés au démarrage, sans streaming par tuile complet. Ces points doivent être traités avant de considérer la feuille de route terminée.

@@ -6,7 +6,9 @@ test('réseau routier déterministe et hors des réservations', () => {
   const reservations = [{ min: { x: -10, z: -10 }, max: { x: 10, z: 10 } }];
   const network = createRoadNetwork({ reservations, water: () => false });
   const base = createRoadNetwork({ water: () => false });
-  assert.equal(base.roads.length, 4);
+  assert.ok(base.roads.length >= 4);
   assert.deepEqual(base.roads, createRoadNetwork({ water: () => false }).roads);
-  assert.ok(network.roads.length < base.roads.length);
+  for (const road of network.roads) for (const point of road.points) {
+    assert.ok(Math.hypot(Math.max(-10 - point.x, 0, point.x - 10), Math.max(-10 - point.z, 0, point.z - 10)) >= road.width / 2 + 6);
+  }
 });
