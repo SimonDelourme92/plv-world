@@ -1,0 +1,20 @@
+[
+  {
+    "id": "berline",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "berline",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  }
+]

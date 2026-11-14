@@ -1,0 +1,121 @@
+#vehicleHUD {
+  position: fixed;
+  right: 26px;
+  bottom: 28px;
+  width: 212px;
+  color: #edf4f6;
+  z-index: 12;
+  font-family: Inter, system-ui, sans-serif;
+  pointer-events: none;
+}
+#vehicleHUD[hidden] {
+  display: none;
+}
+.vehicle-dial {
+  padding: 20px 22px 16px;
+  background: linear-gradient(135deg, #15232dea, #12212ad9);
+  border: 1px solid #a5c8d329;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px #00101b33;
+  backdrop-filter: blur(12px);
+}
+.vehicle-caption {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: #9db9c8;
+}
+.vehicle-dial b {
+  font-size: 58px;
+  font-weight: 350;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+}
+.vehicle-unit {
+  margin-left: 12px;
+  font-size: 11px;
+  color: #acc5cf;
+}
+.vehicle-rpm {
+  height: 3px;
+  margin: 8px 0 12px;
+  overflow: hidden;
+  background: #69849240;
+  border-radius: 5px;
+}
+.vehicle-rpm i {
+  display: block;
+  background: linear-gradient(90deg, #71cbd3, #e5cf91);
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0.13);
+  transform-origin: left;
+  transition: transform 0.12s linear;
+}
+.vehicle-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #afc7cf;
+}
+#vehicleGear {
+  color: #a3e2e7;
+  font-weight: 650;
+}
+.vehicle-controls {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 9px 2px;
+  font-size: 9px;
+  color: #b2c9d5;
+  text-shadow: 0 1px 2px #001721;
+}
+.vehicle-controls button {
+  pointer-events: auto;
+  border: 0;
+  background: #18303a;
+  color: #c7e3e8;
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-size: 9px;
+}
+.vehicle-settings {
+  margin-top: 24px;
+  padding-top: 8px;
+  border-top: 1px solid #b2ceda22;
+}
+.vehicle-audio-note,
+.vehicle-credit {
+  font-size: 11px;
+  line-height: 1.6;
+}
+.vehicle-credit {
+  color: #8ecbd8;
+}
+body.refined-ui.is-driving.driving #speedRow {
+  display: none;
+}
+@media (max-width: 600px) {
+  #vehicleHUD {
+    right: 12px;
+    bottom: 16px;
+    width: 170px;
+  }
+  .vehicle-dial {
+    padding: 13px 16px;
+  }
+  .vehicle-dial b {
+    font-size: 44px;
+  }
+  .vehicle-controls {
+    font-size: 8px;
+    gap: 4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vehicle-rpm i {
+    transition: none;
+  }
+}

@@ -2,14 +2,18 @@
 const LIBRARY_ROOT = new URL("./", import.meta.url);
 const SITE_ROOT = new URL("../../", import.meta.url);
 export class AssetLibrary {
-  constructor({ concurrency = 2, retentionMs = 15000 } = {}) {
+  constructor({
+    concurrency = 2,
+    retentionMs = 15000,
+    manifestUrl = new URL("manifest.json", LIBRARY_ROOT),
+  } = {}) {
     this.concurrency = concurrency;
     this.retentionMs = retentionMs;
     this.cache = new Map();
     this.queue = [];
     this.active = 0;
     this.disposed = false;
-    this.manifest = fetch(new URL("manifest.json", LIBRARY_ROOT))
+    this.manifest = fetch(manifestUrl)
       .then((r) => {
         if (!r.ok) throw Error("Manifeste : HTTP " + r.status);
         return r.json();
@@ -29,7 +33,9 @@ export class AssetLibrary {
     if (!this.loader)
       this.loader = Promise.all([
         import("three/addons/loaders/GLTFLoader.js"),
-        import("https://cdn.jsdelivr.net/npm/meshoptimizer@1.3.0/meshopt_decoder.mjs"),
+        import(
+          "https://cdn.jsdelivr.net/npm/meshoptimizer@1.3.0/meshopt_decoder.mjs"
+        ),
       ]).then(async ([{ GLTFLoader }, { MeshoptDecoder }]) => {
         await MeshoptDecoder.ready;
         return new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);

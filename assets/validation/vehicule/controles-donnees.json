@@ -1,0 +1,9 @@
+{
+  "placementIdentique": true,
+  "sauvegardeGLB": true,
+  "restauration": true,
+  "persistance": true,
+  "test50000": true,
+  "erreurs": 0,
+  "mode": "Rendu réduit pour isoler les parcours de données du GPU logiciel"
+}

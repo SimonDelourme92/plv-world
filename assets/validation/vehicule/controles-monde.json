@@ -1,0 +1,33 @@
+{
+  "metrics": {
+    "fps": 0.266912938337773,
+    "drawCalls": 135,
+    "triangles": 451071,
+    "qualite": "medium",
+    "berline": {
+      "loaded": true,
+      "headlights": true,
+      "wheels": 4,
+      "cached": 2,
+      "active": 0,
+      "queued": 0,
+      "bytes": 575988,
+      "references": 2
+    },
+    "jardins": {
+      "instances": 831,
+      "chunks": 56,
+      "visibleChunks": 19,
+      "cached": 10,
+      "active": 0,
+      "queued": 0,
+      "bytes": 920140,
+      "references": 10
+    },
+    "horizon": "ready"
+  },
+  "photoAvecVoiture": true,
+  "entreeSortieC": true,
+  "errors": [],
+  "warnings": []
+}

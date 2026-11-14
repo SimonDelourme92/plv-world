@@ -1,0 +1,25 @@
+{
+  "model": {
+    "size": [
+      2.093330982843433,
+      1.4472115368992986,
+      4.6999993324279785
+    ],
+    "wheels": 4,
+    "calls": 11,
+    "triangles": 7148
+  },
+  "animation": {
+    "steer": -0.3,
+    "rear": 0,
+    "spin": 1.4
+  },
+  "audio": {
+    "samplesReady": true,
+    "rms": 0.08410871106727721,
+    "peak": 0.6823699474334717,
+    "maxAdjacentDelta": 0.28050046414136887
+  },
+  "mute": 0,
+  "errors": []
+}
