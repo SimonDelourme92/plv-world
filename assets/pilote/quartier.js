@@ -22,10 +22,6 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
  collision(43.2,50.25,6.4,3,17,7);collision(56.8,48.25,6.4,3,17,7);
  collision(45.6,50.25,7.2,3,25,17);collision(54.4,48.25,7.2,3,25,17);
  collision(50,49.25,13,6,32.2,25);
- const lamps=[];for(const x of [35,65])for(const z of [7,23,77,94])lamps.push([x,z]);
- for(const [x,z] of lamps)collision(x,z,.24,.24,7);
- for(const x of [45,55])collision(x,28,.15,.15,3.6);
- collision(5.3,63,.15,.15,1.8);collision(94,62,.15,.15,1.8);
  function build(){
   if(resources||disposed)return;
   const geometries=new Set(),materials=new Set(),textures=new Set(),instanceMeshes=[];
@@ -116,23 +112,6 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
    part('dark',x,.42,z+d*.5+1.15,w*.68,.72,.55);
    part('metal',x,.82,z+d*.5+1.15,w*.7,.08,.64,true);
   }
-  for(const [x,z] of lamps){
-   part('dark',x,3.5,z,.16,7,.22);
-   part('shell',x,7,z,.4,.22,2.4);
-   part('light',x,6.86,z,.24,.04,2.15);
-  }
-  // Signalétique sobre, une seule texture atlas générée localement.
-  const canvas=document.createElement('canvas');canvas.width=1024;canvas.height=512;
-  const ctx=canvas.getContext('2d');ctx.fillStyle='#172531';ctx.fillRect(0,0,1024,512);
-  const labels=[['MÉRIDIEN','PARVIS CENTRAL  /  01'],['EXPOSITIONS','PRODUCTIONS PLV  /  ÉCHELLE 1:1'],['GALERIE EST','LES PRODUCTIONS DE L’ANNÉE'],['PLV WORLD','CITÉ DES PRODUCTIONS']];
-  labels.forEach(([title,sub],i)=>{const y=i*128;ctx.fillStyle='#79d8e5';ctx.fillRect(28,y+24,4,80);ctx.font='20px sans-serif';ctx.fillText(sub,56,y+43);ctx.fillStyle='#edf2f5';ctx.font='500 48px sans-serif';ctx.fillText(title,56,y+102);});
-  for(const x of [45,55])part('metal',x,1.8,28,.12,3.6,.12);
-  part('metal',5.3,.9,63,.12,1.8,.12);part('metal',94,.9,62,.12,1.8,.12);
-  const atlas=new THREE.CanvasTexture(canvas);atlas.colorSpace=THREE.SRGBColorSpace;textures.add(atlas);
-  const signMat=new THREE.MeshBasicMaterial({map:atlas,side:THREE.DoubleSide});materials.add(signMat);
-  const signGeos=[];const signs=[[50,4.2,28,0],[5.3,2.2,63,Math.PI/2],[94,2.2,62,-Math.PI/2],[76,8,27.15,0]];
-  signs.forEach(([x,y,z,rot],i)=>{const g=geo(new THREE.PlaneGeometry(i===0?10:5.4,i===0?1.25:.675));const uv=g.attributes.uv;for(let j=0;j<uv.count;j++)uv.setY(j,(3-i+uv.getY(j))/4);g.rotateY(rot);g.translate(x,y,z);signGeos.push(g);});
-  base.add(new THREE.Mesh(geo(mergeGeometries(signGeos,false)),signMat));
   // Un appel de dessin par combinaison matière / géométrie / niveau de détail.
   for(const {mat,near,geometry,matrices} of batches.values()){
    const mesh=new THREE.InstancedMesh(geometry,mats[mat],matrices.length);mesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);

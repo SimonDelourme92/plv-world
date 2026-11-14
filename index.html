@@ -163,9 +163,6 @@ const [grassColor,grassNormal,grassRough]=await Promise.all(['Color','NormalGL',
 grassColor.colorSpace=THREE.SRGBColorSpace;
 for(const texture of [grassColor,grassNormal,grassRough]){texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.repeat.set(WORLD/5,WORLD/5);texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());}
 const ground=new THREE.Mesh(new THREE.PlaneGeometry(WORLD,WORLD),new THREE.MeshStandardMaterial({map:grassColor,normalMap:grassNormal,roughnessMap:grassRough,roughness:1,normalScale:new THREE.Vector2(.6,.6)}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
-// Panneaux de quartier vides, plus clairs pour la direction futuriste.
-const posts=instanced(unitBox,new THREE.MeshStandardMaterial({color:'#6c8ca6',roughness:.76,metalness:.24}),COUNT*COUNT), signs=instanced(unitBox,new THREE.MeshStandardMaterial({color:'#f1f8ff',roughness:.35,metalness:.08,emissive:'#8bdfff',emissiveIntensity:.08}),COUNT*COUNT);
-for(const d of districts){setInstance(posts,d.index,d.x+.75,.90,d.z+.75,.09,1.8,.09);setInstance(signs,d.index,d.x+.75,1.96,d.z+.75,1.28,.56,.08);}finishInstances(posts);finishInstances(signs);markers.add(posts,signs);
 // Planche d’information procédurale : version plus lumineuse et plus technologique.
 function boardTexture(title,sub,detail,style='dark') {const c=makeCanvas(1024,384), ctx=c.getContext('2d');const bg=style==='dark'?'#132438':'#eef7ff';ctx.fillStyle=bg;ctx.fillRect(0,0,1024,384);const g=ctx.createLinearGradient(0,0,1024,0);g.addColorStop(0,'#5fe0ff');g.addColorStop(1,'#9bbef3');ctx.fillStyle=g;ctx.fillRect(0,0,18,384);ctx.fillStyle=style==='dark'?'#9fd6ff':'#3b6f95';ctx.font='bold 33px sans-serif';ctx.fillText(sub,52,67,920);ctx.fillStyle=style==='dark'?'#f5fbff':'#132438';ctx.font='bold 77px sans-serif';ctx.fillText(title,52,166,925);ctx.font='34px sans-serif';ctx.fillStyle=style==='dark'?'#dcecff':'#294d66';ctx.fillText(detail,52,275,925);ctx.strokeStyle='rgba(255,255,255,0.13)';ctx.lineWidth=2;ctx.strokeRect(27,24,970,336);return canvasTex(c);}
 function board(parent,x,y,z,w,h,title,sub,detail){const tex=boardTexture(title,sub,detail);const material=new THREE.MeshBasicMaterial({map:tex,side:THREE.DoubleSide});const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),material);m.position.set(x,y,z+.056);parent.add(m);box(parent,x,y,z,w,h,.10,new THREE.MeshStandardMaterial({color:'#163149',roughness:.55,metalness:.25,emissive:'#55d7ff',emissiveIntensity:.06}),true);return m;}
@@ -184,7 +181,6 @@ for(const angle of [0,Math.PI/2,Math.PI,Math.PI*1.5]){const fin=new THREE.Mesh(u
 const core=new THREE.Mesh(new THREE.CylinderGeometry(1.15,1.65,5.6,12),plazaDark);core.position.y=2.95;core.castShadow=true;plaza.add(core);
 const halo=new THREE.Mesh(new THREE.TorusGeometry(3.1,.18,12,64),glowMat);halo.rotation.set(Math.PI/2,.34,0);halo.position.y=4.2;plaza.add(halo);
 const halo2=new THREE.Mesh(new THREE.TorusGeometry(1.8,.12,12,48),glowMat);halo2.rotation.set(.3,0,Math.PI/2);halo2.position.y=2.6;plaza.add(halo2);
-box(centralRoot,45.8,1.65,36.8,.15,3.3,.15,glowMat,true);box(centralRoot,54.2,1.65,36.8,.15,3.3,.15,glowMat,true);board(centralRoot,50,3.55,36.8,10.4,3.78,'PLV WORLD — 2026','NŒUD CENTRAL  /  01','Ville d’exposition prospective · grandeur nature.');
 const legacyPlazaParts=[...centralRoot.children];
 // Repères d’échelle : relookés mais conservés, pour ancrer la perception des tailles.
 const human=new THREE.Group();human.position.set(37.8,0,56.4);centralRoot.add(human);
@@ -195,7 +191,6 @@ const pallet=new THREE.Group();pallet.position.set(44.8,0,58.6);centralRoot.add(
 const truck=new THREE.Group();truck.position.set(62.5,0,58.5);centralRoot.add(truck);
 box(truck,0,2.53,0,2.55,2.92,13.60,new THREE.MeshStandardMaterial({color:'#edf6ff',roughness:.42,metalness:.08}),true);box(truck,0,1.0,0,2.40,.28,13.60,'#314255',true);box(truck,0,1.82,-8.30,2.48,2.63,2.9,'#77a8c8',true);box(truck,0,2.65,-9.78,2.20,.70,.04,'#55d7ff',true);box(truck,0,1.3,-9.78,2.28,.30,.06,'#d8e9f6',true);
 const wheelGeo=new THREE.CylinderGeometry(.49,.49,.25,12);wheelGeo.rotateZ(Math.PI/2);for(const z of [-8.5,-6.5,4.1,5.3,6.2])for(const s of [-1,1]){const w=new THREE.Mesh(wheelGeo,mat('#232f3c'));w.position.set(s*1.12,.49,z);w.castShadow=true;truck.add(w);} 
-board(centralRoot,37.8,.85,60.0,2.75,.97,'1,75 m','REPÈRE 01','Silhouette');board(centralRoot,44.8,.85,61.0,3.2,1.20,'1,20 × 0,80 m','REPÈRE 02','Palette Europe');board(centralRoot,62.5,.95,66.4,4.3,1.58,'13,60 m','REPÈRE 03','Semi-remorque · caisse');
 // Skyline décorative périphérique : très légère, pure mise en ambiance.
 const cityRoot=new THREE.Group();scene.add(cityRoot);
 const towerA=instanced(unitBox,new THREE.MeshStandardMaterial({color:'#eef6ff',roughness:.44,metalness:.08}),56);
@@ -398,7 +393,7 @@ const totemCandidates=[];const byTotemDistance=(a,b)=>a.totemDistance-b.totemDis
 function updatePresentation(active,now){if(zonesDirty){rebuildZones();refreshDecorClearance();}const enabled=presentationOn(),map=mapActive||!!compare?.map;zoneRoot.visible=enabled;totemCandidates.length=0;for(const r of records){const visible=r.level>=0&&!hiddenByComparison(r);r.far.material=enabled&&map&&!r.isTest?r.mapMaterial:r.originalFarMaterial;r.label.visible=visible&&(!enabled||r.isTest||map&&(compare?.map||mapSpan<160));r.totem.visible=false;if(enabled&&!map&&!r.isTest&&visible){r.totemDistance=r.bounds.distanceToPoint(active.position);if(r.totemDistance<24)totemCandidates.push(r);}}
  // Maximum 12 totems proches, même si des centaines de petites fabrications sont visibles.
  if(totemCandidates.length>12)totemCandidates.sort(byTotemDistance);for(let i=0;i<Math.min(12,totemCandidates.length);i++)totemCandidates[i].totem.visible=true;
- for(const l of districtLabels)l.visible=!enabled||(map?(!!compare?.map||mapSpan<450):active.position.distanceTo(l.position)<25);$('mapLegend').hidden=!enabled||!mapActive||!LOTS.length;updateFocus(active,now);}
+ for(const l of districtLabels)l.visible=map&&(!enabled||!!compare?.map||mapSpan<450);$('mapLegend').hidden=!enabled||!mapActive||!LOTS.length;updateFocus(active,now);}
 
 
 function groupName(lot,by){if(by==='type')return CATALOGUE[lot.type]?.nom||lot.type;if(by==='mois')return lot.mois?String(lot.mois).padStart(2,'0')+' · '+new Date(2026,lot.mois-1,1).toLocaleString('fr-FR',{month:'long'}):'Mois non renseigné';return lot[by]||'Non renseigné';}
@@ -476,7 +471,7 @@ let remaining=min;for(let i=nearest+1;i<points.length;i++)remaining+=Math.hypot(
 function ensurePlayerOutside(){if(mode==='car'){if(carBlocked(camera.position.x,camera.position.z,carYaw)&&!spawnCar()){mode='walk';camera.position.set(start.x,EYE,start.z);setToast('Pas de place pour la voiture. Retour à pied.');}return;}if((mode!=='walk'&&mode!=='third')||!collides(camera.position.x,camera.position.z,camera.position.y))return;const p=safePosition(camera.position.x,camera.position.z);camera.position.set(p.x,EYE,p.z);vertical=0;onGround=true;}
 function home(){camera.position.set(start.x,EYE,start.z);camera.rotation.set(0,0,0,'YXZ');vertical=0;onGround=true;}
 // Module isolé : son échec conserve la place précédente et ses fonctionnalités.
-try{const {createPilotDistrict}=await import('./assets/pilote/quartier.js?v=jardins-1');pilotDistrict=createPilotDistrict({THREE,scene,mergeGeometries,onChange:()=>{shadowDirty=true;}});obstacles.push(...pilotDistrict.collisions);for(const part of legacyPlazaParts)part.visible=false;}catch(e){console.warn('Quartier pilote indisponible : place précédente conservée.',e);obstacle(45.8,36.8,.2,.2,3.3);obstacle(54.2,36.8,.2,.2,3.3);}
+try{const {createPilotDistrict}=await import('./assets/pilote/quartier.js?v=jardins-1');pilotDistrict=createPilotDistrict({THREE,scene,mergeGeometries,onChange:()=>{shadowDirty=true;}});obstacles.push(...pilotDistrict.collisions);for(const part of legacyPlazaParts)part.visible=false;}catch(e){console.warn('Quartier pilote indisponible : place précédente conservée.',e);}
 home();
 // ============================================================================
 // DÉCOR VIVANT — phase 3 : props futuristes instanciés, chunks visibles de près.
@@ -489,10 +484,6 @@ function createDecorChunk(cx,cz,size,index){const group=new THREE.Group();group.
  const mats=[];
  function mesh(geo,mat,count,rank,make){if(count<=0)return;const m=instanced(geo,mat,count);for(let i=0;i<count;i++)make(m,i);finishInstances(m);m.userData.rank=rank;m.userData.legacyTree=[decorMats.trunk,decorMats.leafA,decorMats.leafB].includes(mat);group.add(m);mats.push(m);}
  const x0=cx-size/2,z0=cz-size/2,margin=18;
- // Lampadaires : quatre lignes internes.
- const lampPts=[];for(let i=0;i<4;i++){lampPts.push([x0+30+i*55,z0+20]);lampPts.push([x0+30+i*55,z0+size-20]);lampPts.push([x0+20,z0+30+i*55]);lampPts.push([x0+size-20,z0+30+i*55]);}
- mesh(decoGeos.cyl,decorMats.lamp,lampPts.length,1,(m,i)=>{const [x,z]=lampPts[i];setInstance(m,i,x,0,z,.15,5.6,.15);});
- mesh(decoGeos.box,decorMats.lampGlow,lampPts.length,1,(m,i)=>{const [x,z]=lampPts[i];setInstance(m,i,x,5.25,z,.55,.08,.18);});
  // Bancs futuristes.
  const benchPts=[[x0+32,z0+46,0],[x0+size-32,z0+46,Math.PI],[x0+46,z0+size-32,Math.PI*.5],[x0+size-46,z0+size-32,-Math.PI*.5]];
  mesh(decoGeos.box,decorMats.bench,benchPts.length,1,(m,i)=>{const [x,z,r]=benchPts[i];dummy.position.set(x,.32,z);dummy.rotation.set(0,r,0);dummy.scale.set(1.8,.38,.4);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);});
@@ -504,10 +495,6 @@ function createDecorChunk(cx,cz,size,index){const group=new THREE.Group();group.
  mesh(decoGeos.cyl,decorMats.trunk,treePts.length,1,(m,i)=>{const [x,z]=treePts[i];setInstance(m,i,x,.56,z,.24,1.25,.24);});
  mesh(decoGeos.cone,decorMats.leafA,treePts.length,1,(m,i)=>{const [x,z]=treePts[i];setInstance(m,i,x,1.44,z,1.55,2.15,1.55);});
  mesh(decoGeos.sphere,decorMats.leafB,treePts.length,2,(m,i)=>{const [x,z]=treePts[i];setInstance(m,i,x,2.05,z,1.45,1.0,1.45);});
- // Panneaux directionnels.
- const dirPts=[[x0+18,z0+18,.65],[x0+size-18,z0+18,-.65],[x0+18,z0+size-18,2.35],[x0+size-18,z0+size-18,-2.35]];
- mesh(decoGeos.cyl,decorMats.sign,dirPts.length,1,(m,i)=>{const [x,z]=dirPts[i];setInstance(m,i,x,0,z,.08,1.9,.08);});
- mesh(decoGeos.box,decorMats.signGlow,dirPts.length,1,(m,i)=>{const [x,z,r]=dirPts[i];dummy.position.set(x,1.45,z);dummy.rotation.set(0,r,0);dummy.scale.set(1.15,.48,.06);dummy.updateMatrix();m.setMatrixAt(i,dummy.matrix);});
  // Silhouettes et petits robots de service.
  const people=[];for(let i=0;i<3;i++)people.push([x0+40+i*35,z0+size/2+((i%2)*10-5),rand(i)*Math.PI*2]);
  mesh(decoGeos.cyl,decorMats.human,people.length,2,(m,i)=>{const [x,z]=people[i];setInstance(m,i,x,0,z,.22,1.25,.22);});
