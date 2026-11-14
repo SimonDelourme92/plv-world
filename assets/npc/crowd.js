@@ -12,10 +12,13 @@ import {
 
 export async function loadCrowdKit(GLTFLoader) {
   const loader = new GLTFLoader();
-  return Promise.all(["maya", "sam", "harper"].map(async (name) => {
-    const gltf = await loader.loadAsync(`./assets/npc/models/${name}.glb`);
-    if (!gltf.animations.length) throw new Error(`Animation manquante : ${name}`);
-    return { template: gltf.scene, walk: gltf.animations[0] };
+  return Promise.all(["maya", "sam", "harper", "jordan"].map(async (name) => {
+    const url = name === "sam" ? "./assets/characters/models/sam.glb" : `./assets/npc/models/${name}.glb`;
+    const gltf = await loader.loadAsync(url);
+    const clips = Object.fromEntries(gltf.animations.map(clip => [clip.name, clip]));
+    const walk = clips.Walk_Relaxed || gltf.animations[0];
+    if (!walk) throw new Error(`Animation manquante : ${name}`);
+    return { template: gltf.scene, walk, idle: clips.Idle_Standing };
   }));
 }
 const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
@@ -36,14 +39,15 @@ export function createCrowd({
     root = new THREE.Group();
   root.name = "Visiteurs";
   scene.add(root);
-  // Six personnages complets maximum : les géométries et textures sont partagées.
+  // Les géométries et textures des personnages sont partagées.
   // Les anciens blocs lointains ne représentent pas des personnes et ne sont plus affichés.
-  const slots = Array.from({ length: 6 }, (_, i) => {
+  const slots = Array.from({ length: 40 }, (_, i) => {
     const type = i % kit.length;
     const model = cloneSkeleton(kit[type].template);
     const mixer = new THREE.AnimationMixer(model);
     const walk = mixer.clipAction(kit[type].walk);
-    walk.play();
+    const idle = kit[type].idle ? mixer.clipAction(kit[type].idle) : null;
+    (idle || walk).play();
     model.visible = false;
     root.add(model);
     const meshes = [];
@@ -54,7 +58,7 @@ export function createCrowd({
         meshes.push(o);
       }
     });
-    return { root: model, mixer, walk, meshes, type, owner: -1, elapsed: 0 };
+    return { root: model, mixer, walk, idle, active: idle || walk, meshes, type, owner: -1, elapsed: 0 };
   });
   const people = Array.from({ length: 40 }, (_, i) => {
     const modelType = i % kit.length;
@@ -552,7 +556,10 @@ export function createCrowd({
       slot.root.position.set(best.x, best.y, best.z);
       slot.root.rotation.y = best.yaw + Math.PI;
       slot.root.scale.setScalar(best.scale);
-      slot.walk.paused = best.anim !== "walk" || best.waiting;
+      const walking = best.anim === "walk" && !best.waiting;
+      const action = walking ? slot.walk : (slot.idle || slot.walk);
+      if (action !== slot.active) { action.reset().play(); slot.active.crossFadeTo(action, 0.25, false); slot.active = action; }
+      slot.walk.paused = !walking && !slot.idle;
       slot.walk.setEffectiveTimeScale(best.speed / 1.3);
       slot.elapsed += dt;
       if (best.rank < 625 || frame % 2 === 0) {
