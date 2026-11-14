@@ -78,3 +78,14 @@ test("un visiteur à l’arrêt s’écarte d’une voiture qui approche", async
   assert.equal(vehicleSideStep(0, 0, { ...car, speed: 0 }, 0.2, target), false);
   assert.equal(vehicleSideStep(0, 0, { ...car, z: -8 }, 0.2, target), false);
 });
+
+test("un grand lot est repéré depuis son bord, même si son centre est éloigné", () => {
+  const large = {
+    lot: { id: "large" },
+    bounds: { min: { x: -200, z: -20 }, max: { x: 200, z: 20 } },
+  };
+  assert.equal(
+    chooseNextLot([large], [], 300, 0, () => 0),
+    large,
+  );
+});

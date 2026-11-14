@@ -12,6 +12,11 @@ export function shouldRecycle(x, z, playerX, playerZ, maxDistance = 160) {
 export function canSpawn(x, z, playerX, playerZ, isVisible) {
   return (x - playerX) ** 2 + (z - playerZ) ** 2 > 35 ** 2 || !isVisible(x, z);
 }
+export function distanceSquaredToBounds(x, z, b) {
+  const dx = Math.max(b.min.x - x, 0, x - b.max.x),
+    dz = Math.max(b.min.z - z, 0, z - b.max.z);
+  return dx * dx + dz * dz;
+}
 export function chooseNextLot(
   records,
   history,
@@ -24,10 +29,8 @@ export function chooseNextLot(
     count = 0;
   for (const record of records) {
     if (record.isTest || history.includes(record.lot.id)) continue;
-    const b = record.bounds,
-      x = (b.min.x + b.max.x) / 2,
-      z = (b.min.z + b.max.z) / 2;
-    if ((x - playerX) ** 2 + (z - playerZ) ** 2 > radius ** 2) continue;
+    if (distanceSquaredToBounds(playerX, playerZ, record.bounds) > radius ** 2)
+      continue;
     if (random() < 1 / ++count) choice = record;
   }
   return choice;

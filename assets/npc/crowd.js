@@ -8,6 +8,7 @@ import {
   chooseStop,
   stopDuration,
   vehicleSideStep,
+  distanceSquaredToBounds,
 } from "./crowd-logic.js";
 
 const PALETTE = [
@@ -269,11 +270,8 @@ export function createCrowd({
     for (let i = 0; i < records.length; i++) {
       const r = records[i];
       if (r.isTest) continue;
-      const b = r.bounds,
-        x = (b.min.x + b.max.x) / 2,
-        z = (b.min.z + b.max.z) / 2;
       if (
-        (x - player.x) ** 2 + (z - player.z) ** 2 < 14400 &&
+        distanceSquaredToBounds(player.x, player.z, r.bounds) < 14400 &&
         random() < 1 / ++seen
       )
         near = r;
@@ -282,7 +280,15 @@ export function createCrowd({
       cz = near ? (near.bounds.min.z + near.bounds.max.z) / 2 : player.z;
     for (let i = 0; i < 14; i++) {
       const a = random() * Math.PI * 2,
-        r = near ? 8 + random() * 30 : 25 + random() * 55,
+        r = near
+          ? Math.hypot(
+              near.bounds.max.x - near.bounds.min.x,
+              near.bounds.max.z - near.bounds.min.z,
+            ) *
+              0.5 +
+            5 +
+            random() * 24
+          : 25 + random() * 55,
         x = cx + Math.cos(a) * r,
         z = cz + Math.sin(a) * r;
       if (
@@ -358,9 +364,8 @@ export function createCrowd({
     for (let i = 0; i < records.length; i++) {
       const r = records[i];
       if (r.isTest) continue;
-      const x = (r.bounds.min.x + r.bounds.max.x) / 2,
-        z = (r.bounds.min.z + r.bounds.max.z) / 2;
-      if ((x - player.x) ** 2 + (z - player.z) ** 2 < 14400) closeLots++;
+      if (distanceSquaredToBounds(player.x, player.z, r.bounds) < 14400)
+        closeLots++;
     }
     const limit = closeLots ? count : Math.min(count, 4);
     let assigned = false;
