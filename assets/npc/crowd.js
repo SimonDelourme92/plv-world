@@ -1,5 +1,4 @@
-import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import { cloneHuman } from "../characters/human.js?v=pnj-20261114-2";
+import { clone as cloneSkeleton } from "three/addons/utils/SkeletonUtils.js";
 import {
   randomSeed,
   canSpawn,
@@ -11,16 +10,14 @@ import {
   distanceSquaredToBounds,
 } from "./crowd-logic.js";
 
-const PALETTE = [
-  "#778ba2",
-  "#a5937e",
-  "#536e85",
-  "#727e75",
-  "#97767b",
-  "#5f6476",
-  "#8f826c",
-  "#7a98a0",
-];
+export async function loadCrowdKit(GLTFLoader) {
+  const loader = new GLTFLoader();
+  return Promise.all(["maya", "sam", "harper"].map(async (name) => {
+    const gltf = await loader.loadAsync(`./assets/npc/models/${name}.glb`);
+    if (!gltf.animations.length) throw new Error(`Animation manquante : ${name}`);
+    return { template: gltf.scene, walk: gltf.animations[0] };
+  }));
+}
 const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 export function createCrowd({
   THREE,
@@ -39,49 +36,28 @@ export function createCrowd({
     root = new THREE.Group();
   root.name = "Visiteurs";
   scene.add(root);
-  const body = new THREE.BoxGeometry(0.45, 1.25, 0.25);
-  body.translate(0, 0.78, 0);
-  const head = new THREE.SphereGeometry(0.16, 8, 6);
-  head.translate(0, 1.56, 0);
-  const geometry = mergeGeometries([body, head]);
-  body.dispose();
-  head.dispose();
-  const material = new THREE.MeshStandardMaterial({
-    color: 0xffffff,
-    roughness: 0.85,
-  });
-  const simple = new THREE.InstancedMesh(geometry, material, 40);
-  // Chaque instance est déjà filtrée par la caméra ; son groupe doit suivre les déplacements et recyclages.
-  simple.frustumCulled = false;
-  simple.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-  root.add(simple);
-  const slots = Array.from({ length: 10 }, (_, i) => {
-    const model = cloneHuman(THREE, kit, { tint: PALETTE[i % 8] });
-    model.root.visible = false;
-    root.add(model.root);
-    const meshes = [],
-      originalMaterials = [];
-    model.root.traverse((o) => {
+  // Six personnages complets maximum : les géométries et textures sont partagées.
+  // Les anciens blocs lointains ne représentent pas des personnes et ne sont plus affichés.
+  const slots = Array.from({ length: 6 }, (_, i) => {
+    const type = i % kit.length;
+    const model = cloneSkeleton(kit[type].template);
+    const mixer = new THREE.AnimationMixer(model);
+    const walk = mixer.clipAction(kit[type].walk);
+    walk.play();
+    model.visible = false;
+    root.add(model);
+    const meshes = [];
+    model.traverse((o) => {
       if (o.isMesh) {
+        o.castShadow = false;
+        o.receiveShadow = true;
         meshes.push(o);
-        originalMaterials.push(
-          kit.template.getObjectByName(o.name)?.material || o.material,
-        );
       }
     });
-    return {
-      ...model,
-      meshes,
-      originalMaterials,
-      paletteIndex: i % 8,
-      head: model.root.getObjectByName("mixamorig_Head_06"),
-      owner: -1,
-      state: "",
-      elapsed: 0,
-    };
+    return { root: model, mixer, walk, meshes, type, owner: -1, elapsed: 0 };
   });
   const people = Array.from({ length: 40 }, (_, i) => {
-    const paletteIndex = Math.floor(random() * PALETTE.length);
+    const modelType = i % kit.length;
     return {
       evadePoint: { x: 0, z: 0 },
       buddy: i > 0 && random() < 0.2 ? i - 1 : -1,
@@ -95,8 +71,7 @@ export function createCrowd({
       yaw: 0,
       speed: 1.1 + random() * 0.4,
       scale: 0.92 + random() * 0.14,
-      paletteIndex,
-      color: new THREE.Color(PALETTE[paletteIndex]),
+      modelType,
       active: false,
       lot: null,
       history: [],
@@ -112,16 +87,11 @@ export function createCrowd({
       slot: -1,
     };
   });
-  for (let i = 0; i < people.length; i++) simple.setColorAt(i, people[i].color);
-  if (simple.instanceColor) simple.instanceColor.needsUpdate = true;
-  const dummy = new THREE.Object3D(),
-    frustum = new THREE.Frustum(),
+  const frustum = new THREE.Frustum(),
     matrix = new THREE.Matrix4(),
     point = new THREE.Vector3(),
     direction = new THREE.Vector3(),
     bounds = new THREE.Sphere(new THREE.Vector3(), 1.9);
-  const neckAxis = new THREE.Vector3(0, 1, 0),
-    neckTurn = new THREE.Quaternion();
   let count = 24,
     enabled = true,
     renderable = true,
@@ -137,7 +107,6 @@ export function createCrowd({
   function recordDraw() {
     drawCalls++;
   }
-  simple.onBeforeRender = recordDraw;
   for (const slot of slots)
     for (const mesh of slot.meshes) {
       mesh.onBeforeRender = recordDraw;
@@ -336,18 +305,6 @@ export function createCrowd({
     }
   }
   const routeTimer = setInterval(routeOnce, 16);
-  function setAnimation(slot, name, speed) {
-    const action = slot.actions[name] || slot.actions.idle;
-    if (!action) return;
-    if (slot.state !== name) {
-      const prev = slot.actions[slot.state];
-      action.reset().setEffectiveWeight(1).play();
-      if (prev) prev.crossFadeTo(action, 0.2, false);
-      slot.state = name;
-    }
-    if (name === "walk" || name === "walkCasual")
-      action.setEffectiveTimeScale(speed / 1.3);
-  }
   function update(dt, camera, now) {
     if (!enabled || !renderable) {
       root.visible = false;
@@ -577,79 +534,34 @@ export function createCrowd({
     }
     for (let i = 0; i < limit; i++) people[i].slot = -1;
     detailles = 0;
-    for (let n = 0; n < (shadows ? 5 : 10); n++) {
+    // Assigner les places disponibles aux personnes visibles les plus proches,
+    // en conservant le modèle propre à chaque visiteur.
+    for (let n = 0; n < slots.length; n++) {
+      const slot = slots[n];
       let best = null;
       for (let i = 0; i < limit; i++) {
         const p = people[i];
-        if (!p.active || p.slot >= 0 || p.rank > 2025 || !inside(p.x, p.z, p.y))
-          continue;
+        if (!p.active || p.slot >= 0 || p.modelType !== slot.type ||
+            p.rank > 14400 || !inside(p.x, p.z, p.y)) continue;
         if (!best || p.rank < best.rank) best = p;
       }
-      if (!best) break;
+      if (!best) continue;
       best.slot = n;
-      slots[n].owner = best.id;
+      slot.owner = best.id;
+      slot.root.visible = true;
+      slot.root.position.set(best.x, best.y, best.z);
+      slot.root.rotation.y = best.yaw + Math.PI;
+      slot.root.scale.setScalar(best.scale);
+      slot.walk.paused = best.anim !== "walk" || best.waiting;
+      slot.walk.setEffectiveTimeScale(best.speed / 1.3);
+      slot.elapsed += dt;
+      if (best.rank < 625 || frame % 2 === 0) {
+        slot.mixer.update(slot.elapsed);
+        slot.elapsed = 0;
+      }
       detailles++;
     }
-    let instances = 0;
-    for (let i = 0; i < limit; i++) {
-      const p = people[i];
-      if (!p.active || p.rank >= 14400 || !inside(p.x, p.z, p.y)) continue;
-      if (p.slot >= 0) {
-        const slot = slots[p.slot];
-        slot.root.visible = true;
-        slot.root.position.set(p.x, p.y, p.z);
-        slot.root.rotation.y = p.yaw + Math.PI;
-        slot.root.scale.setScalar(kit.template.scale.x * p.scale);
-        const paletteIndex = p.paletteIndex;
-        if (slot.paletteIndex !== paletteIndex) {
-          const palette = kit.palettes.get(PALETTE[paletteIndex]);
-          for (let j = 0; j < slot.meshes.length; j++)
-            slot.meshes[j].material =
-              palette?.get(slot.originalMaterials[j]) ||
-              slot.originalMaterials[j];
-          slot.paletteIndex = paletteIndex;
-        }
-        for (let j = 0; j < slot.meshes.length; j++)
-          slot.meshes[j].castShadow = shadows && p.slot < 6;
-        setAnimation(
-          slot,
-          p.anim === "walk" && p.id % 2 === 0 ? "walkCasual" : p.anim,
-          p.speed,
-        );
-        slot.elapsed += dt;
-        if (p.rank < 625 || frame % 2 === 0) {
-          slot.mixer.update(slot.elapsed);
-          slot.elapsed = 0;
-          if (slot.head && p.lot && p.stop > 0 && p.anim !== "talk") {
-            const b = p.lot.bounds,
-              tx = (b.min.x + b.max.x) * 0.5 - p.x,
-              tz = (b.min.z + b.max.z) * 0.5 - p.z,
-              target = Math.atan2(-tx, -tz),
-              delta = Math.atan2(
-                Math.sin(target - p.yaw),
-                Math.cos(target - p.yaw),
-              );
-            p.headTurn +=
-              (clamp(delta, -Math.PI / 3, Math.PI / 3) - p.headTurn) *
-              Math.min(1, dt * 4);
-            neckTurn.setFromAxisAngle(neckAxis, p.headTurn);
-            slot.head.quaternion.multiply(neckTurn);
-          } else p.headTurn = 0;
-        }
-      } else {
-        dummy.position.set(p.x, p.y, p.z);
-        dummy.rotation.set(0, p.yaw, Math.sin(p.phase) * 0.035);
-        dummy.scale.setScalar(p.scale);
-        dummy.updateMatrix();
-        simple.setMatrixAt(instances, dummy.matrix);
-        simple.setColorAt(instances, p.color);
-        instances++;
-      }
-    }
-    simple.count = instances;
-    simple.instanceMatrix.needsUpdate = true;
-    if (simple.instanceColor) simple.instanceColor.needsUpdate = true;
-    simplifies = instances;
+    simplifies = 0;
     lastMs = performance.now() - start;
   }
   return {
@@ -701,12 +613,7 @@ export function createCrowd({
         s.mixer.stopAllAction();
         s.mixer.uncacheRoot(s.root);
       }
-      for (const palette of kit.palettes?.values() || [])
-        for (const m of palette.values()) m.dispose();
-      kit.palettes?.clear();
-      geometry.dispose();
-      material.dispose();
-      simple.dispose();
+
     },
   };
 }
