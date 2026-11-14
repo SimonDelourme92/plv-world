@@ -303,8 +303,10 @@ export function createCrowd({
   // Préparer l’itinéraire hors de la boucle de rendu, un seul à la fois.
   let routing = false,
     routePerson = null,
-    routePlayer = null;
+    routePlayer = null,
+    disposed = false;
   function routeOnce() {
+    if (!routing || disposed) return;
     const p = routePerson;
     try {
       if (enabled && renderable && !frozen && p?.active && p.waiting)
@@ -321,6 +323,7 @@ export function createCrowd({
       routePlayer = null;
     }
   }
+  const routeTimer = setInterval(routeOnce, 16);
   function setAnimation(slot, name, speed) {
     const action = slot.actions[name] || slot.actions.idle;
     if (!action) return;
@@ -444,7 +447,6 @@ export function createCrowd({
           routing = true;
           routePerson = p;
           routePlayer = player;
-          setTimeout(routeOnce, 0);
         }
         continue;
       }
@@ -681,6 +683,8 @@ export function createCrowd({
       };
     },
     dispose() {
+      disposed = true;
+      clearInterval(routeTimer);
       scene.remove(root);
       for (const s of slots) {
         s.mixer.stopAllAction();
