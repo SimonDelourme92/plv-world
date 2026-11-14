@@ -1,0 +1,24 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "Stop pile pliant – Manook – La glaise et le feu",
+  "op": "Manook – La glaise et le feu",
+  "editeur": "Albin Michel",
+  "typeModele": "stoprayon-carte",
+  "glb": "PLV_StopPile_Manook.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.153,
+    "p": 0.221,
+    "h": 0.411
+  },
+  "capacite_livres": null,
+  "livres": "non inclus",
+  "matieres": "Carte 500 g couchée recto-verso, pelliculage mat",
+  "categorie": "comptoir",
+  "source": "Configurateur PLV 3D",
+  "export": "2026-11-14"
+}

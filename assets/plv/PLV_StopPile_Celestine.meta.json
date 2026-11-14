@@ -1,0 +1,24 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "Stop pile pliant – Célestine",
+  "op": "Célestine",
+  "editeur": "Albin Michel",
+  "typeModele": "stoprayon-carte",
+  "glb": "PLV_StopPile_Celestine.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.22,
+    "p": 0.28,
+    "h": 0.391
+  },
+  "capacite_livres": null,
+  "livres": "non inclus",
+  "matieres": "Carte 500 g couchée recto-verso, pelliculage brillant",
+  "categorie": "comptoir",
+  "source": "Configurateur PLV 3D",
+  "export": "2026-11-14"
+}

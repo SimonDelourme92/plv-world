@@ -295,23 +295,34 @@ async function addEmbeddedQSJ(state){
  return {...state,CATALOGUE:catalogue,LOTS:lots,models:nextModels};
 }
 
-// MODÈLES FOURNIS — colonnes ajoutées au catalogue depuis assets/plv/, sans aucun lot (les quantités se saisissent dans l'outil).
-// Chaque modèle n'est proposé qu'une fois par navigateur : un modèle supprimé du catalogue ne revient pas.
-const EMBEDDED_MODELS=['PLV_Nine_Gorman_2026_Colonne','PLV_Chattam_Morsures_Colonne'],EMBEDDED_KEY='plvworld.modeles-fournis.v1';
+// MODÈLES ET LOTS FOURNIS — modèles de assets/plv/ ajoutés au catalogue, avec les quantités du tableau ALBIN MICHEL.
+// Chaque modèle (et chaque lot) n'est proposé qu'une fois par navigateur : ce qui est supprimé ensuite ne revient pas.
+// Un modèle dont le numéro de version augmente remplace le fichier GLB déjà enregistré (même type, mêmes lots).
+const EMBEDDED_MODELS=[["PLV_Nine_Gorman_2026_Colonne", 1], ["PLV_Chattam_Morsures_Colonne", 2], ["PLV_StopPile_Celestine", 1], ["PLV_StopPile_Signol", 1], ["PLV_StopPile_Werber", 1], ["PLV_StopPile_Grange", 1], ["PLV_StopPile_Manook", 1], ["PLV_StopPile_Dragon", 1], ["PLV_StopPile_Chattam", 1], ["PLV_StopPile_Mon_corps", 1]],EMBEDDED_LOTS=[{"id":"0ea32dc8-b765-5edc-af9e-c3df350dd575","model":"PLV_StopPile_Celestine","op":"Célestine en BD","editeur":"Albin Michel","quantite":320,"mois":8,"fournisseur":"Boutaux"},{"id":"543de01f-1648-555a-8e30-73d8b7ef8227","model":"PLV_StopPile_Signol","op":"Tout le miel de la vie – Signol","editeur":"Albin Michel","quantite":245,"mois":8,"fournisseur":"Boutaux"},{"id":"8f3f3a60-9ab2-51ed-b90c-efdf96f78504","model":"PLV_StopPile_Werber","op":"Au bord du monde – Werber","editeur":"Albin Michel","quantite":185,"mois":9,"fournisseur":"Boutaux"},{"id":"35be98df-cda6-5eba-bf3e-8f7dda12b23d","model":"PLV_StopPile_Grange","op":"Tokyorama – JC Grangé","editeur":"Albin Michel","quantite":265,"mois":9,"fournisseur":"Boutaux"},{"id":"b7327ba9-8652-5940-8c8b-b058c02864d0","model":"PLV_StopPile_Manook","op":"Manook – La glaise et le feu","editeur":"Albin Michel","quantite":155,"mois":9,"fournisseur":"Boutaux"},{"id":"fc3c523b-aa43-5311-b606-56bcb93fe1e3","model":"PLV_StopPile_Dragon","op":"Dragon Mom","editeur":"Albin Michel","quantite":100,"mois":10,"fournisseur":"Boutaux"},{"id":"2dbb6b66-55dc-571d-935d-8ee20dbd6b44","model":"PLV_StopPile_Chattam","op":"Morsures – Maxime Chattam","editeur":"Albin Michel","quantite":215,"mois":10,"fournisseur":"Boutaux"},{"id":"f8eca720-e0cc-5a8a-ab27-e61c7e231598","model":"PLV_StopPile_Mon_corps","op":"Mon corps, rien qu'à moi – Agathe Sorlet","editeur":"Albin Michel","quantite":205,"mois":10,"fournisseur":"Boutaux"},{"id":"22fe597f-c641-5be5-b9f9-8b47bb2c8e5f","model":"PLV_Nine_Gorman_2026_Colonne","op":"Anderson T1 – Nine Gorman","editeur":"Albin Michel","quantite":119,"mois":10,"fournisseur":"Jade"},{"id":"b1f80745-5039-5b3e-bd84-d9d1130d5904","model":"PLV_Chattam_Morsures_Colonne","op":"Morsures – Maxime Chattam","editeur":"Albin Michel","quantite":745,"mois":10,"fournisseur":"Jade"}],EMBEDDED_KEY='plvworld.modeles-fournis.v1';
 async function addEmbeddedCatalog(state){let done=new Set();try{done=new Set(JSON.parse(localStorage.getItem(EMBEDDED_KEY)||'[]'));}catch(e){}
- let catalogue=state.CATALOGUE,nextModels=state.models,changed=false;
- for(const name of EMBEDDED_MODELS){if(done.has(name))continue;
+ let catalogue=state.CATALOGUE,nextModels=state.models,lots=state.LOTS,changed=false;const added=[];
+ for(const [name,ver] of EMBEDDED_MODELS){const key=name+'@'+ver;if(done.has(key)||(ver===1&&done.has(name)))continue;
   try{const [mr,gr]=await Promise.all([fetch('assets/plv/'+name+'.meta.json'),fetch('assets/plv/'+name+'.glb')]);if(!mr.ok||!gr.ok)throw Error('fichier introuvable');const meta=await mr.json(),blob=new Blob([await gr.blob()],{type:'model/gltf-binary'});
    if(meta.format!=='plv-meta'||meta.version!==1)throw Error('meta invalide');
-   if(Object.values(catalogue).some(d=>d.forme==='modele'&&d.meta?.glb===meta.glb)){done.add(name);continue;}
+   const existing=Object.entries(catalogue).find(([k,d])=>d.forme==='modele'&&d.meta?.glb===meta.glb);
+   if(existing&&ver===1){added.push(key);continue;}
    const bundle=await decodeModel(blob),measured={...bundle.size};disposeModel(bundle);
-   if(!['l','p','h'].every(k=>Math.abs(Number(meta.dims[k])/measured[k]-1)<=.02))console.warn('Dimensions meta / GLB différentes (> 2 %) pour '+name,meta.dims,measured);
-   const nom=str(meta.nom,160),slug=nom.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'modele';let id=slug;while(Object.hasOwn(catalogue,id))id=slug+'_'+uuid();
-   const modelId=uuid();nextModels=new Map(nextModels);nextModels.set(modelId,{name:meta.glb,blob,meta});catalogue={...catalogue,[id]:{nom,dims:{...meta.dims},couleur:'#e8d6b5',forme:'modele',modelId,metric:true,physicalDims:measured,meta}};changed=true;done.add(name);
+   const close=['l','p','h'].every(k=>Math.abs(Number(meta.dims[k])/measured[k]-1)<=.02),dims=close?{...meta.dims}:{...measured};if(!close)console.warn('Dimensions meta / GLB différentes (> 2 %) pour '+name+' : dimensions mesurées utilisées.',meta.dims,measured);
+   nextModels=new Map(nextModels);
+   if(existing){const [id,d]=existing;nextModels.set(d.modelId,{name:meta.glb,blob,meta});catalogue={...catalogue,[id]:{...d,dims,physicalDims:measured,meta}};}
+   else{const nom=str(meta.nom,160),slug=nom.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'modele';let id=slug;while(Object.hasOwn(catalogue,id))id=slug+'_'+uuid();const modelId=uuid();nextModels.set(modelId,{name:meta.glb,blob,meta});catalogue={...catalogue,[id]:{nom,dims,couleur:'#e8d6b5',forme:'modele',modelId,metric:true,physicalDims:measured,meta}};}
+   changed=true;added.push(key);
   }catch(e){console.warn('Modèle fourni ignoré : '+name,e);}
  }
- try{localStorage.setItem(EMBEDDED_KEY,JSON.stringify([...done]));}catch(e){}
- return changed?{...state,CATALOGUE:catalogue,models:nextModels}:state;}
+ for(const lot of EMBEDDED_LOTS){const key='lot:'+lot.id;if(done.has(key))continue;
+  const type=Object.entries(catalogue).find(([k,d])=>d.forme==='modele'&&d.meta?.glb===lot.model+'.glb')?.[0];if(!type)continue;
+  if([...lots,...(state.corbeille||[])].some(l=>l.id===lot.id)){added.push(key);continue;}
+  lots=[...lots,{id:lot.id,dateAjout:new Date().toISOString(),type,quantite:lot.quantite,op:lot.op,editeur:lot.editeur,mois:lot.mois,fournisseur:lot.fournisseur,note:'Quantité issue du tableau ALBIN MICHEL · modèle fourni.',creas:[]}];changed=true;added.push(key);}
+ if(!changed&&!added.length)return state;
+ // Sécurité : si le résultat n'est pas valide, on garde l'état d'origine plutôt que de bloquer le chargement.
+ if(changed){try{validate(catalogue,lots);}catch(e){console.warn('Modèles fournis ignorés (état invalide)',e);return state;}}
+ try{localStorage.setItem(EMBEDDED_KEY,JSON.stringify([...done,...added]));}catch(e){}
+ return changed?{...state,CATALOGUE:catalogue,LOTS:lots,models:nextModels}:state;}
 async function initializeData(){try{db=await openDB();let data=await readDB();if(!data){let legacy=null;try{const raw=localStorage.getItem(STORAGE);if(raw)legacy=JSON.parse(raw);}catch(e){throw Error('Ancienne sauvegarde illisible : '+e.message);}
  const initial={...currentState(),...(legacy||{}),models:new Map()};const s=normalizeState(legacy?initial:await addEmbeddedCatalog(await addEmbeddedQSJ(initial)));const plan=buildPlan(s.LOTS,s.grouping,s.CATALOGUE);const cache=await prepareModels(s);const stamp=await writeDB(s);installState(s,plan,cache,stamp);if(legacy)$('status').textContent='Ancienne sauvegarde migrée vers IndexedDB.';
  }else{const raw=await addEmbeddedCatalog(data).catch(()=>data),s=normalizeState(raw),plan=buildPlan(s.LOTS,s.grouping,s.CATALOGUE),cache=await prepareModels(s);models=data.models;const stamp=raw!==data||s.corbeille.length!==(data.corbeille||[]).length?await writeDB(s):data.lastSaved;installState(s,plan,cache,stamp);}

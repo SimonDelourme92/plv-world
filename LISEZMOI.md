@@ -9,7 +9,7 @@ Les lots, l'historique, les modèles importés et les créas sont stockés **dan
 ## Organisation
 ```
 index.html            application (HTML + JS, three.js r183 via CDN)
-assets/plv/           modèles de PLV (.glb + .meta.json) — Boîte QSJ (avec un lot de démonstration) et colonnes Nine Gorman / Chattam Morsures (catalogue seulement, sans lot)
+assets/plv/           modèles de PLV (.glb + .meta.json) — Boîte QSJ (lot de démonstration), 2 colonnes et 8 stop-piles pliants, avec leurs quantités (tableau ALBIN MICHEL)
 assets/terrain/       relief et textures du domaine pilote
 assets/river/         lit de la rivière et du lac (riverbed.js) + eau (water.js)
 assets/vehicles/      berline, dynamique de conduite   assets/audio/  sons du véhicule
@@ -21,7 +21,7 @@ tools/                pipelines de préparation des assets (usage assistant uniq
 ```
 
 ## Ajouter un modèle fourni
-Déposer `NOM.glb` et `NOM.meta.json` dans `assets/plv/` et ajouter `NOM` à la liste `EMBEDDED_MODELS` dans `index.html`. Au prochain chargement, le modèle apparaît dans le catalogue, sans lot ; les quantités se saisissent ensuite dans l'outil. Chaque modèle n'est proposé qu'une fois par navigateur : s'il est supprimé du catalogue, il ne revient pas.
+Déposer `NOM.glb` et `NOM.meta.json` dans `assets/plv/`, puis ajouter `["NOM",1]` à `EMBEDDED_MODELS` dans `index.html` (et, si on connaît la quantité, une ligne à `EMBEDDED_LOTS`). Au prochain chargement, le modèle (et son lot) apparaît dans le catalogue et dans le monde. Chaque modèle et chaque lot n'est proposé qu'une fois par navigateur : ce qui est supprimé ensuite ne revient pas. Pour remplacer le fichier GLB d'un modèle déjà fourni, remplacer le fichier et passer son numéro de version à 2 (3, …).
 
 ## Racks pour les petites PLV
 Les PLV de moins de 60 cm (largeur et profondeur) et 50 cm de haut sont rangées sur des racks à lisses construits dans le code (`RACK` et `rackGrid` dans `index.html`) : montants bleus, lisses grises, tablettes bois, travées de 1,8 m, jusqu'à 2 m de haut, allées de 1,6 m entre les rangées. Les comptoirs, tourniquets et grandes PLV restent au sol. Aucun fichier 3D n'est téléchargé.
