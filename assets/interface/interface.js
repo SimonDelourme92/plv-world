@@ -98,6 +98,8 @@ export function createInterface() {
     '<label for="horizonEnabled">Horizon et trafic aérien <input id="horizonEnabled" type="checkbox" checked></label>';
   settings.prepend(sensitivity, horizon);
   settingsPage.append(settings);
+  const vehicleAudioSettings = panel.querySelector(".vehicle-audio-settings");
+  if (vehicleAudioSettings) settingsPage.append(vehicleAudioSettings);
   const advanced = document.createElement("details");
   advanced.className = "advanced-tools";
   const summary = document.createElement("summary");
@@ -155,6 +157,10 @@ export function createInterface() {
   resume.hidden = true;
   resume.onclick = () => $("play").click();
   rail.insertBefore(resume, footer);
+  const pointerNote = document.createElement("p");
+  pointerNote.className = "pointer-menu-note";
+  pointerNote.textContent = "Échap libère la souris pour parcourir les menus. Cliquez sur Explorer / reprendre pour revenir au jeu.";
+  rail.insertBefore(pointerNote, footer);
   $("lotFocus").querySelector(".focusHint").textContent =
     "E / clic · examiner la production";
   $("miniMap").querySelector(".minihead b").textContent = "À PROXIMITÉ";

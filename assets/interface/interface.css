@@ -261,6 +261,14 @@ body.refined-ui {
   font-size: 11px;
   letter-spacing: 0.1em;
 }
+.refined-ui .pointer-menu-note {
+  margin: auto 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: #9eafb9;
+  font-size: 10px;
+  line-height: 1.6;
+}
 .refined-ui .brand-mark {
   font-size: 12px;
   border: 1px solid #a2c3d34d;
