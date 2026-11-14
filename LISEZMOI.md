@@ -20,6 +20,9 @@ docs/                 audits et notes par étape        tests/         tests aut
 tools/                pipelines de préparation des assets (usage assistant uniquement)
 ```
 
+## Racks pour les petites PLV
+Les PLV de moins de 60 cm (largeur et profondeur) et 50 cm de haut sont rangées sur des racks à lisses construits dans le code (`RACK` et `rackGrid` dans `index.html`) : montants bleus, lisses grises, tablettes bois, travées de 1,8 m, jusqu'à 2 m de haut, allées de 1,6 m entre les rangées. Les comptoirs, tourniquets et grandes PLV restent au sol. Aucun fichier 3D n'est téléchargé.
+
 ## Rivière, lac et eau
 Une rivière avec un petit bras et une île, reliée à un lac, est creusée dans la zone x/z −500 à 0. L’eau (`assets/river/water.js`) est une surface unique au niveau −0,9 m : elle n’apparaît que là où le lit descend plus bas, avec berges peu profondes et claires, centre plus sombre, reflets du ciel et ondulations animées. Aucune texture. Elle suit le terrassement des lots. Marcher dans l’eau est possible (pas de nage ni de ralentissement pour l’instant). Si l’eau ne se charge pas, le lit sec reste affiché.
 
