@@ -42,6 +42,9 @@ ZQSD / WASD pour marcher ; pointeur visible et libre, déplacer la souris sur le
 
 La sensibilité souris et l’horizon sont réglables dans **Réglages**. Le fond réunit une skyline, deux reliefs lointains et quelques navettes, sans occuper de surface d’exposition. Sources, vérifications et limites de performance : [docs/CORRECTION_INTERFACE_HORIZON.md](docs/CORRECTION_INTERFACE_HORIZON.md).
 
+## Navigation GPS
+Depuis la recherche, l’historique ou la fiche d’un lot, **GPS** définit un itinéraire sans déplacer le personnage ; **Téléporter** reste une action séparée. Un clic sur un lot de la carte ouvre aussi sa fiche, où l’itinéraire GPS est disponible. Le trajet est recalculé à pied ou en voiture lorsque le mode change ou que l’on s’écarte du parcours. La carte et la mini-carte affichent le chemin, et le panneau GPS indique la distance, l’estimation et la prochaine direction. Le guidage lumineux au sol peut être désactivé depuis ce panneau. Le parcours se termine automatiquement à l’arrivée.
+
 ## Quartier pilote — Parvis Méridien
 Dans le menu, **Découvrir le Parvis Méridien** ouvre une vue d’ensemble au sol. La place centrale accueille une proposition architecturale limitée : portique, six bâtiments, galeries, jardins et mobilier. Les PLV restent dans leurs quartiers d’exposition, à leurs dimensions réelles. Le reste du monde attend validation.
 
