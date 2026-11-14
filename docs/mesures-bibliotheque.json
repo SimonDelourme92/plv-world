@@ -1,0 +1,40 @@
+{
+  "base": "7a89ce266e7efe1646ab737e0bac310141833bb5",
+  "backend": "Chromium headless / SwiftShader (logiciel)",
+  "quality": "Moyenne",
+  "viewport": [
+    800,
+    500
+  ],
+  "ratio": 1,
+  "distance": 350,
+  "camera": {
+    "position": [
+      50,
+      60,
+      94
+    ],
+    "aim": [
+      50,
+      115,
+      -1800
+    ]
+  },
+  "samples": 6,
+  "measurements": [
+    {
+      "version": "avant",
+      "fps": 1.7241973861167619,
+      "drawCallsMax": 54,
+      "drawCallsMean": 54,
+      "triangles": 40714
+    },
+    {
+      "version": "apres",
+      "fps": 1.5151974302251543,
+      "drawCallsMax": 55,
+      "drawCallsMean": 55,
+      "triangles": 128520
+    }
+  ]
+}

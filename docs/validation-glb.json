@@ -1,0 +1,240 @@
+[
+  {
+    "id": "tour-a",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "tour-a",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "tour-c",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "tour-c",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "tour-e",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "tour-e",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "relief-montagne",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 1,
+    "codes": [
+      "UNSUPPORTED_EXTENSION",
+      "MESH_PRIMITIVE_GENERATED_TANGENT_SPACE"
+    ]
+  },
+  {
+    "id": "relief-montagne",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "avion-a320",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "avion-a320",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "evtol",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "evtol",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "drone",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "drone",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "navette-cargo",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "navette-cargo",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "pavillon-astra",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 7,
+    "codes": [
+      "UNSUPPORTED_EXTENSION",
+      "MESH_PRIMITIVE_GENERATED_TANGENT_SPACE"
+    ]
+  },
+  {
+    "id": "pavillon-astra",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "hangar-vitre",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "hangar-vitre",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "arbre-feuillu",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 1,
+    "codes": [
+      "UNSUPPORTED_EXTENSION",
+      "MESH_PRIMITIVE_GENERATED_TANGENT_SPACE"
+    ]
+  },
+  {
+    "id": "arbre-feuillu",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "pin",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 1,
+    "codes": [
+      "UNSUPPORTED_EXTENSION",
+      "MESH_PRIMITIVE_GENERATED_TANGENT_SPACE"
+    ]
+  },
+  {
+    "id": "pin",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "buisson",
+    "lod": 0,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  },
+  {
+    "id": "buisson",
+    "lod": 1,
+    "errors": 0,
+    "warnings": 0,
+    "codes": [
+      "UNSUPPORTED_EXTENSION"
+    ]
+  }
+]
