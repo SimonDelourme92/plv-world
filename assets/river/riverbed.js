@@ -32,6 +32,14 @@ export function riverbedHeight(x,z,reservations=[]){
   let depth=0;
   for(const p of paths){const d=distToPath(x,z,p.points);depth=Math.max(depth,p.depth*(1-smooth(p.width*.45,p.width+14,d)));}
   const basin=Math.hypot(x+407,z+130);depth=Math.max(depth,2.4*(1-smooth(14,35,basin)));
+  // Lac sec relié à la rivière, avec des berges progressives et irrégulières.
+  // Son raccord côté nord préserve la bifurcation existante et sa petite île.
+  const lx=(x+325)/150,lz=(z-375)/105;
+  const angle=Math.atan2(lz,lx);
+  const edge=1+0.08*Math.sin(angle*3+.6)+0.045*Math.sin(angle*5-1.2);
+  const radial=Math.hypot(lx,lz)/edge;
+  const lake=7*(1-smooth(.55,1,radial))*smooth(280,340,z);
+  depth=Math.max(depth,lake);
   if(depth===0)return 0;
   // Every lot, collision and future reservation stays flat, with a smooth transition.
   for(const b of reservations){const dx=Math.max(b.min.x-x,0,x-b.max.x),dz=Math.max(b.min.z-z,0,z-b.max.z);depth*=smooth(3,15,Math.hypot(dx,dz));if(depth===0)break;}

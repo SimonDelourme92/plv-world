@@ -13,3 +13,12 @@ test('une emprise PLV existante ou future demeure horizontale',()=>{
   assert.ok(riverbedHeight(-440,-450)<0);
   assert.ok(riverbedHeight(-420,-450,[lot])<=0);
 });
+
+test('le lac sec est relié à la rivière et respecte les lots',()=>{
+  assert.ok(riverbedHeight(-325,375)<=-6.9);
+  assert.ok(riverbedHeight(-200,375)<0);
+  assert.equal(riverbedHeight(-50,375),0);
+  const lot={min:{x:-330,z:370},max:{x:-320,z:380}};
+  assert.equal(riverbedHeight(-325,375,[lot]),0);
+  assert.ok(riverbedHeight(-180,320)<-2);
+});
