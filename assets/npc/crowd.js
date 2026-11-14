@@ -23,7 +23,7 @@ export function createCrowd({THREE,scene,kit,getRecords,terrainHeight,collides,r
   for(const slot of slots)for(const mesh of slot.meshes){mesh.onBeforeRender=recordDraw;mesh.onBeforeShadow=recordDraw;}
   const inside=(x,z,y=terrainHeight(x,z))=>{bounds.center.set(x,y+.9,z);return frustum.intersectsSphere(bounds);};
   const dry=(x,z)=>terrainHeight(x,z)>=waterLevel+.15;
-  function safe(x,z){const h=terrainHeight(x,z);return h>=waterLevel+.15&&!collides(x,z,h+1.7);}
+  function safe(x,z){const h=terrainHeight(x,z),y=h+1.7;return h>=waterLevel+.15&&!collides(x,z,y)&&!collides(x+.4,z,y)&&!collides(x-.4,z,y)&&!collides(x,z+.4,y)&&!collides(x,z-.4,y);}
   function assign(p, player, records, blockers){
     const lot=chooseNextLot(records,p.history,player.x,player.z,random);if(!lot){p.waiting=false;p.stop=3+random()*5;p.anim='idle';return;}
     const dest=chooseStop(lot.bounds,blockers,terrainHeight,waterLevel,random);if(!dest){p.waiting=false;p.stop=2;p.anim='idle';return;}
