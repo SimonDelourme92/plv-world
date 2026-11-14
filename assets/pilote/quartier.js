@@ -2,7 +2,7 @@
 // Toutes les coordonnées restent dans la cellule centrale déjà réservée (0–100 m).
 export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}}){
  const root=new THREE.Group();root.name='Quartier pilote · Parvis Méridien';scene.add(root);
- const collisions=[];let resources=null,pending=null,releaseAt=0,disposed=false;
+ const collisions=[];let resources=null,pending=null,releaseAt=0,disposed=false,gardenModels=false;
  const collision=(x,z,w,d,h,minY=0)=>collisions.push({min:{x:x-w/2,y:minY,z:z-d/2},max:{x:x+w/2,y:h,z:z+d/2}});
  // Les emprises restent disponibles indépendamment des ressources graphiques.
  const buildings=[
@@ -14,7 +14,7 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
   {x:86,z:84,w:19,d:19,h:23,flip:-1}
  ];
  for(const b of buildings)collision(b.x,b.z,b.w+1,b.d+1,b.h);
- const gardens=[[29,31,10,5],[67,30,12,5],[26,75,13,5],[75,76,10,5]];
+ const gardens=[[29,31,10,5],[67,30,12,5],[31,75,7,5],[70,76,7,5]];
  for(const [x,z,w,d] of gardens)collision(x,z,w,d,.65);
  // Bases des deux lames ; le vide central du portique reste traversable.
  collision(41.6,50.25,5.6,3,7);collision(58.4,48.25,5.6,3,7);
@@ -43,6 +43,7 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
    bark:material({color:'#4e5149',roughness:.96}),
    soil:material({color:'#31433c',roughness:1})
   };
+  mats.gardenFoliage=mats.foliage;mats.gardenBark=mats.bark;
   const box=geo(new THREE.BoxGeometry(1,1,1));
   const leaf=geo(new THREE.SphereGeometry(1,12,8));
   const cyl=geo(new THREE.CylinderGeometry(.5,.5,1,10));
@@ -125,9 +126,9 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
    part('metal',x,.67,z+d*.5,w,.08,.12,true);
    for(const s of [-1,0,1]){
     const tx=x+s*w*.29;
-    part('bark',tx,2.2,z,.2,3.2,.2,false,0,cyl);
-    part('foliage',tx,4.1,z,1.6,2.3,1.3,false,0,leaf);
-    part('foliage',tx+.8,3.6,z+.3,.95,1.4,.9,true,0,leaf);
+    part('gardenBark',tx,2.2,z,.2,3.2,.2,false,0,cyl);
+    part('gardenFoliage',tx,4.1,z,1.6,2.3,1.3,false,0,leaf);
+    part('gardenFoliage',tx+.8,3.6,z+.3,.95,1.4,.9,true,0,leaf);
    }
    part('dark',x,.42,z+d*.5+1.15,w*.68,.72,.55);
    part('metal',x,.82,z+d*.5+1.15,w*.7,.08,.64,true);
@@ -153,8 +154,8 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
   for(const {mat,near,geometry,matrices} of batches.values()){
    const mesh=new THREE.InstancedMesh(geometry,mats[mat],matrices.length);mesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
    matrices.forEach((matrix,i)=>mesh.setMatrixAt(i,matrix));mesh.instanceMatrix.needsUpdate=true;mesh.computeBoundingBox();mesh.computeBoundingSphere();
-   mesh.receiveShadow=!['light','foliage'].includes(mat);mesh.castShadow=!near&&['shell','dark','foliage','bark'].includes(mat);
-   (near?detail:base).add(mesh);instanceMeshes.push(mesh);
+   mesh.receiveShadow=!['light','foliage','gardenFoliage'].includes(mat);mesh.castShadow=!near&&['shell','dark','foliage','bark','gardenFoliage','gardenBark'].includes(mat);
+   mesh.userData.gardenTree=mat.startsWith('garden');if(mesh.userData.gardenTree)mesh.visible=!gardenModels;(near?detail:base).add(mesh);instanceMeshes.push(mesh);
   }
   resources={base,detail,mats,geometries,materials,textures,instanceMeshes};onChange();
  }
@@ -172,5 +173,5 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
   else{releaseAt=0;if(pending){clearTimeout(pending);pending=null;}if(!resources)pending=setTimeout(()=>{pending=null;build();},0);}
  }
  build();
- return {root,collisions,update,get loaded(){return !!resources;},dispose(){disposed=true;if(pending)clearTimeout(pending);release();root.removeFromParent();}};
+ return {root,collisions,update,setGardenModels(value){gardenModels=value;for(const m of resources?.instanceMeshes||[])if(m.userData.gardenTree)m.visible=!value;},get loaded(){return !!resources;},dispose(){disposed=true;if(pending)clearTimeout(pending);release();root.removeFromParent();}};
 }

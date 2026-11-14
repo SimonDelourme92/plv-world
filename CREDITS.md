@@ -63,3 +63,7 @@ L’audit des 30 fichiers préexistants (16 GLB, 2 HDRI et 12 JPG) est disponibl
 - Le Parvis Méridien et les anciennes géométries procédurales d’interface et d’horizon sont des créations originales du projet ; visuels et géométries d’origine sous CC0. Les nouvelles adaptations de modèles tiers restent sous la licence de leur source.
 
 Les captures de validation utilisent uniquement le contenu de démonstration déjà public du dépôt. Aucun inventaire réel ni document professionnel privé n’a été importé ou utilisé.
+
+## Utilisation paysagère du catalogue
+
+Les pins, feuillus, buissons, pavillons Astra et pavillons spatiaux vitrés déjà référencés ci-dessus sont réutilisés pour le Parvis Méridien et les bordures voisines. Aucun nouvel asset tiers : les licences CC0 et preuves du manifeste existant restent applicables.
