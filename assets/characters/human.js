@@ -202,10 +202,13 @@ async function buildHuman(THREE, GLTFLoader, parent) {
     const values=names.map(()=>new Float32Array(frames*4));action.play();
     for(let f=0;f<frames;f++){
       bakeMixer.setTime(times[f]);parent.updateWorldMatrix(true,false);parent.getWorldQuaternion(avatarFrame);avatarFrameInverse.copy(avatarFrame).invert();root.updateMatrixWorld(true);
+      // Conserver une partie du geste animé pendant les échanges et interactions.
+      const gesture = state==='talk'||state==='interact'||state==='push';
+      const animatedArms = gesture ? names.map(name=>targetBones.get(name)?.quaternion.clone()) : null;
       const swing=(state==='walk'||state==='walkCasual')?.5:0;let phase=0;
       if(footL&&footR&&swing){footL.getWorldPosition(p0);footR.getWorldPosition(p1);phase=THREE.MathUtils.clamp(p0.sub(p1).applyQuaternion(avatarFrameInverse).z/.5,-1,1);}
       for(const {side,arm,fore,hand} of armParts){const bone=targetBones.get(arm),lower=targetBones.get(fore),end=targetBones.get(hand);if(!bone||!lower||!end)continue;const a=swing*phase*side;aim(bone,lower,want.set(side*.12,-1,-a*.55));aim(lower,end,want.set(side*.05,-.9,-(.3+.35*Math.max(0,a))));}
-      names.forEach((name,i)=>targetBones.get(name)?.quaternion.toArray(values[i],f*4));
+      names.forEach((name,i)=>{const bone=targetBones.get(name);if(!bone)return;if(gesture&&animatedArms[i])bone.quaternion.slerp(animatedArms[i],.6);bone.quaternion.toArray(values[i],f*4);});
     }
     action.stop();const tracks=clip.tracks.filter(t=>!names.some(n=>t.name===n+'.quaternion'));
     names.forEach((name,i)=>{if(targetBones.has(name))tracks.push(new THREE.QuaternionKeyframeTrack(name+'.quaternion',times,values[i]));});
