@@ -1,0 +1,92 @@
+[
+  {
+    "id": "Grass001",
+    "source": "https://ambientcg.com/get?file=Grass001_1K-JPG.zip",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/Grass001/Grass001_1K-JPG_Color.jpg",
+      "assets/terrain/textures/Grass001/Grass001_1K-JPG_NormalGL.jpg",
+      "assets/terrain/textures/Grass001/Grass001_1K-JPG_Roughness.jpg"
+    ]
+  },
+  {
+    "id": "Grass007",
+    "source": "https://ambientcg.com/get?file=Grass007_1K-JPG.zip",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/Grass007/Grass007_1K-JPG_Color.jpg",
+      "assets/terrain/textures/Grass007/Grass007_1K-JPG_NormalGL.jpg",
+      "assets/terrain/textures/Grass007/Grass007_1K-JPG_Roughness.jpg"
+    ]
+  },
+  {
+    "id": "Ground102",
+    "source": "https://ambientcg.com/get?file=Ground102_1K-JPG.zip",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/Ground102/Ground102_1K-JPG_Color.jpg",
+      "assets/terrain/textures/Ground102/Ground102_1K-JPG_NormalGL.jpg",
+      "assets/terrain/textures/Ground102/Ground102_1K-JPG_Roughness.jpg"
+    ]
+  },
+  {
+    "id": "Ground014",
+    "source": "https://ambientcg.com/get?file=Ground014_1K-JPG.zip",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/Ground014/Ground014_1K-JPG_Color.jpg",
+      "assets/terrain/textures/Ground014/Ground014_1K-JPG_NormalGL.jpg",
+      "assets/terrain/textures/Ground014/Ground014_1K-JPG_Roughness.jpg"
+    ]
+  },
+  {
+    "id": "Ground023",
+    "source": "https://ambientcg.com/get?file=Ground023_1K-JPG.zip",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/Ground023/Ground023_1K-JPG_Color.jpg",
+      "assets/terrain/textures/Ground023/Ground023_1K-JPG_NormalGL.jpg",
+      "assets/terrain/textures/Ground023/Ground023_1K-JPG_Roughness.jpg"
+    ]
+  },
+  {
+    "id": "Asphalt001",
+    "source": "https://ambientcg.com/get?file=Asphalt001_1K-JPG.zip",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/Asphalt001/Asphalt001_1K-JPG_Color.jpg",
+      "assets/terrain/textures/Asphalt001/Asphalt001_1K-JPG_NormalGL.jpg",
+      "assets/terrain/textures/Asphalt001/Asphalt001_1K-JPG_Roughness.jpg"
+    ]
+  },
+  {
+    "id": "aerial_grass_rock",
+    "source": "https://polyhaven.com/a/aerial_grass_rock",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/aerial_grass_rock/diff.jpg",
+      "assets/terrain/textures/aerial_grass_rock/nor_gl.jpg",
+      "assets/terrain/textures/aerial_grass_rock/rough.jpg"
+    ]
+  },
+  {
+    "id": "concrete_pavement",
+    "source": "https://polyhaven.com/a/concrete_pavement",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/concrete_pavement/diff.jpg",
+      "assets/terrain/textures/concrete_pavement/nor_gl.jpg",
+      "assets/terrain/textures/concrete_pavement/rough.jpg"
+    ]
+  },
+  {
+    "id": "gravel_ground_01",
+    "source": "https://polyhaven.com/a/gravel_ground_01",
+    "license": "CC0-1.0",
+    "files": [
+      "assets/terrain/textures/gravel_ground_01/diff.jpg",
+      "assets/terrain/textures/gravel_ground_01/nor_gl.jpg",
+      "assets/terrain/textures/gravel_ground_01/rough.jpg"
+    ]
+  }
+]

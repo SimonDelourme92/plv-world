@@ -1,0 +1,196 @@
+{
+  "files": [
+    {
+      "path": "assets/terrain/models/grass_medium_01.glb",
+      "bytes": 1037904,
+      "sha256": "2972d7c4688a42c6891738c995c3fb4009888ad7aa1e4a37c82282d9f51330a3",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/models/rock_moss_set_01.glb",
+      "bytes": 974840,
+      "sha256": "99cce5ece88c0d47b7d5b76e187aed13d8bcd980d489981db143f3868d5075e3",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Asphalt001/Asphalt001_1K-JPG_Color.jpg",
+      "bytes": 769004,
+      "sha256": "9282585546a4cad22f78cf171242466f236faad943b39b82cfc67a393860fd58",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Asphalt001/Asphalt001_1K-JPG_NormalGL.jpg",
+      "bytes": 799988,
+      "sha256": "6012bdeb7e2039ffb2dda9b145132e52cb9590b26e3c5eed9e86bacc277fb45e",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Asphalt001/Asphalt001_1K-JPG_Roughness.jpg",
+      "bytes": 608793,
+      "sha256": "bb8c8a3858a1dfea73825006d1a6477c0918bbd25b855f3f0afad04fe0282a8a",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Grass001/Grass001_1K-JPG_Color.jpg",
+      "bytes": 1764300,
+      "sha256": "b9b6d61bc3b6137b868a3447eef18737896acd26d58fe2f4b83ce8c0e9d3f8ad",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Grass001/Grass001_1K-JPG_NormalGL.jpg",
+      "bytes": 2338245,
+      "sha256": "eef0b56db5f00a6fcb3d0e0f8463e4e141e88aa85b26527a04d617b75a4ab5d2",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Grass001/Grass001_1K-JPG_Roughness.jpg",
+      "bytes": 823623,
+      "sha256": "8810effd44756341170d551501b7d0c645dc2395dbce46a8c7f1e61045258a06",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Grass007/Grass007_1K-JPG_Color.jpg",
+      "bytes": 1767495,
+      "sha256": "6dd286ae898027012d9a773896607229e1802b4c13b0f4a4d47a05b01092a9c3",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Grass007/Grass007_1K-JPG_NormalGL.jpg",
+      "bytes": 2172754,
+      "sha256": "f686c7254441a74850002c2652a1688e5dd01eb289c50957820d0b80a395b852",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Grass007/Grass007_1K-JPG_Roughness.jpg",
+      "bytes": 676747,
+      "sha256": "e27ef6c1a81d73fa56848f8c7ede670200ddbf02de4e8784bb42f1c4d6684366",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground014/Ground014_1K-JPG_Color.jpg",
+      "bytes": 1743372,
+      "sha256": "1126046116f9ce8efb2d6995624dc4cd75f98e8c3de729dc5bc88f9a4c413289",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground014/Ground014_1K-JPG_NormalGL.jpg",
+      "bytes": 2220374,
+      "sha256": "970ffff74dd3f8a5e3a6ef447314b321e8ceecd35c1db201c559d6be12af04d1",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground014/Ground014_1K-JPG_Roughness.jpg",
+      "bytes": 822342,
+      "sha256": "75fe1c87bd17ba7af25a16fe436284633f0381a99b991b9f38a9e4c5f9ff1268",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground023/Ground023_1K-JPG_Color.jpg",
+      "bytes": 1820307,
+      "sha256": "458156780810eefc52a945b55f11d02571042fcd077134b59bb330335f68571a",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground023/Ground023_1K-JPG_NormalGL.jpg",
+      "bytes": 2521545,
+      "sha256": "7dcdf120d837ccbd48de1a46619fa2b21d2988adf48ce9712a0028448719dc1c",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground023/Ground023_1K-JPG_Roughness.jpg",
+      "bytes": 746375,
+      "sha256": "639ab71c514098ba7cb1ebd017f1c7a20b7fd0e38a7ac2c5ff55e7bf2ae2f3d7",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground102/Ground102_1K-JPG_Color.jpg",
+      "bytes": 1447086,
+      "sha256": "d204d0aa547cb98ab926b611a9bb4cd277f95064cb2abdbacbfb7a313b620526",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground102/Ground102_1K-JPG_NormalGL.jpg",
+      "bytes": 1671764,
+      "sha256": "6d45da76511c55b454cd76bf730bee8da3c54e5702c139c232b6cb94d03acc1f",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/Ground102/Ground102_1K-JPG_Roughness.jpg",
+      "bytes": 719665,
+      "sha256": "d730ef7e1e1a0cc016466a4ad8d4230264bc3deefad4d958f2af2ab0975b2de7",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/aerial_grass_rock/diff.jpg",
+      "bytes": 666655,
+      "sha256": "57b8041bfe0d0f01430e4dbaad45e7ddddf0a9fc97317f90dbc51f7b0d9e1b5d",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/aerial_grass_rock/nor_gl.jpg",
+      "bytes": 904956,
+      "sha256": "1aa3e23bff453f152e089b9f83aa36b4901651e019f7e2ca01d5331a9bbbda78",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/aerial_grass_rock/rough.jpg",
+      "bytes": 362214,
+      "sha256": "b9f3f76aba74007f708333c0dbe73c52eb83ea0c4187a13e2e994f888a25114a",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/atlas-color.jpg",
+      "bytes": 1049933,
+      "sha256": "9e6535ba50a05032cdf7500ad7136f93d94fca0160aaeb62e2fdc8d30919296b",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/atlas-normal.jpg",
+      "bytes": 1084105,
+      "sha256": "34a7d40a7c31f05057ffd624f2555183216adab3d2a74a189c2968fc217c2c1e",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/atlas-roughness.jpg",
+      "bytes": 848456,
+      "sha256": "a3ea838de103aa3a55ebc9f9cafe6b4338086dd719663ea357cb23afa81e3d30",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/concrete_pavement/diff.jpg",
+      "bytes": 926197,
+      "sha256": "70d3ff969a7421c7ae057b5d16386d11f5e59c6740db643352e1039413f419c4",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/concrete_pavement/nor_gl.jpg",
+      "bytes": 1184345,
+      "sha256": "a5009e409ff0f7b2d19e1316fe5e2b2b4f28e4a6b79990a664be69d4e8a0e690",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/concrete_pavement/rough.jpg",
+      "bytes": 475799,
+      "sha256": "99f81099af07b009134b6a81bf0f95ab16da09c57156cc2ed534975664a68533",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/gravel_ground_01/diff.jpg",
+      "bytes": 954257,
+      "sha256": "c3a12b0e3a9399913158dd5cfa1d67ede066970acd1f99e5b89969ac13f89089",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/gravel_ground_01/nor_gl.jpg",
+      "bytes": 1314248,
+      "sha256": "3a832b27276d1457031b164147434558bd245469dc27fd1ff6ae075bde0b12b2",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "assets/terrain/textures/gravel_ground_01/rough.jpg",
+      "bytes": 379669,
+      "sha256": "49030879da62c9fe5def030e33be2262c8b68c7c50cd189c4bab0f16c229e410",
+      "license": "CC0-1.0"
+    }
+  ]
+}

@@ -66,7 +66,7 @@ export class VehicleAudio {
     const real = new Float32Array(17),
       imag = new Float32Array(17);
     for (let i = 1; i < 17; i++)
-      imag[i] = (i % 2 ? 1 : 0.58) / Math.pow(i, 1.4);
+      imag[i] = (i % 2 ? 1 : 0.58) / Math.pow(i, 1.15);
     const wave = c.createPeriodicWave(real, imag);
     this.combustion = c.createOscillator();
     this.combustion.setPeriodicWave(wave);
@@ -76,7 +76,7 @@ export class VehicleAudio {
     this.engineFilter.frequency.value = 350;
     this.engineFilter.Q.value = 0.65;
     const pulseGain = c.createGain();
-    pulseGain.gain.value = 0.075;
+    pulseGain.gain.value = 0.14;
     this.combustion
       .connect(this.engineFilter)
       .connect(pulseGain)
@@ -189,10 +189,10 @@ export class VehicleAudio {
       mix = clamp((rpm - 1350) / 2200, 0, 1),
       speed = Math.abs(state.speed || 0),
       load = state.throttle || 0;
-    this.smooth(this.combustion.frequency, rpm / 30, 0.09);
+    this.smooth(this.combustion.frequency, rpm / 20, 0.12);
     this.smooth(
       this.engineFilter.frequency,
-      300 + rpm * 0.25 + load * 500,
+      450 + rpm * 0.32 + load * 650,
       0.12,
     );
     if (this.idle) {
@@ -201,24 +201,24 @@ export class VehicleAudio {
     }
     this.smooth(
       this.idleGain.gain,
-      0.62 * Math.cos((mix * Math.PI) / 2) * (0.75 + load * 0.25),
+      0.36 * Math.cos((mix * Math.PI) / 2) * (0.75 + load * 0.25),
       0.12,
     );
     this.smooth(
       this.revGain.gain,
-      0.48 * Math.sin((mix * Math.PI) / 2) * (0.65 + load * 0.35),
+      0.38 * Math.sin((mix * Math.PI) / 2) * (0.65 + load * 0.35),
       0.12,
     );
     const motion = this.active ? 1 : 0;
     this.smooth(
       this.road.gain.gain,
-      motion * Math.min(0.12, speed * 0.004),
+      motion * Math.min(0.055, speed * 0.002),
       0.18,
     );
     this.smooth(this.road.filter.frequency, 350 + speed * 30, 0.2);
     this.smooth(
       this.wind.gain.gain,
-      motion * Math.min(0.11, Math.pow(speed / 35, 2) * 0.09),
+      motion * Math.min(0.045, Math.pow(speed / 35, 2) * 0.035),
       0.3,
     );
     this.smooth(this.tyres.gain.gain, motion * (state.slip || 0) * 0.12, 0.055);

@@ -79,3 +79,13 @@ Les pins, feuillus, buissons, pavillons Astra et pavillons spatiaux vitrés déj
 - **Personnage** : « [Rigged T-Pose Human Male w 50 Face Blendshapes](https://sketchfab.com/3d-models/rigged-t-pose-human-male-w-50-face-blendshapes-cc7e4596bcd145208a6992c757854c07) » par [Mike Alger](https://sketchfab.com/mikealger), **CC BY 4.0**. Modèle fourni par l’utilisateur ; échelle ajustée à environ 1,80 m. Texte de licence conservé dans `assets/characters/licenses/CC-BY-4.0-Mike-Alger.txt`.
 - **Animations** : [Universal Animation Library Standard](https://quaternius.com/packs/universalanimationlibrary.html) par Quaternius, **CC0 1.0**. La variante sans suffixe `_RM` est utilisée ; ses déplacements restent contrôlés par le moteur. Copie de licence dans `assets/characters/licenses/CC0-1.0-Quaternius.txt`.
 - Les animations sont adaptées sur le squelette Mixamo du personnage au chargement, puis les données du mannequin temporaire sont libérées. Les deux GLB restent séparés dans `assets/characters/`.
+
+## Terrain pilote Technoparc
+
+Textures ambientCG **Grass001, Grass007, Ground102, Ground014, Ground023, Asphalt001** : versions 1K JPG (couleur, normales OpenGL, rugosité), [licence CC0](https://docs.ambientcg.com/license/). URL de téléchargement et liste des fichiers : `assets/terrain/sources.json`.
+
+Textures Poly Haven **aerial_grass_rock, concrete_pavement, gravel_ground_01** : versions 1K obtenues via `https://api.polyhaven.com/files/{identifiant}`. Modèles **rock_moss_set_01** et **grass_medium_01**, mêmes sources officielles. Tous sous [CC0](https://polyhaven.com/license). Pages sources : https://polyhaven.com/a/rock_moss_set_01 et https://polyhaven.com/a/grass_medium_01.
+
+Modifications : atlas des textures à tuiles 512 px issus des cartes 1K, géométries des deux modèles simplifiées (ratio cible 40 %, erreur 0,002), textures des modèles réduites à 512 px, conversion en GLB autonome. Les cartes originales 1K sont conservées séparément. Aucun déplacement géométrique par les textures. Le modèle `boulder_01` a été examiné mais non retenu pour éviter un second jeu de rochers ; les végétaux Quaternius déjà crédités restent réutilisés sans nouveau téléchargement.
+
+L'ambiance intermittente (brise et oiseaux) et la couche harmonique du moteur sont synthétisées avec Web Audio dans le projet. Les échantillons moteur CC0 déjà crédités restent utilisés.
