@@ -1,22 +1,55 @@
-# Paysage naturel — état de la branche `paysage`
+# Paysage — état au 14 novembre 2026 (branche `paysage`)
 
-La branche ajoute un relief déterministe, un réseau de routes sinueuses et une végétation répartie autour des zones d'exposition. Les lots restent à leurs coordonnées et les réservations sont aplaties par le relief.
+## Organisation du monde
 
-## Fonctionnalités présentes
+| Zone | Emprise | Rôle |
+|---|---|---|
+| Cité | x −200 → 400, z −300 → 200 (6 × 5 quartiers) | Lots de PLV. Plate. Décor futuriste uniquement ici. |
+| Allées | 9,2 m entre deux quartiers | Le boulevard y circule sans jamais toucher un quartier. |
+| Campagne | Reste du domaine (±1 000 m) | Relief, rivière, lac, routes, forêts. |
 
-- `assets/terrain/relief.js` : bruit multi-octaves, déformation du domaine, réservations planes et bornes d'altitude.
-- `assets/roads/network.js` : boucle principale et liaisons secondaires déterministes.
-- `assets/roads/roads.js` : rubans de chaussée, bas-côtés, lampadaires instanciés et franchissement léger.
-- `assets/nature/scatter.js` et `nature.js` : répartition déterministe de trois modèles existants, avec des tailles et orientations variables.
-- Le GPS voiture favorise les segments routiers ; les piétons gardent le calcul de trajet existant.
-- Les troncs sont recherchés dans une grille spatiale de 10 m ; les buissons restent traversables.
+Les lots existants ne bougent pas : le plan des lots est inchangé, seuls les quartiers **traversés par une route de campagne** sont retirés de la liste des quartiers disponibles. Aucun n’appartient à la cité ; le premier quartier exclu arrive au 23ᵉ rang d’attribution (test `roads-network.test.mjs`).
 
-## Validation
+## Modules
 
-`node --test tests/*.test.mjs` passe avec 33 tests. Les tests couvrent la déterminisme du relief et de la végétation, les réservations des lots, les routes et les comportements existants.
+- `assets/terrain/relief.js` — bruit multi-octaves déterministe. Nul dans la cité, il monte sur 15 → 230 m au-delà. Les lots et repères restent aplanis (réservations).
+- `assets/roads/network.js` (sans Three.js, testé sous Node)
+  - `createRoadNetwork()` : boulevard (7 m, angles de carrefour r = 6 m), boucle de campagne (6 m, ~4,7 km), liaisons nord, est, sud, ouest.
+  - `blockedDistricts()` : quartiers exclus des futurs lots.
+  - `profileNetwork()` : altitude de chaussée lissée (pentes < 20 %), pont automatique au-dessus de l’eau (tablier à ≥ 0,9 m, culées de 8 m).
+  - `createRoadField()` : terrassement du sol le long des routes, altitude du tablier pour la marche et la voiture, distance aux routes (végétation, décor).
+- `assets/roads/roads.js` — chaussées texturées (rives continues, axe discontinu), accotements gravillonnés, disques de carrefour, tablier, garde-corps, piles, 69 lampadaires (allumés la nuit), dessin 2D pour la mini-carte.
+- `assets/nature/scatter.js` (sans Three.js, testé) — répartition déterministe : forêts de résineux, de feuillus ou mixtes, clairières, lisières (buissons, fougères), bosquets, arbres isolés, berges, rochers, alignement du boulevard. Exclusions : cité, routes, eau, repères.
+- `assets/nature/nature.js` — chargement meshopt, modèles détaillés jusqu’à 60/80/110 m (Faible/Moyenne/Haute), petites plantes jusqu’à 40/55/70 m, silhouettes légères jusqu’à la distance d’affichage. Listes reconstruites tous les 12 m de déplacement. `refresh(lots)` efface la végétation sous les lots ; collisions à pied (`collides`) et en voiture (`collidesCar`).
+- `tools/asset-pipeline/build-vegetation.mjs` — reconstruit les 10 nouvelles espèces depuis la version Standard gratuite du Stylized Nature MegaKit (CC0) et les ajoute au manifeste.
 
-Les captures et mesures sur un Mac réel restent à produire. Les mesures précédentes de foule et de rendu logiciel ne peuvent pas servir de mesure de performance du paysage sur le matériel de Simon.
+## Densités (Moyenne par défaut)
 
-## Limites connues
+| Réglage | Végétaux | dont arbres |
+|---|---|---|
+| Faible | ~11 000 | ~7 000 |
+| Moyenne | ~30 000 | ~21 000 |
+| Haute | ~47 000 | ~33 000 |
 
-La végétation réutilise trois modèles locaux : elle ne constitue pas encore une bibliothèque de dix espèces différentes. Le maillage des routes n'est pas encore ajouté comme réservation aux futurs placements. Le relief et les routes sont générés au démarrage, sans streaming par tuile complet. Ces points doivent être traités avant de considérer la feuille de route terminée.
+## Intégration (`index.html`)
+
+- Le tracé est calculé avant l’ordre des quartiers ; terrain = lit de rivière + relief, terrassé par les routes.
+- `refreshLandscape()` est appelé après chaque placement de lots : végétation effacée sous les lots, terrain recalculé seulement autour des lots hors cité qui ont changé.
+- Le lot test de 50 000 objets ne recalcule que son quartier (≈ 0,2 s).
+- Voiture : troncs et rochers bloquent, tangage et roulis suivent la pente, caméra de poursuite au-dessus du sol. Les PLV restent destructibles en voiture.
+- GPS voiture : masque routier précalculé (coût réduit sur chaussée).
+- Diagnostics : `diagnostic().paysage` (routes, végétation, quartiers réservés).
+
+## Vérifications faites (navigateur automatisé, rendu logiciel)
+
+- `node --test tests/*.test.mjs` : 40 tests.
+- Captures sol, drone, pont, forêt, carte : voir la PR.
+- Pont : on roule à +0,94 m, le lit reste à −3,5 m dessous. Choc contre un tronc : arrêt. Lot posé en forêt : arbres effacés puis rétablis.
+- Coût mesuré en rendu logiciel (indicatif) : ~100 appels de dessin et ~2 M triangles en forêt dense.
+
+## Limites connues / à faire
+
+- **Performances à mesurer sur le Mac de Simon** (Moyenne et Haute). Si c’est lourd en forêt : baisser `NEAR` dans `nature.js` ou passer en densité Faible.
+- Pas d’option séparée « Relief » ou « Routes » dans le menu (la densité du décor coupe la végétation).
+- Garde-corps du pont sans collision : on peut tomber dans la rivière en voiture (sans danger).
+- Les modèles détaillés n’ont pas de LOD intermédiaire efficace (feuillages en cartes) : les silhouettes lointaines sont générées à l’exécution.

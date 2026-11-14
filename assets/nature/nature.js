@@ -16,7 +16,7 @@ function alphaOnly(material, color) {
   material.needsUpdate = true;
 }
 // Rayons d'affichage détaillé selon la densité (m) ; les petites plantes disparaissent plus tôt.
-const NEAR = { low: 65, medium: 90, high: 120 }, SMALL = { low: 40, medium: 55, high: 70 };
+const NEAR = { low: 60, medium: 80, high: 110 }, SMALL = { low: 40, medium: 55, high: 70 };
 // Couleurs des silhouettes lointaines (tronc, houppier).
 const FAR_STYLE = {
   'arbre-feuillu': ['round', 0x5b4632, 0x5f8a3c], 'feuillu-rond': ['round', 0x5b4632, 0x6f9440], 'feuillu-eleve': ['tall', 0x5b4632, 0x58833a],
