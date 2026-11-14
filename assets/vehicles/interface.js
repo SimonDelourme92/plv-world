@@ -17,7 +17,7 @@ export function createVehicleInterface(audio) {
   hud.hidden = true;
   hud.setAttribute("aria-label", "Compteur de la berline");
   hud.innerHTML =
-    '<div class="vehicle-dial"><span class="vehicle-caption">VITESSE</span><div><b id="vehicleSpeed">0</b><span class="vehicle-unit">km/h</span></div><div class="vehicle-rpm"><i></i></div><div class="vehicle-meta"><span id="vehicleGear">D1</span><span id="vehicleRpm">850 tr/min</span></div></div><div class="vehicle-controls"><span>B · Klaxon</span><span>L · Phares</span><button id="vehicleMute" type="button" aria-label="Couper le son du véhicule">Son actif</button></div><div class="vehicle-live-audio"><label for="vehicleLiveVolume">SON <b id="vehicleLiveVolumeVal"></b></label><input id="vehicleLiveVolume" type="range" min="0" max="100" step="5" aria-label="Volume moteur en conduite" aria-valuetext="65 %"><small>Tab puis ← / → · [ / ]</small></div>';
+    '<div class="vehicle-dial"><span class="vehicle-caption">VITESSE</span><div><b id="vehicleSpeed">0</b><span class="vehicle-unit">km/h</span></div><div class="vehicle-rpm"><i></i></div><div class="vehicle-meta"><span id="vehicleGear">D1</span><span id="vehicleRpm">850 tr/min</span></div></div><div class="vehicle-controls"><span>B · Klaxon</span><span>L · Phares</span><button id="vehicleMute" type="button" aria-label="Couper le son du véhicule">Son actif</button></div>';
   document.body.append(hud);
   const settings = document.createElement("div");
   settings.className = "vehicle-settings";
@@ -31,8 +31,6 @@ export function createVehicleInterface(audio) {
     volume = settings.querySelector("#engineVolume"),
     label = settings.querySelector("#engineVolumeVal"),
     mute = hud.querySelector("#vehicleMute"),
-    liveVolume = hud.querySelector("#vehicleLiveVolume"),
-    liveVolumeLabel = hud.querySelector("#vehicleLiveVolumeVal"),
     speed = hud.querySelector("#vehicleSpeed"),
     gear = hud.querySelector("#vehicleGear"),
     rpm = hud.querySelector("#vehicleRpm"),
@@ -41,9 +39,6 @@ export function createVehicleInterface(audio) {
     sound.checked = audio.enabled;
     volume.value = Math.round(audio.volume * 100);
     label.textContent = volume.value + " %";
-    liveVolume.value = volume.value;
-    liveVolumeLabel.textContent = volume.value + " %";
-    liveVolume.setAttribute("aria-valuetext", volume.value + " %");
     mute.textContent = audio.enabled ? "N · Son actif" : "N · Son coupé";
     mute.setAttribute(
       "aria-label",
@@ -72,12 +67,6 @@ export function createVehicleInterface(audio) {
     label.textContent = volume.value + " %";
   };
   volume.onchange = save;
-  liveVolume.oninput = () => {
-    audio.volume = +liveVolume.value / 100;
-    liveVolumeLabel.textContent = liveVolume.value + " %";
-    liveVolume.setAttribute("aria-valuetext", liveVolume.value + " %");
-  };
-  liveVolume.onchange = save;
   const toggleMute = () => {
     audio.enabled = !audio.enabled;
     if (audio.enabled) audio.unlock();
@@ -90,7 +79,6 @@ export function createVehicleInterface(audio) {
     ["B", "Klaxon · maintenir en conduite"],
     ["L", "Allumer / éteindre les phares"],
     ["N", "Couper / réactiver le son du véhicule"],
-    ["[ / ]", "Baisser / monter le volume moteur en conduite"],
     ["Espace + Z/W", "Patinage à l’arrêt · frein à main en mouvement"],
   ]) {
     const k = document.createElement("span");
@@ -119,10 +107,6 @@ export function createVehicleInterface(audio) {
     },
     sync,
     toggleMute,
-    adjustVolume(delta) {
-      audio.volume = Math.max(0, Math.min(1, audio.volume + delta));
-      save();
-    },
     dispose() {
       hud.remove();
       settings.remove();

@@ -10,6 +10,7 @@ export class VehicleAudio {
     this.samplesReady = false;
     this.enabled = true;
     this.volume = 0.65;
+    this.masterVolume = 1;
     this.driving = false;
     this.stoppingUntil = 0;
     this.disposed = false;
@@ -182,7 +183,7 @@ export class VehicleAudio {
       this.enabled &&
       visible &&
       (active || (!driving && time < this.stoppingUntil));
-    this.smooth(this.output.gain, allowed ? this.volume * 0.65 : 0, 0.07);
+    this.smooth(this.output.gain, allowed ? this.volume * this.masterVolume * 0.65 : 0, 0.07);
     this.smooth(this.engineBus.gain, this.active ? 1 : 0, 0.18);
     const rpm = clamp(state.rpm || 850, 650, 6500),
       mix = clamp((rpm - 1350) / 2200, 0, 1),
