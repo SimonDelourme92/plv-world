@@ -1,5 +1,5 @@
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import { cloneHuman } from "../characters/human.js";
+import { cloneHuman } from "../characters/human.js?v=pnj-20261114-2";
 import {
   randomSeed,
   canSpawn,
@@ -51,6 +51,8 @@ export function createCrowd({
     roughness: 0.85,
   });
   const simple = new THREE.InstancedMesh(geometry, material, 40);
+  // Chaque instance est déjà filtrée par la caméra ; son groupe doit suivre les déplacements et recyclages.
+  simple.frustumCulled = false;
   simple.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   root.add(simple);
   const slots = Array.from({ length: 10 }, (_, i) => {
