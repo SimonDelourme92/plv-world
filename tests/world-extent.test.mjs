@@ -8,3 +8,9 @@ test('starts at one kilometre and expands to keep distant inventory accessible',
   assert.equal(calculatePlayableHalf(lots, position), 900);
   assert.equal(calculatePlayableHalf(lots, { x: 990, z: 0 }), 1000);
 });
+
+test('le paysage peut imposer une emprise minimale (routes de campagne)', () => {
+  assert.equal(calculatePlayableHalf([], { x: 0, z: 0 }, 1000, 800), 800);
+  const lots = [{ bounds: { min: { x: 850, z: 0 }, max: { x: 860, z: 10 } } }];
+  assert.equal(calculatePlayableHalf(lots, { x: 0, z: 0 }, 1000, 800), 1000);
+});

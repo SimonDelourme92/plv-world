@@ -406,8 +406,8 @@ function buildRack(grid,ox,oz){const {spec:s,rows,rowBays,levels,height}=grid.ra
 function metricRenderParts(bundle,level){const key=level==='near'?'physicalNear':'physicalMid';if(bundle[key])return bundle[key];const size=(bundle.base||bundle).size,source=level==='near'?bundle.parts:metricMidParts(bundle);return bundle[key]=source.map(p=>{const geometry=p.geometry.clone();geometry.scale(size.l,size.h,size.p);geometry.computeBoundingBox();geometry.computeBoundingSphere();bundle.ownedGeometries.add(geometry);return {geometry,material:p.material};});}
 const records=[], districtLabels=[], districtNames=new Map(), occupancy=new Map();
 // Le domaine commence à 1 km ; il s'étend automatiquement pour garder tous les lots accessibles.
-let playableHalf=500;
-function refreshPlayableExtent(){playableHalf=calculatePlayableHalf(records,camera.position,HALF);}
+let playableHalf=500,landscapeHalf=500;
+function refreshPlayableExtent(){playableHalf=calculatePlayableHalf(records,camera.position,HALF,landscapeHalf);}
 
 // ============================================================================
 // PHASE 4 — zones d'exposition au sol, totems, carte et fiche contextuelle.
@@ -484,7 +484,7 @@ function clearRecords(testOnly=false){crashFx?.clear();contactsDirty=zonesDirty=
 // Quartiers attribués par distance croissante à la place centrale, puis par index.
 // Paysage : tracé routier calculé avant l'ordre des quartiers. Les quartiers traversés par une route de campagne
 // sont exclus des futurs lots ; le boulevard suit les allées et n'en exclut aucun.
-let roadBlocked=new Set(),roadNet=null;try{roadNet=await import('./assets/roads/network.js');roadLayout=roadNet.createRoadNetwork();cityBox=roadNet.CITY;roadBlocked=roadNet.blockedDistricts(roadLayout,{half:HALF,cell:CELL,border:4.6});}catch(e){console.warn('Tracé routier indisponible : monde sans routes.',e);}
+let roadBlocked=new Set(),roadNet=null;try{roadNet=await import('./assets/roads/network.js');roadLayout=roadNet.createRoadNetwork();cityBox=roadNet.CITY;roadBlocked=roadNet.blockedDistricts(roadLayout,{half:HALF,cell:CELL,border:4.6});let m=0;for(const r of roadLayout.roads)for(const p of r.points)m=Math.max(m,Math.abs(p.x),Math.abs(p.z));landscapeHalf=Math.min(HALF,Math.ceil((m+35)/100)*100);playableHalf=Math.max(playableHalf,landscapeHalf);}catch(e){console.warn('Tracé routier indisponible : monde sans routes.',e);}
 const available=districts.filter(d=>d.index!==CENTRAL&&d.index!==TEST_CELL&&!roadBlocked.has(d.index)).sort((a,b)=>((a.ix-10)**2+(a.iz-10)**2)-((b.ix-10)**2+(b.iz-10)**2)||a.index-b.index);
 const INNER=90.8, BORDER=4.6, LOT_GUTTER=1.3;
 const GROUP_GAP=6;

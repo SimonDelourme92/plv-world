@@ -6,7 +6,7 @@
 |---|---|---|
 | Cité | x −200 → 400, z −300 → 200 (6 × 5 quartiers) | Lots de PLV. Plate. Décor futuriste uniquement ici. |
 | Allées | 9,2 m entre deux quartiers | Le boulevard y circule sans jamais toucher un quartier. |
-| Campagne | Reste du domaine (±1 000 m) | Relief, rivière, lac, routes, forêts. |
+| Campagne | Domaine jouable étendu à ±800 m (réseau routier + 35 m) ; arbres de décor jusqu’à ±1 000 m | Relief, rivière, lac, routes, forêts. |
 
 Les lots existants ne bougent pas : le plan des lots est inchangé, seuls les quartiers **traversés par une route de campagne** sont retirés de la liste des quartiers disponibles. Aucun n’appartient à la cité ; le premier quartier exclu arrive au 23ᵉ rang d’attribution (test `roads-network.test.mjs`).
 
@@ -33,6 +33,8 @@ Les lots existants ne bougent pas : le plan des lots est inchangé, seuls les qu
 
 ## Intégration (`index.html`)
 
+- Domaine jouable minimal porté de ±500 m à ±800 m pour que la boucle de campagne soit accessible (`assets/world/extent.js`, paramètre `minHalf`).
+
 - Le tracé est calculé avant l’ordre des quartiers ; terrain = lit de rivière + relief, terrassé par les routes.
 - `refreshLandscape()` est appelé après chaque placement de lots : végétation effacée sous les lots, terrain recalculé seulement autour des lots hors cité qui ont changé.
 - Le lot test de 50 000 objets ne recalcule que son quartier (≈ 0,2 s).
@@ -45,7 +47,8 @@ Les lots existants ne bougent pas : le plan des lots est inchangé, seuls les qu
 - `node --test tests/*.test.mjs` : 40 tests.
 - Captures sol, drone, pont, forêt, carte : voir la PR.
 - Pont : on roule à +0,94 m, le lit reste à −3,5 m dessous. Choc contre un tronc : arrêt. Lot posé en forêt : arbres effacés puis rétablis.
-- Coût mesuré en rendu logiciel (indicatif) : ~100 appels de dessin et ~2 M triangles en forêt dense.
+- Coût mesuré en rendu logiciel (indicatif) : ~95 appels de dessin et ~1,9 M triangles en forêt dense (206 arbres détaillés, 3 765 silhouettes).
+- Captures : `docs/paysage/` (drone cité, drone campagne, pont, forêt, boulevard, carte).
 
 ## Limites connues / à faire
 

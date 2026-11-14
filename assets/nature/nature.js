@@ -24,6 +24,18 @@ const FAR_STYLE = {
   'arbre-tordu-large': ['wide', 0x5a4a3a, 0x86933a], 'arbre-mort': ['dead', 0x6b6158, 0x6b6158], 'rocher-moyen': ['rock', 0x8b8a84, 0x8b8a84], 'rocher-plat': ['rock', 0x8f8c84, 0x8f8c84],
 };
 
+// Les GLB meshopt stockent positions/UV/couleurs quantifiées (entiers normalisés) : on les repasse
+// en flottants avant d'y appliquer la transformation du nœud, sinon tout serait écrêté à ±1.
+function toFloat(THREE, geo) {
+  for (const [name, a] of Object.entries(geo.attributes)) {
+    if (a.array instanceof Float32Array && !a.normalized && !a.isInterleavedBufferAttribute) continue;
+    const n = a.count, size = a.itemSize, out = new Float32Array(n * size), get = [a.getX, a.getY, a.getZ, a.getW];
+    for (let i = 0; i < n; i++) for (let k = 0; k < size; k++) out[i * size + k] = get[k].call(a, i);
+    geo.setAttribute(name, new THREE.BufferAttribute(out, size));
+  }
+  return geo;
+}
+
 function farGeometry(THREE, style, dims) {
   const [kind, trunkColor, crownColor] = style, [w, h, d] = dims, parts = [];
   const add = (geo, color) => { const c = new THREE.Color(color), n = geo.attributes.position.count, col = new Float32Array(n * 3); for (let i = 0; i < n; i++) c.toArray(col, i * 3); geo.setAttribute('color', new THREE.BufferAttribute(col, 3)); parts.push(geo.index ? geo.toNonIndexed() : geo); };
@@ -58,7 +70,7 @@ export async function createNature({ THREE, scene, heightAt, city, isWater, bank
       const parts = [], box = new THREE.Box3().setFromObject(gltf.scene), size = box.getSize(new THREE.Vector3());
       gltf.scene.traverse(o => {
         if (!o.isMesh) return;
-        const geo = o.geometry.clone().applyMatrix4(o.matrixWorld);
+        const geo = toFloat(THREE, o.geometry.clone()).applyMatrix4(o.matrixWorld);
         const mats = Array.isArray(o.material) ? o.material : [o.material];
         for (const m of mats) { if (m.map) m.map.anisotropy = 4; const tint = LEAF_TINT[def.id]?.[m.name]; if (tint != null && !m.userData.tinted) { alphaOnly(m, tint); m.userData.tinted = true; } }
         parts.push({ geo, mat: o.material });
