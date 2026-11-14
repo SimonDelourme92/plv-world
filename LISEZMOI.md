@@ -15,6 +15,14 @@ assets/textures/      textures sol 1K couleur / normal / rugosité (ambientCG, C
 assets/decor/         modèles low-poly Kenney (.glb, texture intégrée) — voir LICENSE_Kenney.md
 ```
 
+## Bibliothèque d’assets 3D
+
+[Ouvrir le catalogue interactif](assets/library/catalogue.html) pour examiner les modèles, changer le niveau de détail, vérifier dimensions, poids, sources et licences. Il est aussi accessible depuis Réglages → Bibliothèque 3D. Aucun accès à l’inventaire local.
+
+La sélection compte 13 modèles et 23 icônes professionnelles. Huit modèles allégés améliorent l’horizon ; les pavillons et végétaux sont en réserve et ne sont pas placés automatiquement dans le monde. Les fichiers GLB, textures embarquées et SVG restent dans `assets/library/`, avec leur [manifeste](assets/library/manifest.json) et leurs licences. Le fond procédural reste disponible si un fichier ne peut pas être chargé.
+
+Audit, provenance, optimisation, captures et validation : [docs/BIBLIOTHEQUE_ASSETS.md](docs/BIBLIOTHEQUE_ASSETS.md). Cette PR de bibliothèque dépend de la PR d’interface et ne la fusionne pas automatiquement.
+
 ## Interface, commandes et horizon
 Le menu distingue **Explorer**, **Inventaire**, **Réglages** et **Commandes**. Les mesures techniques sont masquées au départ et accessibles avec **F**. L’aide complète s’ouvre avec **H** ; les formulaires conservent la saisie normale.
 

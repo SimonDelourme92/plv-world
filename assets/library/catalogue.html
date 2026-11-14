@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bibliothèque 3D · PLV WORLD</title>
+    <link rel="stylesheet" href="catalogue.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">PLV / WORLD</a>
+      <div>
+        <h1>Bibliothèque 3D</h1>
+        <p id="summary">Chargement de la sélection…</p>
+      </div>
+      <a href="credits.html">Sources et licences ↗</a>
+    </header>
+    <main>
+      <aside>
+        <nav>
+          <button id="modelsTab" aria-pressed="true">Modèles</button
+          ><button id="iconsTab" aria-pressed="false">Commandes</button>
+        </nav>
+        <label for="category">Collection</label
+        ><select id="category">
+          <option value="all">Toute la sélection</option>
+        </select>
+        <div id="assetList"></div>
+      </aside>
+      <section class="viewer-section" id="modelSection">
+        <div id="viewer" aria-label="Aperçu interactif du modèle 3D"></div>
+        <div class="viewer-tools">
+          <span>Glisser pour tourner · molette pour zoomer</span
+          ><label for="lod"
+            >Détail
+            <select id="lod">
+              <option value="0">Proche</option>
+              <option value="1">Lointain</option>
+            </select></label
+          ><button id="resetView">Recadrer</button>
+        </div>
+        <div id="loadStatus" role="status"></div>
+        <article id="details">
+          <div class="eyebrow">Sélection PLV WORLD</div>
+          <h2 id="assetName">Choisir un modèle</h2>
+          <p id="usage"></p>
+          <dl>
+            <dt>Dimensions de bibliothèque</dt>
+            <dd id="dimensions">—</dd>
+            <dt>Poids / triangles</dt>
+            <dd id="weight">—</dd>
+            <dt>Source</dt>
+            <dd id="source">—</dd>
+            <dt>Licence</dt>
+            <dd id="license">—</dd>
+            <dt>Préparation</dt>
+            <dd id="changes">—</dd>
+          </dl>
+          <a id="modelFile" href="#" download>Ouvrir le fichier GLB ↗</a>
+        </article>
+      </section>
+      <section id="iconSection" hidden>
+        <h2>Commandes</h2>
+        <p>
+          Une sélection de touches clavier et souris Kenney Input Prompts, sous
+          CC0.
+        </p>
+        <div id="iconGrid"></div>
+      </section>
+    </main>
+    <footer>
+      Les décors sont distincts des modèles de PLV et de l’inventaire. Aucun
+      accès aux données enregistrées dans votre navigateur.
+    </footer>
+    <script type="module" src="catalogue.js"></script>
+  </body>
+</html>

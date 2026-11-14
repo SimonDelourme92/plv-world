@@ -1,0 +1,5 @@
+Poly Haven — All assets are CC0.
+Official license: https://polyhaven.com/license
+Asset: https://polyhaven.com/a/mountainside
+CC0 1.0 Universal: https://creativecommons.org/publicdomain/zero/1.0/
+Metadata and files verified from https://api.polyhaven.com/files/mountainside

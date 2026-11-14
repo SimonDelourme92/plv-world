@@ -1,0 +1,554 @@
+{
+  "base": "7a89ce266e7efe1646ab737e0bac310141833bb5",
+  "scope": "Assets hérités, hors captures et code procédural. Audit sans modification.",
+  "totals": {
+    "files": 30,
+    "bytes": 6222518,
+    "glb": 16
+  },
+  "assets": [
+    {
+      "path": "assets/plv/PLV_Boite_QSJ_FINAL.glb",
+      "bytes": 373008,
+      "sha256": "a84339716235983f6a7190c4221609a617f45c0612d606823efb6dc2feb687f4",
+      "category": "plv",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        0.266,
+        0.1103,
+        0.246
+      ],
+      "triangles": 766,
+      "textures": 4,
+      "license": {
+        "id": "LicenseRef-Utilisateur",
+        "verified": false,
+        "note": "Modèle fourni par l’utilisateur, hors bibliothèque libre ; aucune nouvelle licence ni redistribution supplémentaire présumée."
+      }
+    },
+    {
+      "path": "assets/decor/building-garage.glb",
+      "bytes": 29368,
+      "sha256": "2c5da8bbbe07f93dc9fb8b1166f4100a42c76abc466a68d5c621b8e04742e4ab",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.55,
+        1
+      ],
+      "triangles": 196,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/building-small-a.glb",
+      "bytes": 49824,
+      "sha256": "7dbd0dd5840a23a793044978a4ae13240478c581d59a415144be1e2ee3fde58b",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.95,
+        1
+      ],
+      "triangles": 452,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/building-small-b.glb",
+      "bytes": 59932,
+      "sha256": "6631dea89a4f8a405028625d073c78c756da34256fca1989e9be285b6b2f5c78",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        1.6265,
+        1
+      ],
+      "triangles": 600,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/building-small-c.glb",
+      "bytes": 80252,
+      "sha256": "60869e8642316b192532a798a94f2c8e82a1a3abb84b3157b87da7bacf21e917",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        1.75,
+        1
+      ],
+      "triangles": 834,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/building-small-d.glb",
+      "bytes": 49512,
+      "sha256": "c09fa6074fda06285e7f67815270593855d1528b2e346cebe8d0ea602acc23a1",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        1,
+        1.05
+      ],
+      "triangles": 448,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/grass-trees-tall.glb",
+      "bytes": 57176,
+      "sha256": "cba80abb45ffc080183638a58fd3d2fd748083b36e614ca985f2676702fb4d3e",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1.071934,
+        0.759642,
+        1.006164
+      ],
+      "triangles": 472,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/grass-trees.glb",
+      "bytes": 48324,
+      "sha256": "18205e9cdb44454d3ff1fe0c5b024e2f37c2d984cd134303c98056d7d3459cc5",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.635921,
+        1
+      ],
+      "triangles": 380,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/grass.glb",
+      "bytes": 14768,
+      "sha256": "384de6b92ea885e55cc1d3e61e0ea0ceffb375c58d8aa09e39927bb93b36bc4e",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.06,
+        1
+      ],
+      "triangles": 30,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/pavement-fountain.glb",
+      "bytes": 24240,
+      "sha256": "2c715370647f22a7b6b59dd6fdd5b9b3dec7aec9226cba8f274c9372cdaae05d",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.536,
+        1
+      ],
+      "triangles": 152,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/pavement.glb",
+      "bytes": 13784,
+      "sha256": "cff0b81dd761c20a73c97ee33fe1318a20806c33a11fd2448fef820044025a79",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.06,
+        1
+      ],
+      "triangles": 20,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/road-corner.glb",
+      "bytes": 21260,
+      "sha256": "989d6057fba8fbd05be917e98563f06509513578651018204bc36a35d2cef781",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.06,
+        1
+      ],
+      "triangles": 126,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/road-intersection.glb",
+      "bytes": 23304,
+      "sha256": "e46449894749979c4b937e8b0dbde07ecd8c77c3c6a4a82047dce8b10d04c4c6",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.05,
+        1
+      ],
+      "triangles": 154,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/road-split.glb",
+      "bytes": 19568,
+      "sha256": "60cac5aff71123c977bf03f2e8be51b78332894fd3fea37bf42125e63d813a34",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.05,
+        1
+      ],
+      "triangles": 100,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/road-straight-lightposts.glb",
+      "bytes": 28376,
+      "sha256": "a41e2ad4e60b57dc3179d73d1b3d47cb5c95325de382becb93b49fc93197c7c0",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.55,
+        1
+      ],
+      "triangles": 190,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/decor/road-straight.glb",
+      "bytes": 16312,
+      "sha256": "697a7def6f0a07d059ffda2c4166dbb491fc9c9181d9c9ce01d8a82ecd5820c3",
+      "category": "decor",
+      "modifiedByThisPR": false,
+      "dimensions": [
+        1,
+        0.05,
+        1
+      ],
+      "triangles": 54,
+      "textures": 1,
+      "license": {
+        "id": "LicenseRef-Kenney-Herite",
+        "verified": false,
+        "declaredInRepository": "MIT",
+        "note": "assets/decor/LICENSE_Kenney.md indique MIT ; la page officielle Kenney indique CC0. Pack et version précis de ces fichiers hérités non documentés. Fichiers conservés, exclus de la nouvelle sélection."
+      }
+    },
+    {
+      "path": "assets/ciel/ciel_nuageux_1k.hdr",
+      "bytes": 1435119,
+      "sha256": "fd94c84997b8a3c353b62c2125a9b44e19509956986a126e472684432a02d798",
+      "category": "ciel",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        512
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "Poly Haven d’après PASSATION.md ; noms d’origine et téléchargements individuels non documentés."
+      }
+    },
+    {
+      "path": "assets/ciel/coucher_soleil_1k.hdr",
+      "bytes": 1440400,
+      "sha256": "92fe2b29b1957828fb8925a57633540bbba5bf380d9285ed553443e834249352",
+      "category": "ciel",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        512
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "Poly Haven d’après PASSATION.md ; noms d’origine et téléchargements individuels non documentés."
+      }
+    },
+    {
+      "path": "assets/textures/allee_paves_couleur.jpg",
+      "bytes": 246487,
+      "sha256": "e311dd20701f843b14a7664ad0ffd93a77d1623cd34404e706f0f389468fb269",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/allee_paves_normal.jpg",
+      "bytes": 152857,
+      "sha256": "937aeda0f64d44521b84f671e304b1943d6b6ff3b7f46879e3a9715310c2dc3c",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/allee_paves_rugosite.jpg",
+      "bytes": 113930,
+      "sha256": "2a8fed8988f03f60a205134dd008d3aee09b0e2fe7ff8e51b1cc82132c54604d",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/asphalte_couleur.jpg",
+      "bytes": 184805,
+      "sha256": "62562c8936fbda19ca284d878b34786d081c2cb1b68657336e993a163aae99a3",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/asphalte_normal.jpg",
+      "bytes": 215628,
+      "sha256": "0e6b5828ecbd023f7cf91c24f46ece06a1001ef271be00131c5ff6de1215c3d9",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/asphalte_rugosite.jpg",
+      "bytes": 140880,
+      "sha256": "321a03beb3771cbf9efd67965317c767a55e0da21f5e03a197d5569bd9da3e21",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/dalle_beton_couleur.jpg",
+      "bytes": 102325,
+      "sha256": "f28763c04d1f6cbf1b7b993ac94dd158ad51d0afb63dd4682644def102ef3815",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/dalle_beton_normal.jpg",
+      "bytes": 147624,
+      "sha256": "d2f945946ac5cfb5f379028e53789c2c406baa392faa4290e75b7fffa6ce3e7d",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/dalle_beton_rugosite.jpg",
+      "bytes": 74283,
+      "sha256": "bf9bf19e878ce157104cf9194c7650991c3ed3c8c12b87b30babe5fe7b5001e1",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/herbe_couleur.jpg",
+      "bytes": 328836,
+      "sha256": "df51f6b2115a7294d66f4d1c20c7c6bf21dd85053a3e2089edbf9a3166fde400",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/herbe_normal.jpg",
+      "bytes": 366901,
+      "sha256": "00508f1fa9c4d737bb292e268820b37dcdf0c80aa80bcbb7fb57d28c8d0789bb",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    },
+    {
+      "path": "assets/textures/herbe_rugosite.jpg",
+      "bytes": 363435,
+      "sha256": "7779fc7b32e0a4cca8a09284d7a5610908ae09f546eb113c0a1ed07178120c7a",
+      "category": "textures",
+      "modifiedByThisPR": false,
+      "dimensionsPixels": [
+        1024,
+        1024
+      ],
+      "license": {
+        "id": "CC0-1.0",
+        "verified": false,
+        "note": "ambientCG d’après PASSATION.md ; identifiant source précis non documenté."
+      }
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Crédits 3D · PLV WORLD</title>
+    <link rel="stylesheet" href="catalogue.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../../index.html">PLV / WORLD</a>
+      <div>
+        <h1>Sources et licences</h1>
+        <p>Bibliothèque sélectionnée pour la cité</p>
+      </div>
+      <a href="catalogue.html">Bibliothèque 3D ↗</a>
+    </header>
+    <main class="license-content">
+      <p class="note">
+        Les modèles d’avions, d’eVTOL et de drone sans logos sont créés par
+        <a href="https://github.com/amvlab/aircraft-models">amvlab</a> et
+        utilisés sous
+        <a href="https://creativecommons.org/licenses/by/4.0/"
+          >Creative Commons Attribution 4.0</a
+        >. Pour PLV WORLD : recentrage, échelle de présentation, niveaux de
+        détail, textures et compression adaptés. Aucune approbation du projet
+        par les auteurs n’est suggérée.
+      </p>
+      <p class="note">
+        Les modèles et textures des packs gratuits sélectionnés Quaternius,
+        Kenney et Poly Haven sont sous CC0. Les licences restent propres à
+        chaque source ; les modèles professionnels de PLV ne font pas partie de
+        cette bibliothèque libre.
+      </p>
+      <div id="providers"></div>
+      <p>
+        <a href="../../CREDITS.md">Crédits complets du dépôt</a> ·
+        <a href="manifest.json">Manifeste des fichiers</a>
+      </p>
+    </main>
+    <footer>
+      Les licences originales sont conservées dans assets/library/licenses/.
+    </footer>
+    <script type="module">
+      const manifest = await (await fetch("manifest.json")).json();
+      for (const [id, p] of Object.entries(manifest.providers)) {
+        const section = document.createElement("section"),
+          h = document.createElement("h2");
+        h.textContent = p.name;
+        const label = document.createElement("p");
+        label.className = "provider-label";
+        label.textContent = p.author + " · " + p.license;
+        const links = document.createElement("p");
+        for (const [url, text] of [
+          [p.url, "Source officielle"],
+          [p.licenseUrl, "Licence"],
+          [
+            new URL("../../" + p.licenseFile, import.meta.url).href,
+            "Texte conservé",
+          ],
+        ]) {
+          const a = document.createElement("a");
+          a.href = url;
+          a.textContent = text;
+          links.append(a, document.createTextNode(" · "));
+        }
+        const ul = document.createElement("ul");
+        for (const a of manifest.models.filter(
+          (a) => a.provider === id || a.providers?.includes(id),
+        )) {
+          const li = document.createElement("li");
+          li.textContent = a.name + " — " + a.changes.join(", ");
+          ul.append(li);
+        }
+        section.append(h, label, links, ul);
+        document.getElementById("providers").append(section);
+      }
+    </script>
+  </body>
+</html>

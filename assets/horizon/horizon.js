@@ -1,5 +1,13 @@
+import { AssetLibrary } from "../library/manager.js";
+import { buildModelHorizon } from "../library/horizon-models.js";
 // Horizon original et indépendant des surfaces d'exposition. Aucun asset externe.
 export function createHorizon(THREE, scene) {
+  const library = new AssetLibrary();
+  let modelHorizon = null,
+    loadingModels = false,
+    modelsFailed = false,
+    releaseTimer = null,
+    generation = 0;
   const root = new THREE.Group();
   root.name = "Horizon · reliefs et cité lointaine";
   scene.add(root);
@@ -138,9 +146,64 @@ export function createHorizon(THREE, scene) {
   let lastQuality = null,
     lastNight = null;
   const phases = [0.4, 1.5, 2.7, 3.8, 4.9, 5.8];
+  function beginModels() {
+    if (loadingModels || modelHorizon || modelsFailed || disposed) return;
+    loadingModels = true;
+    const token = generation;
+    // Les chargements et constructions se font hors du rendu d'une image.
+    setTimeout(async () => {
+      try {
+        const model = await buildModelHorizon(THREE, library);
+        if (disposed || token !== generation) {
+          model.dispose();
+          return;
+        }
+        modelHorizon = model;
+        root.add(model.root);
+        for (const mesh of meshes) mesh.visible = mesh === meshes[0];
+      } catch (error) {
+        modelsFailed = true;
+        console.warn(
+          "Bibliothèque horizon : repli procédural conservé.",
+          error,
+        );
+      } finally {
+        loadingModels = false;
+      }
+    }, 0);
+  }
+  let disposed = false;
   function update(now, enabled, map, quality, hour, legacy = false) {
     root.visible = enabled && !map && !legacy;
-    if (!root.visible) return;
+    if (!root.visible) {
+      modelsFailed = false;
+      if (!releaseTimer)
+        releaseTimer = setTimeout(() => {
+          releaseTimer = null;
+          generation++;
+          modelHorizon?.dispose();
+          modelHorizon = null;
+          lastQuality = null;
+          lastNight = null;
+          for (const mesh of meshes) mesh.visible = true;
+        }, 15000);
+      return;
+    }
+    if (releaseTimer) {
+      clearTimeout(releaseTimer);
+      releaseTimer = null;
+    }
+    beginModels();
+    if (modelHorizon) {
+      const night = hour < 8.5 || hour >= 19;
+      if (night !== lastNight) {
+        mountainFar.color.set(night ? "#697f97" : "#bccbd5");
+        lastNight = night;
+      }
+      modelHorizon.update(now, quality, hour);
+      return;
+    }
+
     const low = quality === "low";
     if (quality !== lastQuality) {
       towers.count = crowns.count = windows.count = low ? 72 : 144;
@@ -185,9 +248,26 @@ export function createHorizon(THREE, scene) {
     root,
     update,
     get drawCalls() {
-      return root.visible ? 8 : 0;
+      return root.visible ? (modelHorizon ? 1 + modelHorizon.drawCalls : 8) : 0;
+    },
+    get assetState() {
+      return modelHorizon
+        ? "ready"
+        : loadingModels
+          ? "loading"
+          : modelsFailed
+            ? "fallback"
+            : "idle";
+    },
+    get libraryStatistics() {
+      return library.statistics;
     },
     dispose() {
+      disposed = true;
+      generation++;
+      if (releaseTimer) clearTimeout(releaseTimer);
+      modelHorizon?.dispose();
+      library.dispose();
       for (const mesh of meshes) mesh.dispose?.();
       for (const g of geometries) g.dispose();
       for (const m of materials) m.dispose();

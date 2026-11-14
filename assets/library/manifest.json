@@ -1,0 +1,1968 @@
+{
+  "format": "plv-asset-library",
+  "version": 1,
+  "licensePolicy": "Licences par asset : aucune licence globale imposée aux modèles tiers. PLV utilisateur exclues de cette bibliothèque.",
+  "palette": "blanc, anthracite, verre bleuté et accents cyan ; végétation naturelle",
+  "providers": {
+    "kenney-commercial": {
+      "name": "Kenney — City Kit Commercial 2.1",
+      "author": "Kenney",
+      "url": "https://kenney.nl/assets/city-kit-commercial",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/library/licenses/kenney-commercial.txt",
+      "archiveSha256": "f8b09b081c2bb88bcc126e2dec1cb40fd0dad7e7e591b6c26aaefe96fb35276b",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseSha256": "043d8ed983575ef89d8d0301de335dfc16c3b148d11da26a5c3ae6d22e04af40",
+      "licenseSourceSha256": "c38cee408d022e57e44e49f1cd655c2fe0dc881a07b881276b795215cdc0de69"
+    },
+    "kenney-space": {
+      "name": "Kenney — Space Kit 2.0",
+      "author": "Kenney",
+      "url": "https://kenney.nl/assets/space-kit",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/library/licenses/kenney-space.txt",
+      "archiveSha256": "d5d7cdf2635ed5a43a9187deaf409b6f47484e402321128341d3c3698e9ef4d9",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseSha256": "76f54ea5838bb4189bc5c64381fe3cc07572c1143cca3c7000e807d74f4a5a9c",
+      "licenseSourceSha256": "bd4e050e69d41351282c4d53f943cd4d80a80b968593e60653ba5292637941b7"
+    },
+    "kenney-prompts": {
+      "name": "Kenney — Input Prompts 1.5A",
+      "author": "Kenney",
+      "url": "https://kenney.nl/assets/input-prompts",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "archiveSha256": "ac2fcf599080b0f3ba2d174c9474db6df1a0e96ff0662580e2da79a122ab78a1",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseSha256": "241616e25b42522339d7eb3ae9c25f803319c99bcf2b71c4eac828c317d71846",
+      "licenseSourceSha256": "ca2f58f80f903512119da5828868199478119818cd7ecffb303d625cb74cbb5a"
+    },
+    "quaternius-scifi": {
+      "name": "Quaternius — Modular Sci-Fi MegaKit Standard FREE",
+      "author": "Quaternius",
+      "url": "https://quaternius.com/packs/modularscifimegakit.html",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/library/licenses/quaternius-scifi.txt",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "archiveEtag": "\"7775c4ae962d513f8e777ee5b7fe43a3\"",
+      "archiveLastModified": "Tue, 22 Apr 2025 02:45:11 GMT",
+      "downloadMethod": "Extraction HTTP Range de la version Standard gratuite ; archive complète non téléchargée.",
+      "licenseSha256": "124510397e3320be1735ecc67a39e3d574dd759b9ba196a52d4a92be18eb27d2",
+      "licenseSourceSha256": "885b700f02932c08a41163b35cc97d1abe0895a05de29d9a9062fde5132969a8"
+    },
+    "quaternius-downtown": {
+      "name": "Quaternius — Downtown City MegaKit Standard FREE",
+      "author": "Quaternius",
+      "url": "https://quaternius.com/packs/downtowncitymegakit.html",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/library/licenses/quaternius-downtown.txt",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "archiveEtag": "\"f2931d9f1bae7178851837397c1b7091-5\"",
+      "archiveLastModified": "Thu, 21 May 2026 01:13:12 GMT",
+      "downloadMethod": "Extraction HTTP Range de la version Standard gratuite ; archive complète non téléchargée.",
+      "licenseSha256": "40e0a81bfbb91f1305fd1c052ce590956a9dbac07572612d8552ef75bd970435",
+      "licenseSourceSha256": "afac5819301671301c41e90402d26e4ade5e459ad58fdf77f142147410862f1f"
+    },
+    "quaternius-nature": {
+      "name": "Quaternius — Stylized Nature MegaKit Standard FREE",
+      "author": "Quaternius",
+      "url": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "archiveEtag": "\"c9333d0154681e50bf64db2d90860ab6-2\"",
+      "archiveLastModified": "Tue, 30 Jul 2024 21:08:20 GMT",
+      "downloadMethod": "Extraction HTTP Range de la version Standard gratuite ; archive complète non téléchargée.",
+      "licenseSha256": "5de0412f4f694f3d8cfa2b334a3ddb7ebbdc3ac5b1e9c262ff4870d0564341db",
+      "licenseSourceSha256": "120710e542c3ebaf83856c4eb55b4a1e680593b39302eba7fdc5d942dfe78c58"
+    },
+    "polyhaven": {
+      "name": "Poly Haven — Mountainside",
+      "author": "Dario Barresi, Rico Cilliers",
+      "url": "https://polyhaven.com/a/mountainside",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/library/licenses/polyhaven-cc0.txt",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenseSha256": "5abbfd465039b77163dca047787b33103329c13f8c3d11d03995005c8d81f21b",
+      "licenseSourceSha256": "5abbfd465039b77163dca047787b33103329c13f8c3d11d03995005c8d81f21b"
+    },
+    "amvlab": {
+      "name": "AMVLab Aircraft Models — variantes sans logos",
+      "author": "amvlab",
+      "url": "https://github.com/amvlab/aircraft-models",
+      "license": "CC-BY-4.0",
+      "licenseFile": "assets/library/licenses/amvlab-cc-by-4.0.txt",
+      "attribution": "Aircraft models by amvlab, CC BY 4.0. Recentrage, échelle de présentation, simplification, textures et compression adaptés pour PLV WORLD.",
+      "licenseVerified": true,
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseSha256": "fc0b31c758df59a3866bc528b9d284af7ad07e5891da815e4f2f287f3a763c64",
+      "licenseSourceSha256": "fc0b31c758df59a3866bc528b9d284af7ad07e5891da815e4f2f287f3a763c64"
+    }
+  },
+  "models": [
+    {
+      "id": "tour-a",
+      "name": "Tour Méridien A",
+      "category": "skyline",
+      "provider": "kenney-commercial",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "kenney-selected/commercial/building-skyscraper-a.glb",
+      "sourceSha256": "d8339bbb75944ff91d1ec9a70ec6dead71bd98b94a42d3dd0fc1f3b107ddbe85",
+      "sourceTriangles": 1292,
+      "sourceBounds": {
+        "min": [
+          -0.680000364780426,
+          0,
+          -0.6800000667572021
+        ],
+        "max": [
+          0.6799994111061096,
+          2.879999876022339,
+          0.6800000667572021
+        ],
+        "dimensions": [
+          1.3599997758865356,
+          2.879999876022339,
+          1.3600001335144043
+        ]
+      },
+      "scaleApplied": 53.81944676125317,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail",
+        "Palette harmonisée pour PLV WORLD"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/skyline/tour-a.lod0.glb",
+          "bytes": 19248,
+          "sha256": "1d1427adb0f1859042aac1171ffc9c75f481992a3a09d49bcaa55845d5439458",
+          "triangles": 1292,
+          "primitives": 1,
+          "dimensions": [
+            73.193,
+            155,
+            73.193
+          ],
+          "bounds": {
+            "min": [
+              -36.5965,
+              0,
+              -36.5965
+            ],
+            "max": [
+              36.5965,
+              155,
+              36.5965
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/skyline/tour-a.lod1.glb",
+          "bytes": 14216,
+          "sha256": "0daeb0dbd3453a7d813377bdabaafe393d8e782a3f5d5b8c6929b450e7897641",
+          "triangles": 844,
+          "primitives": 1,
+          "dimensions": [
+            73.193,
+            155,
+            73.193
+          ],
+          "bounds": {
+            "min": [
+              -36.5965,
+              0,
+              -36.5965
+            ],
+            "max": [
+              36.5965,
+              155,
+              36.5965
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        73.193,
+        155,
+        73.193
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-commercial.txt",
+      "sourceUrl": "https://kenney.nl/assets/city-kit-commercial",
+      "runtimeLod": 1,
+      "forwardAxis": null
+    },
+    {
+      "id": "tour-c",
+      "name": "Tour Méridien C",
+      "category": "skyline",
+      "provider": "kenney-commercial",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "kenney-selected/commercial/building-skyscraper-c.glb",
+      "sourceSha256": "e73c357554f7561fedb8c1cbecf9d7163ba09ada264d661c59a0f0a180e0185f",
+      "sourceTriangles": 1704,
+      "sourceBounds": {
+        "min": [
+          -0.6399999856948853,
+          0,
+          -0.6939456462860107
+        ],
+        "max": [
+          0.6399996876716614,
+          4.079999923706055,
+          0.6939457058906555
+        ],
+        "dimensions": [
+          1.2799996733665466,
+          4.079999923706055,
+          1.3878913521766663
+        ]
+      },
+      "scaleApplied": 51.47058919776821,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail",
+        "Palette harmonisée pour PLV WORLD"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/skyline/tour-c.lod0.glb",
+          "bytes": 22616,
+          "sha256": "b500884a195e31db2ba95dc1e7fc400ec48088afb64a51a624782e188ea028c2",
+          "triangles": 1704,
+          "primitives": 1,
+          "dimensions": [
+            65.88977,
+            210,
+            71.42705
+          ],
+          "bounds": {
+            "min": [
+              -32.94489,
+              0,
+              -35.71352
+            ],
+            "max": [
+              32.94488,
+              210,
+              35.71352
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/skyline/tour-c.lod1.glb",
+          "bytes": 15824,
+          "sha256": "a61a077560624ef8ef09a7263ecc6b059fab999d6eb28ac195501404646ebbef",
+          "triangles": 978,
+          "primitives": 1,
+          "dimensions": [
+            65.88977,
+            210,
+            68.96603
+          ],
+          "bounds": {
+            "min": [
+              -32.94489,
+              0,
+              -33.25052
+            ],
+            "max": [
+              32.94488,
+              210,
+              35.71552
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        65.88977,
+        210,
+        71.42705
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-commercial.txt",
+      "sourceUrl": "https://kenney.nl/assets/city-kit-commercial",
+      "runtimeLod": 1,
+      "forwardAxis": null
+    },
+    {
+      "id": "tour-e",
+      "name": "Tour Méridien E",
+      "category": "skyline",
+      "provider": "kenney-commercial",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "kenney-selected/commercial/building-skyscraper-e.glb",
+      "sourceSha256": "21b58a2f2b18d6a7cf8915e8b947bdb6a6a0706da6cffb5a01677c29f03b5935",
+      "sourceTriangles": 1156,
+      "sourceBounds": {
+        "min": [
+          -0.6474997997283936,
+          0,
+          -0.6210000514984131
+        ],
+        "max": [
+          0.6475000381469727,
+          4.079999923706055,
+          0.6210001707077026
+        ],
+        "dimensions": [
+          1.2949998378753662,
+          4.079999923706055,
+          1.2420002222061157
+        ]
+      },
+      "scaleApplied": 60.04902073072959,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail",
+        "Palette harmonisée pour PLV WORLD"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/skyline/tour-e.lod0.glb",
+          "bytes": 17116,
+          "sha256": "893a26f88fc8dd31b809ee395dd81111ceae2acf564d2de9a3fe92093e762a59",
+          "triangles": 1156,
+          "primitives": 1,
+          "dimensions": [
+            77.76864,
+            245,
+            74.56847
+          ],
+          "bounds": {
+            "min": [
+              -38.88431,
+              0,
+              -37.28423
+            ],
+            "max": [
+              38.88433,
+              245,
+              37.28424
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/skyline/tour-e.lod1.glb",
+          "bytes": 12892,
+          "sha256": "e37af54bfbafda643c3b7b7b8d6ae85e080b132ef867c18af555a6cc07757555",
+          "triangles": 773,
+          "primitives": 1,
+          "dimensions": [
+            74.74792,
+            245,
+            74.44884
+          ],
+          "bounds": {
+            "min": [
+              -35.87273,
+              0,
+              -37.28447
+            ],
+            "max": [
+              38.87518,
+              245,
+              37.16437
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        77.76864,
+        245,
+        74.56847
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-commercial.txt",
+      "sourceUrl": "https://kenney.nl/assets/city-kit-commercial",
+      "runtimeLod": 1,
+      "forwardAxis": null
+    },
+    {
+      "id": "relief-montagne",
+      "name": "Relief Mountainside",
+      "category": "relief",
+      "provider": "polyhaven",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "mountainside/mountainside.gltf",
+      "sourceSha256": "73241a50748582e6a13b2462afbd57d18a1bae5ffef777b3119d064709604fcd",
+      "sourceTriangles": 153472,
+      "sourceBounds": {
+        "min": [
+          -5.026504993438721,
+          -0.19979140162467957,
+          -3.681164264678955
+        ],
+        "max": [
+          5.182793617248535,
+          10.309968948364258,
+          1.565730094909668
+        ],
+        "dimensions": [
+          10.209298610687256,
+          10.509760349988937,
+          5.246894359588623
+        ]
+      },
+      "scaleApplied": 24.738908532797677,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail",
+        "Palette harmonisée pour PLV WORLD",
+        "Profil du fragment rocheux resculpté en crête stylisée"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/relief/relief-montagne.lod0.glb",
+          "bytes": 228516,
+          "sha256": "fde2cb39674c59170a08ba7cdc0d6299da8db562b58c4397d2f869c21961e68c",
+          "triangles": 8999,
+          "primitives": 1,
+          "dimensions": [
+            252.36611,
+            259.98304,
+            129.813
+          ],
+          "bounds": {
+            "min": [
+              -126.0879,
+              0,
+              -64.9065
+            ],
+            "max": [
+              126.27821,
+              259.98304,
+              64.9065
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/relief/relief-montagne.lod1.glb",
+          "bytes": 24988,
+          "sha256": "4962acb3268204f327e89ce21b19c95f847e33338f53bd2d41db090314415907",
+          "triangles": 1099,
+          "primitives": 1,
+          "dimensions": [
+            251.05408,
+            259.61085,
+            127.21858
+          ],
+          "bounds": {
+            "min": [
+              -125.72448,
+              0.37219,
+              -64.04825
+            ],
+            "max": [
+              125.32959,
+              259.98304,
+              63.17033
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        252.36611,
+        259.98304,
+        129.813
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/polyhaven-cc0.txt",
+      "sourceUrl": "https://polyhaven.com/a/mountainside",
+      "sourceChecksums": [
+        {
+          "path": "textures/mountainside_arm_1k.jpg",
+          "md5": "543f19bc3f3cd4f7b08dddedd1824cec",
+          "verified": true
+        },
+        {
+          "path": "textures/mountainside_diff_1k.jpg",
+          "md5": "ab12251ec12488e2a0cf2a213d52bd7d",
+          "verified": true
+        },
+        {
+          "path": "mountainside.bin",
+          "md5": "a4ac37444e3313bd9f9ff459eb71418d",
+          "verified": true
+        },
+        {
+          "path": "textures/mountainside_nor_gl_1k.jpg",
+          "md5": "95e78f9ae70da41e11ebe1489468e11d",
+          "verified": true
+        }
+      ],
+      "runtimeLod": 1,
+      "forwardAxis": null
+    },
+    {
+      "id": "avion-a320",
+      "name": "Avion sans logo",
+      "category": "aeronef",
+      "provider": "amvlab",
+      "unit": "m",
+      "pivot": "center",
+      "upAxis": "Y",
+      "sourceModel": "A320_nologo.glb",
+      "sourceSha256": "08cc60caafe3d0937f3e12e72c28bcb96dfdb39763ac124bcd4da8adaea11ab9",
+      "sourceTriangles": 5229,
+      "sourceBounds": {
+        "min": [
+          -21.89642594946766,
+          -2.8210693911467124,
+          -17.776774692871776
+        ],
+        "max": [
+          15.784968604893692,
+          8.501035385945343,
+          17.701934902850798
+        ],
+        "dimensions": [
+          37.68139455436135,
+          11.322104777092056,
+          35.47870959572258
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/aeronef/avion-a320.lod0.glb",
+          "bytes": 77040,
+          "sha256": "7d6250509b4e4091fd5adc6676057caa0e3749ca6eafb1eb3f143b310c5f183a",
+          "triangles": 5229,
+          "primitives": 1,
+          "dimensions": [
+            35.47803,
+            11.32156,
+            37.68139
+          ],
+          "bounds": {
+            "min": [
+              -17.73902,
+              -5.66078,
+              -18.8407
+            ],
+            "max": [
+              17.73902,
+              5.66078,
+              18.8407
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/aeronef/avion-a320.lod1.glb",
+          "bytes": 29176,
+          "sha256": "446a58a8c5c9bcec7aa580518449a6739b0daf246e2e50bc24857eed874f42dc",
+          "triangles": 982,
+          "primitives": 1,
+          "dimensions": [
+            35.46783,
+            11.32124,
+            37.68033
+          ],
+          "bounds": {
+            "min": [
+              -17.73391,
+              -5.66062,
+              -18.83963
+            ],
+            "max": [
+              17.73392,
+              5.66062,
+              18.8407
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        35.47803,
+        11.32156,
+        37.68139
+      ],
+      "license": "CC-BY-4.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/amvlab-cc-by-4.0.txt",
+      "sourceUrl": "https://github.com/amvlab/aircraft-models/blob/main/models/A320_nologo.glb",
+      "sourceGitBlob": "2c0537214723d7d8eb047b1be21d4cbc45a6e70c",
+      "attribution": "Aircraft models by amvlab, CC BY 4.0. Recentrage, échelle de présentation, simplification, textures et compression adaptés pour PLV WORLD.",
+      "runtimeLod": 1,
+      "forwardAxis": "-Z"
+    },
+    {
+      "id": "evtol",
+      "name": "eVTOL sans logo",
+      "category": "aeronef",
+      "provider": "amvlab",
+      "unit": "m",
+      "pivot": "center",
+      "upAxis": "Y",
+      "sourceModel": "EVTOL_nologo.glb",
+      "sourceSha256": "5709e70ca87e41798c9b4e3ef7e23ccd1f3e6bf06a1636ede1a9fb8bc0500d99",
+      "sourceTriangles": 4084,
+      "sourceBounds": {
+        "min": [
+          -0.5119031842812555,
+          -0.19600922331879903,
+          -0.7082319329414014
+        ],
+        "max": [
+          0.5119026802893882,
+          0.1960093755697967,
+          0.7082322246711952
+        ],
+        "dimensions": [
+          1.0238058645706438,
+          0.3920185988885957,
+          1.4164641576125967
+        ]
+      },
+      "scaleApplied": 8.47179925839112,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/aeronef/evtol.lod0.glb",
+          "bytes": 50736,
+          "sha256": "1fd592afbffc0f8471df1a65863e70e660ab439309709fede43a8837418759e1",
+          "triangles": 4084,
+          "primitives": 1,
+          "dimensions": [
+            8.67287,
+            3.32127,
+            12
+          ],
+          "bounds": {
+            "min": [
+              -4.33644,
+              -1.66063,
+              -6
+            ],
+            "max": [
+              4.33643,
+              1.66064,
+              6
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/aeronef/evtol.lod1.glb",
+          "bytes": 22460,
+          "sha256": "70dd43042bedb3ecb7d7a2ce2e90bd3bd6421a47438b7c14e3232a3b756c2b45",
+          "triangles": 1000,
+          "primitives": 1,
+          "dimensions": [
+            8.61574,
+            3.32127,
+            12
+          ],
+          "bounds": {
+            "min": [
+              -4.33646,
+              -1.66063,
+              -6
+            ],
+            "max": [
+              4.27928,
+              1.66064,
+              6
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        8.67287,
+        3.32127,
+        12
+      ],
+      "license": "CC-BY-4.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/amvlab-cc-by-4.0.txt",
+      "sourceUrl": "https://github.com/amvlab/aircraft-models/blob/main/models/EVTOL_nologo.glb",
+      "sourceGitBlob": "6f68ffab41e59fbc66f3fa7fbc76490065db0b6d",
+      "attribution": "Aircraft models by amvlab, CC BY 4.0. Recentrage, échelle de présentation, simplification, textures et compression adaptés pour PLV WORLD.",
+      "runtimeLod": 1,
+      "forwardAxis": "+Z"
+    },
+    {
+      "id": "drone",
+      "name": "Drone sans logo",
+      "category": "aeronef",
+      "provider": "amvlab",
+      "unit": "m",
+      "pivot": "center",
+      "upAxis": "Y",
+      "sourceModel": "drone_nologo.glb",
+      "sourceSha256": "b3b1089986443bec395c57852c68e1dbf5bf990e28472656d9b9ad6c377931d1",
+      "sourceTriangles": 5170,
+      "sourceBounds": {
+        "min": [
+          -0.4117581003875285,
+          -0.1840582745341603,
+          -0.32750930657851174
+        ],
+        "max": [
+          0.41175800006097296,
+          0.1840582926371097,
+          0.327509361569065
+        ],
+        "dimensions": [
+          0.8235161004485014,
+          0.36811656717127,
+          0.6550186681475767
+        ]
+      },
+      "scaleApplied": 7.285832052017312,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/aeronef/drone.lod0.glb",
+          "bytes": 57676,
+          "sha256": "038e92200a74de4e1c4b7ff6448ea1c6ad79776113a02bfb3e440394b9b39ce7",
+          "triangles": 5170,
+          "primitives": 1,
+          "dimensions": [
+            6,
+            2.68166,
+            4.77242
+          ],
+          "bounds": {
+            "min": [
+              -3,
+              -1.34083,
+              -2.38621
+            ],
+            "max": [
+              3,
+              1.34083,
+              2.38621
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/aeronef/drone.lod1.glb",
+          "bytes": 26964,
+          "sha256": "69681bae4668acbabc6f3b8bbfa918e79f6e7e470e7a71bc29205b9e8ce0b9d2",
+          "triangles": 1350,
+          "primitives": 1,
+          "dimensions": [
+            6,
+            2.49196,
+            4.77242
+          ],
+          "bounds": {
+            "min": [
+              -3,
+              -1.34113,
+              -2.38621
+            ],
+            "max": [
+              3,
+              1.15083,
+              2.38621
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        6,
+        2.68166,
+        4.77242
+      ],
+      "license": "CC-BY-4.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/amvlab-cc-by-4.0.txt",
+      "sourceUrl": "https://github.com/amvlab/aircraft-models/blob/main/models/drone_nologo.glb",
+      "sourceGitBlob": "4c7cd01eff512577beef951e850055fdb2c59990",
+      "attribution": "Aircraft models by amvlab, CC BY 4.0. Recentrage, échelle de présentation, simplification, textures et compression adaptés pour PLV WORLD.",
+      "runtimeLod": 1,
+      "forwardAxis": "+Z"
+    },
+    {
+      "id": "navette-cargo",
+      "name": "Navette cargo",
+      "category": "aeronef",
+      "provider": "kenney-space",
+      "unit": "m",
+      "pivot": "center",
+      "upAxis": "Y",
+      "sourceModel": "kenney-selected/space/craft_cargoA.glb",
+      "sourceSha256": "b9676e838c605699e164c4c1779262bf47db1562a1504ceb29764828cbaa80c2",
+      "sourceTriangles": 264,
+      "sourceBounds": {
+        "min": [
+          1.199999988079071,
+          0,
+          0.2749999761581421
+        ],
+        "max": [
+          2.800000011920929,
+          0.800000011920929,
+          2.725000023841858
+        ],
+        "dimensions": [
+          1.600000023841858,
+          0.800000011920929,
+          2.450000047683716
+        ]
+      },
+      "scaleApplied": 9.795918176691519,
+      "usage": "horizon",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail",
+        "Palette harmonisée pour PLV WORLD"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/aeronef/navette-cargo.lod0.glb",
+          "bytes": 5968,
+          "sha256": "250bcc207197431a1faca8556c77fa73ed1fa872e6aa1c4010a4a39f33ed7a2a",
+          "triangles": 264,
+          "primitives": 1,
+          "dimensions": [
+            15.67284,
+            7.83789,
+            24
+          ],
+          "bounds": {
+            "min": [
+              -7.83642,
+              -3.91894,
+              -12
+            ],
+            "max": [
+              7.83642,
+              3.91894,
+              12
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/aeronef/navette-cargo.lod1.glb",
+          "bytes": 5928,
+          "sha256": "3e156cbcabb61dcc6a9e11f48929d6370a55b7da623b0abd68ba247301b49d2c",
+          "triangles": 260,
+          "primitives": 1,
+          "dimensions": [
+            15.67284,
+            7.83789,
+            24
+          ],
+          "bounds": {
+            "min": [
+              -7.83642,
+              -3.91894,
+              -12
+            ],
+            "max": [
+              7.83642,
+              3.91894,
+              12
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        15.67284,
+        7.83789,
+        24
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-space.txt",
+      "sourceUrl": "https://kenney.nl/assets/space-kit",
+      "runtimeLod": 1,
+      "forwardAxis": "+Z"
+    },
+    {
+      "id": "pavillon-astra",
+      "name": "Pavillon modulaire Astra",
+      "category": "pavillon",
+      "provider": "quaternius-scifi",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "assemblage-quaternius",
+      "sourceSha256": "4b35632571301804f5eb2c6cf0d63587ee0ac081efdf45fcff1e70143317295c",
+      "sourceTriangles": 1831,
+      "sourceBounds": {
+        "min": [
+          -4.248748421669006,
+          0,
+          -4.248748421669006
+        ],
+        "max": [
+          4.248748421669006,
+          6.03,
+          4.654634284973144
+        ],
+        "dimensions": [
+          8.497496843338013,
+          6.03,
+          8.903382706642152
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "reserve-bibliotheque",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail",
+        "Palette harmonisée pour PLV WORLD"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/pavillon/pavillon-astra.lod0.glb",
+          "bytes": 322920,
+          "sha256": "747399d16cb5e2c59d7ef92a10364f436821946f151c1f70aaccce2d6969dd80",
+          "triangles": 9104,
+          "primitives": 11,
+          "dimensions": [
+            8.49737,
+            6.03001,
+            8.90338
+          ],
+          "bounds": {
+            "min": [
+              -4.24869,
+              0,
+              -4.45169
+            ],
+            "max": [
+              4.24869,
+              6.03,
+              4.45169
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/pavillon/pavillon-astra.lod1.glb",
+          "bytes": 93316,
+          "sha256": "4a62a85e7decb2a04b068655d8c35f73df162ad66b7b0c9597ce8331d3a3d8bd",
+          "triangles": 2636,
+          "primitives": 10,
+          "dimensions": [
+            8.49629,
+            6.03001,
+            8.90338
+          ],
+          "bounds": {
+            "min": [
+              -4.24814,
+              0,
+              -4.45169
+            ],
+            "max": [
+              4.24814,
+              6.03,
+              4.45169
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        8.49737,
+        6.03001,
+        8.90338
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-scifi.txt",
+      "sourceUrl": "https://quaternius.com/packs/modularscifimegakit.html",
+      "providers": [
+        "quaternius-scifi",
+        "quaternius-downtown"
+      ],
+      "sourceComponents": [
+        {
+          "provider": "quaternius-scifi",
+          "path": "Modular SciFi MegaKit[Standard]/glTF/Walls/WallAstra_Straight_Window.gltf",
+          "sha256": "e6801442d6961b72087d216b9024e2c056cb2d6b975450aeddda23662a40475f"
+        },
+        {
+          "provider": "quaternius-scifi",
+          "path": "Modular SciFi MegaKit[Standard]/glTF/Walls/WallAstra_Corner_Square_Outer.gltf",
+          "sha256": "df4c4ab0399dd432a100ded981d3b673cbe0aee4e6ec49db18df9744623caf63"
+        },
+        {
+          "provider": "quaternius-scifi",
+          "path": "Modular SciFi MegaKit[Standard]/glTF/Columns/Column_Astra.gltf",
+          "sha256": "99a71b481b4b10d62b1698d85b1aa7ec843a8f5b14313880c77763db3e8d99e6"
+        },
+        {
+          "provider": "quaternius-scifi",
+          "path": "Modular SciFi MegaKit[Standard]/glTF/Platforms/Platform_3Plates.gltf",
+          "sha256": "b7498bf0c89b3508f7b1c7512a60586a02f4a396ecf9d4abc7c4db528e9b7305"
+        },
+        {
+          "provider": "quaternius-scifi",
+          "path": "Modular SciFi MegaKit[Standard]/glTF/Platforms/Door_Frame_SquareTall.gltf",
+          "sha256": "f1251e11edcef8ecb5e186b4868304c618cfa34bb9ae9d4f643bab07240bb15d"
+        },
+        {
+          "provider": "quaternius-downtown",
+          "path": "Exports/glTF (Godot)/Metal_FullWindow.gltf",
+          "sha256": "0ca31d1e8ddebbfd8910a50ee68608841fa8b59b1f91a41df71ea03e5a1054b0"
+        },
+        {
+          "provider": "quaternius-downtown",
+          "path": "Exports/glTF (Godot)/Metal_Column_Center.gltf",
+          "sha256": "675c58eebda25ffc7b5886a7ba65f82d83825c8de75c2e69edecfbfde10e4b84"
+        }
+      ],
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "hangar-vitre",
+      "name": "Pavillon spatial vitré",
+      "category": "pavillon",
+      "provider": "kenney-space",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "kenney-selected/space/hangar_roundGlass.glb",
+      "sourceSha256": "6b6346d95b90b8c012880832cef3969a108ae2b153bef8e2106b27997e33d601",
+      "sourceTriangles": 113,
+      "sourceBounds": {
+        "min": [
+          0.36437809467315674,
+          0,
+          0.08351004123687744
+        ],
+        "max": [
+          3.6356219053268433,
+          1.399999976158142,
+          2.9164899587631226
+        ],
+        "dimensions": [
+          3.2712438106536865,
+          1.399999976158142,
+          2.832979917526245
+        ]
+      },
+      "scaleApplied": 5.502494170987241,
+      "usage": "reserve-bibliotheque",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail",
+        "Palette harmonisée pour PLV WORLD"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/pavillon/hangar-vitre.lod0.glb",
+          "bytes": 4400,
+          "sha256": "f14f370645e28c04e12f7fd372b2dc464b1e4c971c6222595b355b15f1a7e589",
+          "triangles": 113,
+          "primitives": 1,
+          "dimensions": [
+            18,
+            7.7044,
+            15.58953
+          ],
+          "bounds": {
+            "min": [
+              -9,
+              -0.00045,
+              -7.79476
+            ],
+            "max": [
+              9,
+              7.70394,
+              7.79476
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/pavillon/hangar-vitre.lod1.glb",
+          "bytes": 4340,
+          "sha256": "67fdceae2f4dfcc726b54f8bfa04f6f002f77862ffbc3ac4d32e55972b739c91",
+          "triangles": 101,
+          "primitives": 1,
+          "dimensions": [
+            18,
+            7.7044,
+            15.58953
+          ],
+          "bounds": {
+            "min": [
+              -9,
+              -0.00045,
+              -7.79476
+            ],
+            "max": [
+              9,
+              7.70394,
+              7.79476
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        18,
+        7.7044,
+        15.58953
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-space.txt",
+      "sourceUrl": "https://kenney.nl/assets/space-kit",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "arbre-feuillu",
+      "name": "Arbre feuillu",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/CommonTree_3.gltf",
+      "sourceSha256": "17c6537aa8042bb7255fbb501bf7aeb2b6db87c16766f794f9c37be3ce70c976",
+      "sourceTriangles": 3505,
+      "sourceBounds": {
+        "min": [
+          -1.9864652156829834,
+          -0.24277201294898987,
+          -2.0609655380249023
+        ],
+        "max": [
+          2.076380968093872,
+          9.182417869567871,
+          2.1801114082336426
+        ],
+        "dimensions": [
+          4.0628461837768555,
+          9.425189882516861,
+          4.241076946258545
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "reserve-bibliotheque",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/arbre-feuillu.lod0.glb",
+          "bytes": 132780,
+          "sha256": "0a4c3e10449d247efcdcb8d11a202795ea29d494114b65ad593040c671c9222f",
+          "triangles": 3505,
+          "primitives": 2,
+          "dimensions": [
+            4.06295,
+            9.42519,
+            4.24129
+          ],
+          "bounds": {
+            "min": [
+              -2.03148,
+              0,
+              -2.12065
+            ],
+            "max": [
+              2.03148,
+              9.42519,
+              2.12065
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/arbre-feuillu.lod1.glb",
+          "bytes": 92560,
+          "sha256": "566e49b5f03b10ddaf90034b0cf5da0293cdaf088d1cec5d0c37a25f3dc8e91f",
+          "triangles": 3338,
+          "primitives": 2,
+          "dimensions": [
+            4.06295,
+            9.42519,
+            4.24129
+          ],
+          "bounds": {
+            "min": [
+              -2.03148,
+              0,
+              -2.12065
+            ],
+            "max": [
+              2.03148,
+              9.42519,
+              2.12065
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        4.06295,
+        9.42519,
+        4.24129
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/CommonTree_3.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "pin",
+      "name": "Pin",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/Pine_2.gltf",
+      "sourceSha256": "57bd4732170b6c7e51bcf78fe5adaabf142f95a50378d8d3051d1f20a04d3c2f",
+      "sourceTriangles": 3648,
+      "sourceBounds": {
+        "min": [
+          -2.891958236694336,
+          -0.23508860170841217,
+          -2.6936988830566406
+        ],
+        "max": [
+          2.8361265659332275,
+          7.141149520874023,
+          2.527508020401001
+        ],
+        "dimensions": [
+          5.7280848026275635,
+          7.376238122582436,
+          5.221206903457642
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "reserve-bibliotheque",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/pin.lod0.glb",
+          "bytes": 102936,
+          "sha256": "bbff2078216bc10e284db6208ec72ca62ba0cff6104e008d2f06ce7e20c99722",
+          "triangles": 3648,
+          "primitives": 2,
+          "dimensions": [
+            5.72842,
+            7.37624,
+            5.22124
+          ],
+          "bounds": {
+            "min": [
+              -2.86421,
+              0,
+              -2.61062
+            ],
+            "max": [
+              2.86421,
+              7.37624,
+              2.61062
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/pin.lod1.glb",
+          "bytes": 74424,
+          "sha256": "f642faa2b97b0c8624626e87711cbc1aa7a20207c13937b16ec8160fdb14e3da",
+          "triangles": 3168,
+          "primitives": 2,
+          "dimensions": [
+            5.72842,
+            7.37624,
+            5.22124
+          ],
+          "bounds": {
+            "min": [
+              -2.86421,
+              0,
+              -2.61062
+            ],
+            "max": [
+              2.86421,
+              7.37624,
+              2.61062
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        5.72842,
+        7.37624,
+        5.22124
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/Pine_2.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "buisson",
+      "name": "Buisson",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/Bush_Common.gltf",
+      "sourceSha256": "77811fca92610cb254713d3d49d5029ab6cf13050c3afb61aa942786a7b2ca90",
+      "sourceTriangles": 900,
+      "sourceBounds": {
+        "min": [
+          -0.9234761595726013,
+          -0.234694704413414,
+          -0.9743891954421997
+        ],
+        "max": [
+          0.9913685917854309,
+          1.3470909595489502,
+          0.9907516837120056
+        ],
+        "dimensions": [
+          1.9148447513580322,
+          1.5817856639623642,
+          1.9651408791542053
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "reserve-bibliotheque",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage et échelle de présentation",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/buisson.lod0.glb",
+          "bytes": 56460,
+          "sha256": "6da4422bd24d3a3bc1d7c41f7a80e718baa86a365797522d5bff1a63d7631a07",
+          "triangles": 900,
+          "primitives": 1,
+          "dimensions": [
+            1.91476,
+            1.58179,
+            1.96514
+          ],
+          "bounds": {
+            "min": [
+              -0.95738,
+              0,
+              -0.98257
+            ],
+            "max": [
+              0.95738,
+              1.58179,
+              0.98257
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/buisson.lod1.glb",
+          "bytes": 36004,
+          "sha256": "257926cf3f961f9cb0723c581aa73c6cd273f68e3bdcb18623a4888c98cf1988",
+          "triangles": 900,
+          "primitives": 1,
+          "dimensions": [
+            1.91476,
+            1.58179,
+            1.96514
+          ],
+          "bounds": {
+            "min": [
+              -0.95738,
+              0,
+              -0.98257
+            ],
+            "max": [
+              0.95738,
+              1.58179,
+              0.98257
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        1.91476,
+        1.58179,
+        1.96514
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/Bush_Common.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    }
+  ],
+  "icons": [
+    {
+      "id": "keyboard_e",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_e.svg",
+      "bytes": 339,
+      "sha256": "58fc78c36761512b44fc92cb601de27776b228907a205002367da862049d7edb",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_e.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_c",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_c.svg",
+      "bytes": 615,
+      "sha256": "6c3ff0f55a95a22c0766de806108fd06f9a752974c8d379f70de9fe72f613039",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_c.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_t",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_t.svg",
+      "bytes": 315,
+      "sha256": "0596ce47bcce76145fee2b4ad30f6ada8951be167dd596b24e29a35a1e90a653",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_t.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_v",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_v.svg",
+      "bytes": 310,
+      "sha256": "a6d785532ab837ff751c8c45a2059f5a08841c8ff663c9e4a59228f22efcff41",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_v.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_m",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_m.svg",
+      "bytes": 345,
+      "sha256": "dfeaa0a33f6cc55987893a9cc77632011ed0c1bf6e33c01f3d0de8ec64606862",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_m.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_o",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_o.svg",
+      "bytes": 574,
+      "sha256": "eaf8f5515675607bb4e583e31a7d57bba6652926938079998e0b99532431e482",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_o.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_p",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_p.svg",
+      "bytes": 585,
+      "sha256": "398d9030c366f56e39ae92457d748e5bf159f6672342c3e376a3ee1eb0bab99a",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_p.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_r",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_r.svg",
+      "bytes": 571,
+      "sha256": "7ae887d80a5370cc25f4256e111d4a72e0830113cb9118b0bab75d351c924603",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_r.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_h",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_h.svg",
+      "bytes": 382,
+      "sha256": "30c1e7f3d120b8b60bca4e02a035805b0d923dfa6cc4e286a753142d102a0177",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_h.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_f",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_f.svg",
+      "bytes": 327,
+      "sha256": "14bc44182271abe273d58ac66bd1337cab3e9b8f3c86c9a8f8b7b1fe39c7b08a",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_f.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_escape",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_escape.svg",
+      "bytes": 1013,
+      "sha256": "877ed5d62b78a468a2206dd18530802a851e7f25efca2be99b90fac46c7ce02a",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_escape.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_shift",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_shift.svg",
+      "bytes": 1497,
+      "sha256": "7143bd165a266ed950705cb45bb678a32a70bda73b5de221985c3fa1d3d527be",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_shift.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_space",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_space.svg",
+      "bytes": 2146,
+      "sha256": "e6c3941bfae3a1db04c69792cbd550d45ab0756ecd747375e1a4cf8bdab96027",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_space.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_ctrl",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_ctrl.svg",
+      "bytes": 1500,
+      "sha256": "822abacef97c5bb74e5942e357c202fbec6abd9a6a3960f6be713f39ebc2a267",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_ctrl.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_w",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_w.svg",
+      "bytes": 357,
+      "sha256": "689d533faf0cf5310b39c075e39d2d8c05477cacb2947f33984533dbe2df11ba",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_w.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_a",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_a.svg",
+      "bytes": 349,
+      "sha256": "3ecc3176cd7361e42837b9348833aca8fac6c2ec33cb12f8101e84c0712d291d",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_a.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_s",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_s.svg",
+      "bytes": 893,
+      "sha256": "56cbeb694c9bb9a5276ba4720ac6c8918ee41628588db6fb94cc5f7a11e4ca3a",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_s.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_d",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_d.svg",
+      "bytes": 496,
+      "sha256": "009b3768692869e501c9389e99de91049058b7a8edfe41aee7d322970a3132d4",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_d.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_z",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_z.svg",
+      "bytes": 327,
+      "sha256": "d3678f98d7c041f1670352b933e7220770c2a7485b8bb159704e669d1653ebef",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_z.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "keyboard_q",
+      "category": "commandes",
+      "path": "assets/library/icons/keyboard_q.svg",
+      "bytes": 638,
+      "sha256": "1b99f67c6d1f638569829490b3661bfdea91a8b0583e4dba2bff9e17be12565b",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_q.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "mouse_move",
+      "category": "commandes",
+      "path": "assets/library/icons/mouse_move.svg",
+      "bytes": 1197,
+      "sha256": "4b0d20b7ee578b0cd06b5c862530324dc70ad1bf8a2f8fd82943252729164e94",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/mouse_move.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "mouse_left",
+      "category": "commandes",
+      "path": "assets/library/icons/mouse_left.svg",
+      "bytes": 842,
+      "sha256": "65094eb243e10344f58427b26b40d7558ede0430b94fee81ab948fbf91d46130",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/mouse_left.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    },
+    {
+      "id": "mouse_scroll",
+      "category": "commandes",
+      "path": "assets/library/icons/mouse_scroll.svg",
+      "bytes": 842,
+      "sha256": "6dc4100175c2fe2c41637ff6503c6e4092d91e77bd13bf2ab118ae73e4a0c3eb",
+      "dimensionsPixels": [
+        64.0,
+        64.0
+      ],
+      "provider": "kenney-prompts",
+      "sourceArchiveMember": "Keyboard & Mouse/Vector/mouse_scroll.svg",
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/kenney-prompts.txt",
+      "lod": "vectoriel",
+      "usage": "aide-commandes"
+    }
+  ],
+  "totals": {
+    "models": 13,
+    "modelVariants": 26,
+    "modelBytes": 1551504,
+    "horizonBytes": 152448,
+    "icons": 23,
+    "iconBytes": 16460
+  },
+  "legacyAudit": "docs/assets-herites-audit.json"
+}

@@ -1,3 +1,4 @@
+import { decorateInputPrompts } from "../library/input-prompts.js";
 // Interface originale : conserve les éléments et identifiants de l'application.
 export function createInterface() {
   const elements = new Map(
@@ -219,6 +220,21 @@ export function createInterface() {
       first.focus();
     }
   });
+  const assetLinks = document.createElement("p");
+  assetLinks.className = "asset-links";
+  for (const [file, label] of [
+    ["catalogue.html", "Bibliothèque 3D"],
+    ["credits.html", "Crédits des modèles 3D"],
+  ]) {
+    const a = document.createElement("a");
+    a.href = new URL("../library/" + file, import.meta.url).href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = label;
+    assetLinks.append(a);
+  }
+  settingsPage.append(assetLinks);
+  decorateInputPrompts();
   document.body.classList.add("refined-ui");
   let hintTimer = null,
     entered = false;
