@@ -381,7 +381,7 @@ export function createCrowd({
       if (near < 0.8 && near > 0.001) {
         const nx = player.x + (dx / near) * 0.85,
           nz = player.z + (dz / near) * 0.85;
-        if (safe(nx, nz)) {
+        if (safe(nx, nz) && clearOfPeople(p, nx, nz)) {
           p.x = nx;
           p.z = nz;
           p.y = terrainHeight(nx, nz);
@@ -398,7 +398,7 @@ export function createCrowd({
           const shift = (Math.sign(lx) || 1) * 1.55 - lx,
             nx = p.x + c * shift,
             nz = p.z - s * shift;
-          if (safe(nx, nz)) {
+          if (safe(nx, nz) && clearOfPeople(p, nx, nz)) {
             p.x = nx;
             p.z = nz;
             p.y = terrainHeight(nx, nz);
@@ -477,7 +477,7 @@ export function createCrowd({
         if (vehicleSideStep(p.x, p.z, car, step, p.evadePoint)) {
           const nx = p.evadePoint.x,
             nz = p.evadePoint.z;
-          if (safe(nx, nz)) {
+          if (safe(nx, nz) && clearOfPeople(p, nx, nz)) {
             p.x = nx;
             p.z = nz;
             p.y = terrainHeight(nx, nz);
