@@ -1,0 +1,20 @@
+{
+  "result": {
+    "near": 28,
+    "far": 0,
+    "instances": 1756,
+    "stats": {
+      "instances": 831,
+      "chunks": 56,
+      "visibleChunks": 0,
+      "cached": 10,
+      "active": 0,
+      "queued": 0,
+      "bytes": 920140,
+      "references": 10
+    },
+    "childrenAfterDispose": 0
+  },
+  "fallback": true,
+  "errors": []
+}

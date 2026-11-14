@@ -19,9 +19,13 @@ assets/decor/         modèles low-poly Kenney (.glb, texture intégrée) — vo
 
 [Ouvrir le catalogue interactif](assets/library/catalogue.html) pour examiner les modèles, changer le niveau de détail, vérifier dimensions, poids, sources et licences. Il est aussi accessible depuis Réglages → Bibliothèque 3D. Aucun accès à l’inventaire local.
 
-La sélection compte 13 modèles et 23 icônes professionnelles. Huit modèles allégés améliorent l’horizon ; les pavillons et végétaux sont en réserve et ne sont pas placés automatiquement dans le monde. Les fichiers GLB, textures embarquées et SVG restent dans `assets/library/`, avec leur [manifeste](assets/library/manifest.json) et leurs licences. Le fond procédural reste disponible si un fichier ne peut pas être chargé.
+La sélection compte 13 modèles et 23 icônes professionnelles. Huit modèles allégés améliorent l’horizon ; les pavillons et végétaux aménagent désormais le Parvis Méridien et les bordures voisines. Les fichiers GLB, textures embarquées et SVG restent dans `assets/library/`, avec leur [manifeste](assets/library/manifest.json) et leurs licences. Le fond procédural reste disponible si un fichier ne peut pas être chargé.
 
-Audit, provenance, optimisation, captures et validation : [docs/BIBLIOTHEQUE_ASSETS.md](docs/BIBLIOTHEQUE_ASSETS.md). Cette PR de bibliothèque dépend de la PR d’interface et ne la fusionne pas automatiquement.
+Audit, provenance, optimisation, captures et validation : [docs/BIBLIOTHEQUE_ASSETS.md](docs/BIBLIOTHEQUE_ASSETS.md). Les étapes interface, bibliothèque et aménagement sont intégrées dans cet ordre.
+
+## Jardins et pavillons
+
+Les modèles du catalogue composent les alignements de pins, les jardins de feuillus, les massifs et trois pavillons du quartier pilote. Les bordures voisines reçoivent des buissons compacts ; tous les emplacements PLV restent disponibles. [Périmètre et vérifications](docs/AMENAGEMENT_JARDINS.md).
 
 ## Interface, commandes et horizon
 Le menu distingue **Explorer**, **Inventaire**, **Réglages** et **Commandes**. Les mesures techniques sont masquées au départ et accessibles avec **F**. L’aide complète s’ouvre avec **H** ; les formulaires conservent la saisie normale.

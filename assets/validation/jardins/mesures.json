@@ -1,0 +1,50 @@
+[
+  {
+    "version": "avant",
+    "view": "sol",
+    "fps": 0.8310617645103392,
+    "drawCalls": 89,
+    "triangles": 128506
+  },
+  {
+    "version": "avant",
+    "view": "drone",
+    "fps": 1.3514244013189944,
+    "drawCalls": 113,
+    "triangles": 130564
+  },
+  {
+    "version": "apres",
+    "view": "sol",
+    "fps": 0.38169395778464826,
+    "drawCalls": 109,
+    "triangles": 471651,
+    "jardins": {
+      "instances": 831,
+      "chunks": 56,
+      "visibleChunks": 19,
+      "cached": 10,
+      "active": 0,
+      "queued": 0,
+      "bytes": 920140,
+      "references": 10
+    }
+  },
+  {
+    "version": "apres",
+    "view": "drone",
+    "fps": 0.5181561930028185,
+    "drawCalls": 131,
+    "triangles": 566097,
+    "jardins": {
+      "instances": 831,
+      "chunks": 56,
+      "visibleChunks": 18,
+      "cached": 10,
+      "active": 0,
+      "queued": 0,
+      "bytes": 920140,
+      "references": 10
+    }
+  }
+]
