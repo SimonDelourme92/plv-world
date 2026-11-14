@@ -7,6 +7,21 @@ export class NavigationRouter {
     this.districtSize = districtSize;
     this.width = Math.floor((halfExtent * 2) / cellSize) + 1;
     this.roads = [];
+    this.roadMask = null;
+  }
+
+  // Cases du quadrillage GPS situées sur une chaussée : coût réduit pour la voiture.
+  setRoads(roads = []) {
+    this.roads = roads;
+    const { halfExtent, cellSize, width } = this, mask = new Uint8Array(width * width);
+    for (const road of roads) for (const p of road.points) {
+      const reach = road.width / 2 + cellSize * 0.5;
+      const x0 = Math.max(0, Math.floor((p.x - reach + halfExtent) / cellSize)), x1 = Math.min(width - 1, Math.ceil((p.x + reach + halfExtent) / cellSize));
+      const z0 = Math.max(0, Math.floor((p.z - reach + halfExtent) / cellSize)), z1 = Math.min(width - 1, Math.ceil((p.z + reach + halfExtent) / cellSize));
+      for (let z = z0; z <= z1; z++) for (let x = x0; x <= x1; x++)
+        if (Math.hypot(x * cellSize - halfExtent - p.x, z * cellSize - halfExtent - p.z) <= reach) mask[z * width + x] = 1;
+    }
+    this.roadMask = roads.length ? mask : null;
   }
 
   route(start, destination, { mode = "walk", obstacles = [], maxVisited = 80000 } = {}) {
@@ -64,7 +79,8 @@ export class NavigationRouter {
     const costs = new Float64Array(total); costs.fill(Infinity); costs[startId] = 0;
     const previous = new Int32Array(total); previous.fill(-1);
     const closed = new Uint8Array(total), open = [];
-    const heuristic = (id) => Math.abs(id % width - target.x) + Math.abs(Math.floor(id / width) - target.z);
+    const roadMask = this.roadMask, weight = vehicle && roadMask ? 0.45 : 1; // reste admissible avec le bonus route
+    const heuristic = (id) => weight * (Math.abs(id % width - target.x) + Math.abs(Math.floor(id / width) - target.z));
     const push = (id) => { let i = open.length; open.push(id); while (i) { const parent = (i - 1) >> 1; if (costs[open[parent]] + heuristic(open[parent]) <= costs[id] + heuristic(id)) break; open[i] = open[parent]; i = parent; } open[i] = id; };
     const pop = () => { const first = open[0], last = open.pop(); if (open.length) { let i = 0; while (true) { let child = i * 2 + 1; if (child >= open.length) break; if (child + 1 < open.length && costs[open[child + 1]] + heuristic(open[child + 1]) < costs[open[child]] + heuristic(open[child])) child++; if (costs[last] + heuristic(last) <= costs[open[child]] + heuristic(open[child])) break; open[i] = open[child]; i = child; } open[i] = last; } return first; };
     const directions = [[1,0],[-1,0],[0,1],[0,-1]];
@@ -81,15 +97,7 @@ export class NavigationRouter {
         if (nx < 0 || nz < 0 || nx >= width || nz >= width || !clear(nx, nz)) continue;
         if (!segmentClear(pointAt(x, z), pointAt(nx, nz))) continue;
         const next = toIndex(nx, nz); if (closed[next]) continue;
-        let roadBonus = 0;
-        if (vehicle && this.roads.length) {
-          const p = pointAt(nx, nz);
-          for (const road of this.roads) for (let i = 1; i < road.points.length; i++) {
-            const a = road.points[i - 1], b = road.points[i], dx = b.x - a.x, dz = b.z - a.z, l2 = dx * dx + dz * dz;
-            const t = l2 ? Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.z - a.z) * dz) / l2)) : 0;
-            if (Math.hypot(p.x - a.x - t * dx, p.z - a.z - t * dz) < 9) { roadBonus = .55; break; }
-          }
-        }
+        const roadBonus = vehicle && roadMask && roadMask[next] ? 0.55 : 0;
         const candidate = costs[id] + 1 - roadBonus;
         if (candidate >= costs[next]) continue;
         costs[next] = candidate; previous[next] = id; push(next);

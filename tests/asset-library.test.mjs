@@ -80,9 +80,13 @@ test("icônes SVG : fichiers passifs sans scripts ni ressources distantes", asyn
   }
 });
 test("budgets et séparation des PLV professionnelles", () => {
-  assert.equal(manifest.models.length, 13);
+  assert.equal(manifest.models.length, 23);
   assert.equal(manifest.models.filter((m) => m.usage === "horizon").length, 8);
-  assert(manifest.totals.modelBytes < 2_000_000);
+  // Paysage : 13 espèces végétales CC0 (Stylized Nature MegaKit), licence vérifiée.
+  const vegetation = manifest.models.filter((m) => m.category === "vegetation");
+  assert.equal(vegetation.length, 13);
+  assert(vegetation.every((m) => m.license === "CC0-1.0" && m.licenseVerified && m.lods.length === 2));
+  assert(manifest.totals.modelBytes < 4_500_000);
   assert(manifest.totals.horizonBytes < 200_000);
   assert(!JSON.stringify(manifest.models).includes("assets/plv/"));
   assert(
