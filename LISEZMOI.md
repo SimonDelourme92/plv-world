@@ -78,3 +78,6 @@ Voir **FEUILLE_DE_ROUTE.md** (version détaillée « un monde qui claque »).
 
 ## Proposition Technoparc (branche de prévisualisation)
 Le sol est plat et couvert de la texture Grass001. Le domaine accessible commence à 1 km de côté et s’étend automatiquement si des lots existants ou ajoutés nécessitent davantage de place ; les réservations et la capacité restent celles du monde initial. Les routes, leurs lampadaires et leurs panneaux ainsi que le relief du pilote ont été retirés de la scène. Les boutons **Zoom + / −** fonctionnent en exploration. Le fond sonore continu est remplacé par de rares brises et chants ; la sonorité moteur a été réaccordée. Voir [le périmètre et les contrôles](docs/TERRAIN_PILOTE.md).
+
+## Lit de rivière
+Un lit sec enherbé suit la partie ouest du domaine, avec une bifurcation et une île. Il n'ajoute ni eau ni arbres. Sa profondeur atteint environ 4 m et les berges rejoignent progressivement le terrain plat. Les emprises des lots et des obstacles restent planes ; le lit s'adapte si l'inventaire change. Le module et la fonction d'altitude sont dans `assets/river/riverbed.js`.
