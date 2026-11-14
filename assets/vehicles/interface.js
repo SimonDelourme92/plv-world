@@ -23,6 +23,9 @@ export function createVehicleInterface(audio) {
   settings.className = "vehicle-settings";
   settings.innerHTML =
     '<h3>Audio du véhicule</h3><div class="setting"><label for="vehicleSound">Moteur et sons de conduite <input id="vehicleSound" type="checkbox"></label></div><div class="setting"><label for="engineVolume">Volume du véhicule <b id="engineVolumeVal"></b></label><input id="engineVolume" type="range" min="0" max="100" step="5"></div><p class="muted vehicle-audio-note">Indépendant de l’ambiance sonore. Le son démarre après votre première interaction.</p><a class="vehicle-credit" href="assets/vehicles/credits.html" target="_blank" rel="noopener">Berline : Comrade1280 · CC BY 4.0 — Sons : GGBotNet · CC0</a>';
+  settings.classList.add("vehicle-audio-settings");
+  // The vehicle module initializes before the refined menu; attach it here,
+  // then the menu moves this node into its visible settings page.
   document.querySelector("#pause .columns").children[1].append(settings);
   const sound = settings.querySelector("#vehicleSound"),
     volume = settings.querySelector("#engineVolume"),
