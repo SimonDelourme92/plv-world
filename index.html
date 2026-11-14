@@ -350,9 +350,29 @@ function metricMidParts(bundle){if(bundle.metricMid)return bundle.metricMid;cons
  const projected=[];for(const e of selected){const p=e.geometry.attributes.position,n=e.geometry.attributes.normal,indices=[];for(let i=0;i<p.count;i+=3){const z=(p.getZ(i)+p.getZ(i+1)+p.getZ(i+2))/3,nz=(n.getZ(i)+n.getZ(i+1)+n.getZ(i+2))/3;if(z>.32&&nz>.55)indices.push(i,i+1,i+2);}if(!indices.length)continue;const g=new THREE.BufferGeometry();for(const [key,a] of Object.entries(e.geometry.attributes)){const data=new Float32Array(indices.length*a.itemSize);for(let i=0;i<indices.length;i++)for(let k=0;k<a.itemSize;k++)data[i*a.itemSize+k]=a.getComponent(indices[i],k);if(key==='position')for(let i=0;i<indices.length;i++)data[i*3+2]=.5015+.003*(p.getZ(indices[i])-.5);if(key==='normal')for(let i=0;i<indices.length;i++){data[i*3]=0;data[i*3+1]=0;data[i*3+2]=1;}g.setAttribute(key,new THREE.BufferAttribute(data,a.itemSize));}g.computeBoundingBox();bundle.ownedGeometries.add(g);projected.push({...e,geometry:g,midGeometry:g});}
  // Si la façade ne peut pas être identifiée, garder le LOD texturé V4 plutôt que perdre une créa.
  bundle.metricMid=projected.length?[...out,...mergeArtParts(projected,'near',bundle.ownedGeometries)]:bundle.midParts;return bundle.metricMid;}
-// IMPLANTATION AU SOL — toutes les PLV sont placées à plat, sans empilage.
+// IMPLANTATION — grandes PLV au sol, petites PLV sur racks (voir RACK).
 function placementDims(def){const a=def.metric&&def.physicalDims;return a?{l:Math.max(def.dims.l,a.l),p:Math.max(def.dims.p,a.p),h:Math.max(def.dims.h,a.h)}:def.dims;}
-function lotGrid(q,def){const a=placementDims(def);return shapeGrid(q,a.l,a.p,GAP,INNER,INNER);}
+// Petites PLV : rangées sur des racks à lisses (montants bleus, lisses grises, tablettes bois), jamais à plat.
+const RACK={bay:1.8,upr:.05,board:.03,floor:.18,aisle:1.6,hMax:2.1,small:.6};
+function isSmallPLV(def){const a=placementDims(def);return a.l<=RACK.small&&a.p<=RACK.small&&a.h<=.5;}
+function rackSpec(def){const {l,p,h}=placementDims(def);const across=Math.max(1,Math.floor((RACK.bay+GAP)/(l+GAP))),dn=Math.max(1,Math.min(3,Math.floor(.9/(p+GAP)))),pitch=Math.max(.3,h+.12),levels=Math.max(1,Math.min(8,Math.floor((RACK.hMax-RACK.floor)/pitch))),rd=Math.max(.4,dn*p+(dn-1)*GAP+.08),nb=Math.max(1,Math.floor((INNER+RACK.upr)/(RACK.bay+RACK.upr))),maxRows=Math.max(1,Math.floor((INNER+RACK.aisle)/(rd+RACK.aisle)));return {l,p,h,across,dn,pitch,levels,rd,nb,maxRows,capBay:across*dn*levels,cap:across*dn*levels*nb*maxRows};}
+function rackGrid(q,def){const s=rackSpec(def);if(q>s.cap)return null;const bays=Math.ceil(q/s.capBay),rows=Math.ceil(bays/s.nb),perRow=Math.ceil(bays/rows),perLevel=s.across*s.dn,levels=bays===1?Math.min(s.levels,Math.max(3,Math.ceil(q/perLevel))):s.levels;
+ const w=perRow*(RACK.bay+RACK.upr)+RACK.upr,d=rows*s.rd+(rows-1)*RACK.aisle,spanX=s.across*s.l+(s.across-1)*GAP,spanZ=s.dn*s.p+(s.dn-1)*GAP,pos=[];
+ for(let k=0;k<q;k++){const b=Math.floor(k/s.capBay),r=k%s.capBay,lv=Math.floor(r/perLevel),rr=r%perLevel,ix=rr%s.across,iz=Math.floor(rr/s.across),row=Math.floor(b/perRow),col=b%perRow;
+  const bx=RACK.upr+col*(RACK.bay+RACK.upr)+(RACK.bay-spanX)/2,bz=row*(s.rd+RACK.aisle)+(s.rd-spanZ)/2;
+  pos.push([bx+ix*(s.l+GAP)+s.l/2,RACK.floor+lv*s.pitch+RACK.board+s.h/2,bz+iz*(s.p+GAP)+s.p/2]);}
+ const rowBays=[];for(let r=0;r<rows;r++)rowBays.push(Math.min(perRow,bays-r*perRow));
+ return {c:perRow,r:rows,w,d,pos,rack:{spec:s,rows,rowBays,levels,height:RACK.floor+levels*s.pitch+.04}};}
+function lotCapacity(def){return isSmallPLV(def)?rackSpec(def).cap:Math.floor((INNER+GAP)/(placementDims(def).l+GAP))*Math.floor((INNER+GAP)/(placementDims(def).p+GAP));}
+function lotGrid(q,def){if(isSmallPLV(def))return rackGrid(q,def);const a=placementDims(def);return shapeGrid(q,a.l,a.p,GAP,INNER,INNER);}
+let rackMaterials=null;
+function buildRack(grid,ox,oz){const {spec:s,rows,rowBays,levels,height}=grid.rack;rackMaterials??={upright:new THREE.MeshStandardMaterial({color:0x1d4fb8,roughness:.45,metalness:.25}),beam:new THREE.MeshStandardMaterial({color:0xd5dae0,roughness:.5,metalness:.2}),board:new THREE.MeshStandardMaterial({color:0xc9a56e,roughness:.85,metalness:0})};
+ const up=[],bm=[],bd=[];
+ for(let r=0;r<rows;r++){const z0=oz+r*(s.rd+RACK.aisle),n=rowBays[r];
+  for(let c=0;c<=n;c++){const x=ox+RACK.upr/2+c*(RACK.bay+RACK.upr);for(const zz of [z0+.025,z0+s.rd-.025])up.push([x,height/2,zz,RACK.upr,height,RACK.upr]);}
+  for(let c=0;c<n;c++){const x=ox+RACK.upr+c*(RACK.bay+RACK.upr)+RACK.bay/2;for(let lv=0;lv<levels;lv++){const y=RACK.floor+lv*s.pitch;bd.push([x,y+RACK.board/2,z0+s.rd/2,RACK.bay,RACK.board,s.rd]);for(const zz of [z0+.015,z0+s.rd-.015])bm.push([x,y-.03,zz,RACK.bay,.06,.03]);}}}
+ const g=new THREE.Group();for(const [list,mat] of [[up,rackMaterials.upright],[bm,rackMaterials.beam],[bd,rackMaterials.board]]){const m=instanced(unitBox,mat,list.length);list.forEach((b,i)=>setInstance(m,i,...b));finishInstances(m);m.frustumCulled=false;g.add(m);}
+ return g;}
 // Pour les nouveaux GLB métriques, les dimensions réelles sont intégrées aux géométries une seule fois.
 // Les matrices des instances sont à l'échelle 1, sans déformation. Les anciens modèles restent compatibles.
 function metricRenderParts(bundle,level){const key=level==='near'?'physicalNear':'physicalMid';if(bundle[key])return bundle[key];const size=(bundle.base||bundle).size,source=level==='near'?bundle.parts:metricMidParts(bundle);return bundle[key]=source.map(p=>{const geometry=p.geometry.clone();geometry.scale(size.l,size.h,size.p);geometry.computeBoundingBox();geometry.computeBoundingSphere();bundle.ownedGeometries.add(geometry);return {geometry,material:p.material};});}
@@ -363,7 +383,7 @@ function refreshPlayableExtent(){playableHalf=calculatePlayableHalf(records,came
 
 // ============================================================================
 // PHASE 4 — zones d'exposition au sol, totems, carte et fiche contextuelle.
-// Toutes les PLV restent au sol ; aucun support ne modifie leur altitude.
+// Les grandes PLV restent au sol ; les petites sont rangées sur des racks.
 // ============================================================================
 const zoneRoot=new THREE.Group();scene.add(zoneRoot);
 const zonePlane=new THREE.PlaneGeometry(1,1);zonePlane.rotateX(-Math.PI/2);
@@ -417,9 +437,9 @@ function makeRecord(def,lot,d,originX,originZ,q,grid,gap,partNo=1,partCount=1,is
  const actual=def.metric&&bundle?(bundle.base||bundle).size:def.dims;
  const orientation=bundle&&cz-d.z<50?Math.PI:0; // allée nord ou sud (rotation Y 0 / 180°)
  const matrixCarrier=instanced(unitBox,materials.mid,q);let top=0;
- for(let i=0;i<q;i++){const x=originX+l/2+i%c*(l+gap),z=originZ+p/2+Math.floor(i/c)*(p+gap),y=actual.h/2;
+ for(let i=0;i<q;i++){const P=grid.pos?grid.pos[i]:null,x=P?originX+P[0]:originX+l/2+i%c*(l+gap),z=P?originZ+P[2]:originZ+p/2+Math.floor(i/c)*(p+gap),y=P?P[1]:actual.h/2;
  dummy.position.set(x-cx,y,z-cz);if(def.metric&&bundle)dummy.scale.set(1,1,1);else dummy.scale.set(actual.l,actual.h,actual.p);dummy.rotation.set(0,orientation,0);dummy.updateMatrix();matrixCarrier.setMatrixAt(i,dummy.matrix);top=Math.max(top,y+actual.h/2);}
- matrixCarrier.position.set(cx,0,cz);finishInstances(matrixCarrier);matrixCarrier.frustumCulled=false;
+ if(grid.rack)top=Math.max(top,grid.rack.height);matrixCarrier.position.set(cx,0,cz);finishInstances(matrixCarrier);matrixCarrier.frustumCulled=false;
  const near=new THREE.Group();near.position.copy(matrixCarrier.position);
  function fillInstances(group,parts){for(const part of parts){const mesh=instanced(part.geometry,part.material,q);mesh.instanceMatrix=matrixCarrier.instanceMatrix;mesh.frustumCulled=false;group.add(mesh);}}
  fillInstances(near,bundle?(def.metric?metricRenderParts(bundle,'near'):bundle.parts):[{geometry:nearGeometry[def.forme],material:materials.near}]);
@@ -428,19 +448,24 @@ function makeRecord(def,lot,d,originX,originZ,q,grid,gap,partNo=1,partCount=1,is
  const qty=nf.format(q)+' ex.'+(partCount>1?' / '+nf.format(lot.quantite):'');const label=labelSprite(def.nom,qty,lot.op,isTest?'TEST':partCount>1?'BLOC '+partNo+'/'+partCount:'LOT');
  label.position.set(cx,top+.72,orientation?originZ-.18:originZ+depth+.18);label.frustumCulled=false;label.userData.lotLabel=true;
  const bounds=new THREE.Box3(new THREE.Vector3(originX,0,originZ),new THREE.Vector3(originX+w,top,originZ+depth));const cullBounds=bounds.clone();cullBounds.max.y=top+9;cullBounds.expandByScalar(8);
- near.visible=mid.visible=far.visible=label.visible=false;lotRoot.add(near,mid,far,label);
+ near.visible=mid.visible=far.visible=label.visible=false;lotRoot.add(near,mid,far,label);const rack=grid.rack?buildRack(grid,originX,originZ):null;if(rack){rack.visible=false;lotRoot.add(rack);}
  const color=editorColor(lot.editeur),totem=createTotem(def,lot,q,bundle,partNo,partCount,color);const signNorth=cz-d.z<50;totem.position.set(originX+Math.min(w/2,.58),.365,signNorth?originZ-.52:originZ+depth+.52);totem.rotation.y=signNorth?Math.PI:0;lotRoot.add(totem);
- const record={near,mid,matrixCarrier,far,label,totem,bounds,cullBounds,q,district:d.index,lot,isTest,level:-1,orientation,editorColor:color,mapMaterial:mapMaterial(color),originalFarMaterial:materials.far};records.push(record);contactsDirty=zonesDirty=true;return record;
+ const record={near,mid,rack,matrixCarrier,far,label,totem,bounds,cullBounds,q,district:d.index,lot,isTest,level:-1,orientation,editorColor:color,mapMaterial:mapMaterial(color),originalFarMaterial:materials.far};records.push(record);contactsDirty=zonesDirty=true;return record;
 }
-function clearRecords(testOnly=false){contactsDirty=zonesDirty=true;clearFocus();for(let i=records.length-1;i>=0;i--){const r=records[i];if(testOnly&&!r.isTest)continue;r.near.removeFromParent();r.mid.removeFromParent();r.far.removeFromParent();r.near.traverse(o=>{if(o.isInstancedMesh)o.dispose();});if(r.mid!==r.matrixCarrier)r.mid.traverse(o=>{if(o.isInstancedMesh)o.dispose();});r.matrixCarrier.dispose();disposeSprite(r.label);disposeSprite(r.totem);records.splice(i,1);}if(!testOnly){for(const s of districtLabels)disposeSprite(s);districtLabels.length=0;districtNames.clear();occupancy.clear();}}
+function clearRecords(testOnly=false){contactsDirty=zonesDirty=true;clearFocus();for(let i=records.length-1;i>=0;i--){const r=records[i];if(testOnly&&!r.isTest)continue;r.near.removeFromParent();r.mid.removeFromParent();r.far.removeFromParent();r.near.traverse(o=>{if(o.isInstancedMesh)o.dispose();});if(r.mid!==r.matrixCarrier)r.mid.traverse(o=>{if(o.isInstancedMesh)o.dispose();});r.matrixCarrier.dispose();if(r.rack){r.rack.removeFromParent();r.rack.traverse(o=>{if(o.isInstancedMesh)o.dispose();});}disposeSprite(r.label);disposeSprite(r.totem);records.splice(i,1);}if(!testOnly){for(const s of districtLabels)disposeSprite(s);districtLabels.length=0;districtNames.clear();occupancy.clear();}}
 // Quartiers attribués par distance croissante à la place centrale, puis par index.
 const available=districts.filter(d=>d.index!==CENTRAL&&d.index!==TEST_CELL).sort((a,b)=>((a.ix-10)**2+(a.iz-10)**2)-((b.ix-10)**2+(b.iz-10)**2)||a.index-b.index);
 const INNER=90.8, BORDER=4.6, LOT_GUTTER=1.3;
-function buildPlan(lots,by,catalogue){const groups=new Map();for(const lot of lots){const def=catalogue[lot.type];if(!def)throw Error('Type absent : '+lot.type);const name=by==='type'?def.nom:groupName(lot,by);if(!groups.has(name))groups.set(name,[]);groups.get(name).push(lot);}const plan=[], names=new Map();let cursor=0;
- for(const [name,items] of [...groups].sort((a,b)=>a[0].localeCompare(b[0],'fr',{numeric:true}))){let d=null,x=0,z=0,rowDepth=0;function next(){if(cursor>=available.length)throw Error('Le monde est plein : plus de quartier libre.');d=available[cursor++];names.set(d.index,name);x=z=rowDepth=0;}
-  for(const lot of items){const def=catalogue[lot.type],{l,p}=placementDims(def);const capacity=Math.floor((INNER+GAP)/(l+GAP))*Math.floor((INNER+GAP)/(p+GAP));if(capacity<1)throw Error('Dimensions trop grandes : '+def.nom);let left=lot.quantite;const parts=Math.ceil(left/capacity);for(let part=1;left>0;part++){const q=Math.min(left,capacity),grid=lotGrid(q,def);if(!grid)throw Error('Placement impossible : '+def.nom);if(!d)next();if(x+grid.w>INNER+1e-6){x=0;z+=rowDepth+LOT_GUTTER;rowDepth=0;}if(z+grid.d>INNER+1e-6)next();plan.push({def,lot,d,x:d.x+BORDER+x,z:d.z+BORDER+z,q,grid,part,parts});x+=grid.w+LOT_GUTTER;rowDepth=Math.max(rowDepth,grid.d);left-=q;}}
- }return {plan,names};}
-function applyPlan(p){mapDistrictDirty=true;clearFocus();clearRecords();for(const [idx,name] of p.names){districtNames.set(idx,name);const d=districts[idx];const s=labelSprite(name,d.id,'Quartier de production','QUARTIER');s.position.set(d.x+4.8,2.15,d.z+1.2);s.scale.set(2.7,.72,1);s.visible=true;markers.add(s);districtLabels.push(s);}for(const a of p.plan){makeRecord(a.def,a.lot,a.d,a.x,a.z,a.q,a.grid,GAP,a.part,a.parts);occupancy.set(a.d.index,true);}if(testActive)makeTest();refreshPlayableExtent();terrain?.refresh();updateTotal();updateMapLegend();ensurePlayerOutside();}
+const GROUP_GAP=6;
+// Tous les groupes se suivent dans le même quartier (une allée de 6 m entre deux groupes) ; on passe au quartier suivant, le plus proche du centre, seulement quand il est plein.
+function buildPlan(lots,by,catalogue){const groups=new Map();for(const lot of lots){const def=catalogue[lot.type];if(!def)throw Error('Type absent : '+lot.type);const name=by==='type'?def.nom:groupName(lot,by);if(!groups.has(name))groups.set(name,[]);groups.get(name).push(lot);}const plan=[],names=new Map(),labels=[];let cursor=0,d=null,x=0,z=0,rowDepth=0;
+ function next(){if(cursor>=available.length)throw Error('Le monde est plein : plus de quartier libre.');d=available[cursor++];x=z=rowDepth=0;}
+ for(const [name,items] of [...groups].sort((a,b)=>a[0].localeCompare(b[0],'fr',{numeric:true}))){if(d&&(x>0||z>0)){x=0;z+=rowDepth+GROUP_GAP;rowDepth=0;}let labelled=false;
+  for(const lot of items){const def=catalogue[lot.type],{l,p}=placementDims(def);const capacity=lotCapacity(def);if(capacity<1)throw Error('Dimensions trop grandes : '+def.nom);let left=lot.quantite;const parts=Math.ceil(left/capacity);for(let part=1;left>0;part++){const q=Math.min(left,capacity),grid=lotGrid(q,def);if(!grid)throw Error('Placement impossible : '+def.nom);if(!d)next();if(x+grid.w>INNER+1e-6){x=0;z+=rowDepth+LOT_GUTTER;rowDepth=0;}if(z+grid.d>INNER+1e-6){next();labelled=false;}
+   if(!labelled){labels.push({name,d,x,z});const prev=names.get(d.index);names.set(d.index,prev?(prev.split(' · ').includes(name)?prev:prev+' · '+name):name);labelled=true;}
+   plan.push({def,lot,d,x:d.x+BORDER+x,z:d.z+BORDER+z,q,grid,part,parts});x+=grid.w+LOT_GUTTER;rowDepth=Math.max(rowDepth,grid.d);left-=q;}}
+ }for(const [k,v] of names){const n=v.split(' · ').length;if(n>3)names.set(k,n+' groupes');}return {plan,names,labels};}
+function applyPlan(p){mapDistrictDirty=true;clearFocus();clearRecords();for(const [idx,name] of p.names)districtNames.set(idx,name);for(const g of (p.labels||[...p.names].map(([idx,name])=>({name,d:districts[idx],x:0,z:0})))){const s=labelSprite(g.name,g.d.id,'Quartier de production','QUARTIER');s.position.set(g.d.x+BORDER+g.x+.2,2.15,g.d.z+BORDER+g.z-3.4);s.scale.set(2.7,.72,1);s.visible=true;markers.add(s);districtLabels.push(s);}for(const a of p.plan){makeRecord(a.def,a.lot,a.d,a.x,a.z,a.q,a.grid,GAP,a.part,a.parts);occupancy.set(a.d.index,true);}if(testActive)makeTest();refreshPlayableExtent();terrain?.refresh();updateTotal();updateMapLegend();ensurePlayerOutside();}
 function placerLots(lots=LOTS,regroupement=grouping){if(!['editeur','type','mois','fournisseur'].includes(regroupement))throw Error('Regroupement inconnu.');const p=buildPlan(lots,regroupement,CATALOGUE);applyPlan(p);grouping=regroupement;return p.plan.length;}
 const testDef={nom:'Boîte test 40 × 40 × 170',dims:{l:.4,p:.4,h:1.7},couleur:'#b86948',forme:'boite'};
 const testLot={type:'__test',quantite:50000,op:'Validation du moteur LOD',editeur:'Test',mois:null,fournisseur:''};
@@ -448,7 +473,7 @@ const testLot={type:'__test',quantite:50000,op:'Validation du moteur LOD',editeu
 // objets strictement dans un quartier, tout en gardant 3 m d’allées aux limites.
 function makeTest(){const d=districts[TEST_CELL],gap=.03,grid=shapeGrid(testLot.quantite,.4,.4,gap,97,97);if(!grid)throw Error('Le test ne tient pas dans le quartier.');makeRecord(testDef,testLot,d,d.x+(100-grid.w)/2,d.z+(100-grid.d)/2,50000,grid,gap,1,1,true);terrain?.refresh();districtNames.set(TEST_CELL,'Test de charge');}
 function updateTotal(){totalObjects=0;for(const r of records)totalObjects+=r.q;$('total').textContent=nf.format(LOTS.reduce((n,l)=>n+l.quantite,0));}
-function switchLOD(r,level){if(r.level===level)return;r.level=level;r.near.visible=level===0;r.mid.visible=level===1;r.far.visible=level===2;r.label.visible=level>=0;if(level>=0){const localMap=mapActive||!!compare?.map;const scale=localMap?1.5:level===2?3.1:level===1?2.35:1.95;r.label.scale.set(scale,scale*(r.label.userData.labelKind==='district'?.27:.24),1);r.label.position.set((r.bounds.min.x+r.bounds.max.x)/2,r.bounds.max.y+(level===2?1.05:.72),localMap?r.bounds.max.z+.75:r.orientation?r.bounds.min.z-.18:r.bounds.max.z+.18);}}
+function switchLOD(r,level){if(r.level===level)return;r.level=level;r.near.visible=level===0;r.mid.visible=level===1;r.far.visible=level===2;if(r.rack)r.rack.visible=level===0||level===1;r.label.visible=level>=0;if(level>=0){const localMap=mapActive||!!compare?.map;const scale=localMap?1.5:level===2?3.1:level===1?2.35:1.95;r.label.scale.set(scale,scale*(r.label.userData.labelKind==='district'?.27:.24),1);r.label.position.set((r.bounds.min.x+r.bounds.max.x)/2,r.bounds.max.y+(level===2?1.05:.72),localMap?r.bounds.max.z+.75:r.orientation?r.bounds.min.z-.18:r.bounds.max.z+.18);}}
 function updateLOD(activeCam){activeCam.updateMatrixWorld();proj.multiplyMatrices(activeCam.projectionMatrix,activeCam.matrixWorldInverse);frustum.setFromProjectionMatrix(proj);represented=realInstances=lodVisible=0;
  for(let i=0;i<records.length;i++){const r=records[i];if(compare?.kind==='qsj'&&compare.hideLot&&r.lot.id===compare.lotId){switchLOD(r,-1);continue;}if(!frustum.intersectsBox(r.cullBounds)){switchLOD(r,-1);continue;}const dist=(mapActive||compare?.map)?Infinity:r.bounds.distanceToPoint((compare||tour||photoMode)?activeCam.position:camera.position);if(!mapActive&&!compare?.map&&dist>cfg.distance){switchLOD(r,-1);continue;}const level=dist<LOD_NEAR?0:dist<LOD_MID?1:2;switchLOD(r,level);represented+=r.q;realInstances+=level===0?r.q*r.near.children.length:level===1?r.q*(r.mid.isInstancedMesh?1:r.mid.children.length):0;lodVisible++;}
 }
