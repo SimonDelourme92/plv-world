@@ -83,8 +83,8 @@ export function createHorizon(THREE, scene) {
     g.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
     add(new THREE.Mesh(g, mat), -8500);
   }
-  ridge(2750, 0.2, mountainFar);
-  ridge(2450, 2.7, mountainNear);
+
+
   const unit = geometry(new THREE.BoxGeometry(1, 1, 1));
   const towers = add(new THREE.InstancedMesh(unit, cityMat, 144));
   const crowns = add(new THREE.InstancedMesh(unit, facetMat, 144));
@@ -193,7 +193,7 @@ export function createHorizon(THREE, scene) {
       clearTimeout(releaseTimer);
       releaseTimer = null;
     }
-    beginModels();
+    // Le ciel reste dégagé ; conserver uniquement les navettes.
     if (modelHorizon) {
       const night = hour < 8.5 || hour >= 19;
       if (night !== lastNight) {
@@ -204,6 +204,7 @@ export function createHorizon(THREE, scene) {
       return;
     }
 
+    for (const mesh of [towers, crowns, windows, beacons]) mesh.visible = false;
     const low = quality === "low";
     if (quality !== lastQuality) {
       towers.count = crowns.count = windows.count = low ? 72 : 144;

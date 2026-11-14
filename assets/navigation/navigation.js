@@ -10,14 +10,14 @@ export class NavigationRouter {
 
   route(start, destination, { mode = "walk", obstacles = [], maxVisited = 80000 } = {}) {
     const { halfExtent, cellSize, width } = this;
-    const roadOnly = mode === "car";
+    const vehicle = mode === "car";
     const toIndex = (x, z) => z * width + x;
     const toCell = (point) => ({
       x: Math.round((point.x + halfExtent) / cellSize),
       z: Math.round((point.z + halfExtent) / cellSize),
     });
     const pointAt = (x, z) => ({ x: x * cellSize - halfExtent, z: z * cellSize - halfExtent });
-    const total = width * width, blocked = new Uint8Array(total), radius = roadOnly ? 1.15 : 0.55;
+    const total = width * width, blocked = new Uint8Array(total), radius = vehicle ? 1.15 : 0.55;
     for (const b of obstacles) {
       if ((b.max.y ?? 99) <= 0.25) continue;
       const minX = Math.max(0, Math.floor((b.min.x - radius + halfExtent) / cellSize));
@@ -32,11 +32,6 @@ export class NavigationRouter {
     const clear = (x, z) => {
       const p = pointAt(x, z);
       if (p.x < -halfExtent + 2 || p.x > halfExtent - 2 || p.z < -halfExtent + 2 || p.z > halfExtent - 2 || blocked[z * width + x]) return false;
-      if (roadOnly) {
-        const dx = Math.abs(((p.x + halfExtent) % this.districtSize));
-        const dz = Math.abs(((p.z + halfExtent) % this.districtSize));
-        if (Math.min(dx, this.districtSize - dx, dz, this.districtSize - dz) > 5.1) return false;
-      }
       return true;
     };
     const segmentClear = (a, b) => {
@@ -85,9 +80,7 @@ export class NavigationRouter {
         if (nx < 0 || nz < 0 || nx >= width || nz >= width || !clear(nx, nz)) continue;
         if (!segmentClear(pointAt(x, z), pointAt(nx, nz))) continue;
         const next = toIndex(nx, nz); if (closed[next]) continue;
-        const p = pointAt(nx, nz), roadX = Math.abs(((p.x + halfExtent) % this.districtSize)), roadZ = Math.abs(((p.z + halfExtent) % this.districtSize));
-        const onRoad = Math.min(roadX, this.districtSize - roadX, roadZ, this.districtSize - roadZ) <= 5.1;
-        const candidate = costs[id] + (roadOnly || onRoad ? 1 : 1.3);
+        const candidate = costs[id] + 1;
         if (candidate >= costs[next]) continue;
         costs[next] = candidate; previous[next] = id; push(next);
       }
@@ -98,7 +91,7 @@ export class NavigationRouter {
     const points = [start];
     for (const p of cells) if (Math.hypot(p.x - points.at(-1).x, p.z - points.at(-1).z) >= 7) points.push(p);
     if (Math.hypot(target.x * cellSize - halfExtent - points.at(-1).x, target.z * cellSize - halfExtent - points.at(-1).z) > .1) points.push(pointAt(target.x, target.z));
-    points.push(roadOnly ? pointAt(target.x, target.z) : destination);
+    points.push(destination);
     let distance = 0; for (let i = 1; i < points.length; i++) distance += Math.hypot(points[i].x - points[i-1].x, points[i].z - points[i-1].z);
     return { points, distance, visited, mode };
   }
