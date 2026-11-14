@@ -89,3 +89,6 @@ Textures Poly Haven **aerial_grass_rock, concrete_pavement, gravel_ground_01** :
 Modifications : atlas des textures à tuiles 512 px issus des cartes 1K, géométries des deux modèles simplifiées (ratio cible 40 %, erreur 0,002), textures des modèles réduites à 512 px, conversion en GLB autonome. Les cartes originales 1K sont conservées séparément. Aucun déplacement géométrique par les textures. Le modèle `boulder_01` a été examiné mais non retenu pour éviter un second jeu de rochers ; les végétaux Quaternius déjà crédités restent réutilisés sans nouveau téléchargement.
 
 L'ambiance intermittente (brise et oiseaux) et la couche harmonique du moteur sont synthétisées avec Web Audio dans le projet. Les échantillons moteur CC0 déjà crédités restent utilisés.
+
+## Visiteurs piétons
+Les visiteurs réutilisent le personnage « Rigged T-Pose Human Male w/ 50 Face Blendshapes » de Mike Alger, CC BY 4.0, et la Universal Animation Library de Quaternius, CC0, déjà crédités dans la section personnage. Leurs animations sont recalées une seule fois et les géométries sont partagées entre les personnages ; aucun modèle externe supplémentaire n'est ajouté.
