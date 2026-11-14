@@ -1538,6 +1538,1056 @@
       "sourceArchiveMember": "glTF/Bush_Common.gltf",
       "runtimeLod": null,
       "forwardAxis": null
+    },
+    {
+      "id": "feuillu-rond",
+      "name": "Feuillu rond",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/CommonTree_1.gltf",
+      "sourceSha256": "b51cdea6545edb51d102dd6c27caafe62aa75e3c328ac8f9039f4e7bfd690bfa",
+      "sourceTriangles": 6265,
+      "sourceBounds": {
+        "min": [
+          -2.1944587230682373,
+          -0.24277201294898987,
+          -2.2245190143585205
+        ],
+        "max": [
+          2.116964101791382,
+          7.022013187408447,
+          2.3531949520111084
+        ],
+        "dimensions": [
+          4.311422824859619,
+          7.264785200357437,
+          4.577713966369629
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/feuillu-rond.lod0.glb",
+          "bytes": 182456,
+          "sha256": "02c4a70a284cb6ce0cca8f3a951bb99f222b555a169b532bb9ef073171862de5",
+          "triangles": 6265,
+          "primitives": 2,
+          "dimensions": [
+            4.31138,
+            7.26479,
+            4.57743
+          ],
+          "bounds": {
+            "min": [
+              -2.15569,
+              0,
+              -2.28872
+            ],
+            "max": [
+              2.15569,
+              7.26479,
+              2.28872
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/feuillu-rond.lod1.glb",
+          "bytes": 99176,
+          "sha256": "31e67429840d8fb43f044e394cdc9c0efcdd12a18ce59070192ad2f631146ccf",
+          "triangles": 4155,
+          "primitives": 2,
+          "dimensions": [
+            3.18371,
+            7.11941,
+            3.50962
+          ],
+          "bounds": {
+            "min": [
+              -1.65231,
+              0,
+              -1.58013
+            ],
+            "max": [
+              1.53141,
+              7.11941,
+              1.9295
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        4.31138,
+        7.26479,
+        4.57743
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/CommonTree_1.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "feuillu-eleve",
+      "name": "Feuillu élevé",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/CommonTree_4.gltf",
+      "sourceSha256": "ddf0e8837705702871d3f03de8cf7aeed61ad4bf8ee92052b6f95bdd771297b6",
+      "sourceTriangles": 4066,
+      "sourceBounds": {
+        "min": [
+          -1.7970952987670898,
+          -0.24277201294898987,
+          -2.0796103477478027
+        ],
+        "max": [
+          2.028430461883545,
+          9.195609092712402,
+          1.6757631301879883
+        ],
+        "dimensions": [
+          3.8255257606506348,
+          9.438381105661392,
+          3.755373477935791
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/feuillu-eleve.lod0.glb",
+          "bytes": 137016,
+          "sha256": "8120069921395d2a128564407c9b862213c87c48ae6e101f3dd240e169f5e842",
+          "triangles": 4066,
+          "primitives": 2,
+          "dimensions": [
+            3.82553,
+            9.43838,
+            3.75525
+          ],
+          "bounds": {
+            "min": [
+              -1.91276,
+              0,
+              -1.87762
+            ],
+            "max": [
+              1.91276,
+              9.43838,
+              1.87762
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/feuillu-eleve.lod1.glb",
+          "bytes": 80072,
+          "sha256": "015002efa630f806f6b4307a3fb2aad663282f967f7a07cd1506d71cbd4ac8cc",
+          "triangles": 3141,
+          "primitives": 2,
+          "dimensions": [
+            3.0306,
+            8.73767,
+            3.05513
+          ],
+          "bounds": {
+            "min": [
+              -1.41978,
+              0,
+              -1.54382
+            ],
+            "max": [
+              1.61082,
+              8.73767,
+              1.51131
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        3.82553,
+        9.43838,
+        3.75525
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/CommonTree_4.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "pin-touffu",
+      "name": "Pin touffu",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/Pine_4.gltf",
+      "sourceSha256": "d8978cfd5a29a22446b9277f1789f44c3f953fb6e29adb625a8f61c3dd032952",
+      "sourceTriangles": 3370,
+      "sourceBounds": {
+        "min": [
+          -2.8718371391296387,
+          -0.23508861660957336,
+          -2.9459073543548584
+        ],
+        "max": [
+          2.930187225341797,
+          10.0013427734375,
+          2.424938201904297
+        ],
+        "dimensions": [
+          5.8020243644714355,
+          10.236431390047073,
+          5.370845556259155
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/pin-touffu.lod0.glb",
+          "bytes": 102308,
+          "sha256": "a3b3f15dd64df358998c87055f9783a782bb33b2625cc04248091d9bd9f456e3",
+          "triangles": 3370,
+          "primitives": 2,
+          "dimensions": [
+            5.80253,
+            10.23643,
+            5.37142
+          ],
+          "bounds": {
+            "min": [
+              -2.90126,
+              0,
+              -2.68571
+            ],
+            "max": [
+              2.90126,
+              10.23643,
+              2.68571
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/pin-touffu.lod1.glb",
+          "bytes": 72968,
+          "sha256": "b9d2fd265b6a2775a754bc23288d6a5413398d9e2c2dcba0976ee01a1df30594",
+          "triangles": 2840,
+          "primitives": 2,
+          "dimensions": [
+            5.80253,
+            10.23643,
+            5.37142
+          ],
+          "bounds": {
+            "min": [
+              -2.90126,
+              0,
+              -2.68571
+            ],
+            "max": [
+              2.90126,
+              10.23643,
+              2.68571
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        5.80253,
+        10.23643,
+        5.37142
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/Pine_4.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "arbre-tordu",
+      "name": "Arbre tordu",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/TwistedTree_1.gltf",
+      "sourceSha256": "8544b084e1fadfbec981e964ce27463f50c39c460513e0d3442160880c5908a7",
+      "sourceTriangles": 9564,
+      "sourceBounds": {
+        "min": [
+          -2.174241065979004,
+          -0.20147469639778137,
+          -6.726779460906982
+        ],
+        "max": [
+          11.341513633728027,
+          16.52402114868164,
+          4.822585105895996
+        ],
+        "dimensions": [
+          13.515754699707031,
+          16.725495845079422,
+          11.549364566802979
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/arbre-tordu.lod0.glb",
+          "bytes": 250012,
+          "sha256": "e1d33c3e801860d57f387d047b91a64e6319b0b3468337382fd74142704eb74f",
+          "triangles": 9564,
+          "primitives": 2,
+          "dimensions": [
+            13.51587,
+            16.7255,
+            11.54915
+          ],
+          "bounds": {
+            "min": [
+              -6.75793,
+              0,
+              -5.77458
+            ],
+            "max": [
+              6.75793,
+              16.7255,
+              5.77458
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/arbre-tordu.lod1.glb",
+          "bytes": 148480,
+          "sha256": "04892321fbed68c57985e84df9d8886383a559bccea2e8b137e069b04edfc58a",
+          "triangles": 6781,
+          "primitives": 2,
+          "dimensions": [
+            12.41946,
+            15.48333,
+            8.89393
+          ],
+          "bounds": {
+            "min": [
+              -6.08199,
+              0,
+              -4.49878
+            ],
+            "max": [
+              6.33747,
+              15.48333,
+              4.39515
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        13.51587,
+        16.7255,
+        11.54915
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/TwistedTree_1.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "arbre-tordu-large",
+      "name": "Arbre tordu large",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/TwistedTree_3.gltf",
+      "sourceSha256": "c719e6f2f26bb5f4a32f92194b71f432e2444870cb0f3b41989e05c7ad3b9ecd",
+      "sourceTriangles": 10089,
+      "sourceBounds": {
+        "min": [
+          -4.49001932144165,
+          -0.20147468149662018,
+          -6.520090103149414
+        ],
+        "max": [
+          6.867476463317871,
+          15.871066093444824,
+          4.985528945922852
+        ],
+        "dimensions": [
+          11.357495784759521,
+          16.072540774941444,
+          11.505619049072266
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/arbre-tordu-large.lod0.glb",
+          "bytes": 258032,
+          "sha256": "2560b56f77b72fd64990a98c7e72def0750b479981f9f79c8100a091c792eab5",
+          "triangles": 10089,
+          "primitives": 2,
+          "dimensions": [
+            11.35727,
+            16.07254,
+            11.50638
+          ],
+          "bounds": {
+            "min": [
+              -5.67863,
+              0,
+              -5.75319
+            ],
+            "max": [
+              5.67863,
+              16.07254,
+              5.75319
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/arbre-tordu-large.lod1.glb",
+          "bytes": 147028,
+          "sha256": "0228d1ed6f3acae5986aaffa366ab5e8a8357b7f429d1648e30bdbec0b667d0f",
+          "triangles": 6866,
+          "primitives": 2,
+          "dimensions": [
+            9.47389,
+            15.82701,
+            10.05544
+          ],
+          "bounds": {
+            "min": [
+              -4.92937,
+              0,
+              -5.21965
+            ],
+            "max": [
+              4.54452,
+              15.82701,
+              4.8358
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        11.35727,
+        16.07254,
+        11.50638
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/TwistedTree_3.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "arbre-mort",
+      "name": "Arbre mort",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/DeadTree_2.gltf",
+      "sourceSha256": "5cbff9f1277e905eaf8e40d9028fa80b0d6b635aa0677076ffa81fcf377ffabf",
+      "sourceTriangles": 6557,
+      "sourceBounds": {
+        "min": [
+          -2.332343816757202,
+          -0.3355545997619629,
+          -2.522876024246216
+        ],
+        "max": [
+          4.397274017333984,
+          11.152676582336426,
+          3.8556599617004395
+        ],
+        "dimensions": [
+          6.7296178340911865,
+          11.488231182098389,
+          6.378535985946655
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/arbre-mort.lod0.glb",
+          "bytes": 148856,
+          "sha256": "1754715eca5f5fb7710e53250b2c078e60df1a572d66c8319e9b72a7e5a294ff",
+          "triangles": 6557,
+          "primitives": 1,
+          "dimensions": [
+            6.72949,
+            11.48823,
+            6.37888
+          ],
+          "bounds": {
+            "min": [
+              -3.36474,
+              0,
+              -3.18944
+            ],
+            "max": [
+              3.36474,
+              11.48823,
+              3.18944
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/arbre-mort.lod1.glb",
+          "bytes": 121028,
+          "sha256": "3418fefb0e2d5d37367bae6e145b4c26c483783c21f57dfaa0431a67da36cad2",
+          "triangles": 5977,
+          "primitives": 1,
+          "dimensions": [
+            6.72949,
+            11.48823,
+            6.37888
+          ],
+          "bounds": {
+            "min": [
+              -3.36474,
+              0,
+              -3.18944
+            ],
+            "max": [
+              3.36474,
+              11.48823,
+              3.18944
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        6.72949,
+        11.48823,
+        6.37888
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/DeadTree_2.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "buisson-fleuri",
+      "name": "Buisson fleuri",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/Bush_Common_Flowers.gltf",
+      "sourceSha256": "08768c680e3abeafd25858c9d3f369bcb7eed014661d3b6825a397f2a6a3deea",
+      "sourceTriangles": 1368,
+      "sourceBounds": {
+        "min": [
+          -0.9234761595726013,
+          -0.234694704413414,
+          -0.9743891954421997
+        ],
+        "max": [
+          0.9913685917854309,
+          1.3470909595489502,
+          0.9907516837120056
+        ],
+        "dimensions": [
+          1.9148447513580322,
+          1.5817856639623642,
+          1.9651408791542053
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/buisson-fleuri.lod0.glb",
+          "bytes": 111048,
+          "sha256": "e16a2584df1e83ab1b93173de08f9119b91ebec392dbf01ef36416faa1df8170",
+          "triangles": 1368,
+          "primitives": 2,
+          "dimensions": [
+            1.91476,
+            1.58179,
+            1.96514
+          ],
+          "bounds": {
+            "min": [
+              -0.95738,
+              0,
+              -0.98257
+            ],
+            "max": [
+              0.95738,
+              1.58179,
+              0.98257
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/buisson-fleuri.lod1.glb",
+          "bytes": 45240,
+          "sha256": "56b61811e21f96a5eb6a22f70f00d7c9a61502401f0d6f8011ae70116462d6df",
+          "triangles": 548,
+          "primitives": 2,
+          "dimensions": [
+            1.7766,
+            1.57232,
+            1.89727
+          ],
+          "bounds": {
+            "min": [
+              -0.83878,
+              0.00001,
+              -0.93013
+            ],
+            "max": [
+              0.93782,
+              1.57233,
+              0.96714
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        1.91476,
+        1.58179,
+        1.96514
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/Bush_Common_Flowers.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "fougere",
+      "name": "Fougère",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/Fern_1.gltf",
+      "sourceSha256": "d41915cffe9dbbde1ae88be381eb9c60f7caa2274511436cc78fe4de627468ab",
+      "sourceTriangles": 288,
+      "sourceBounds": {
+        "min": [
+          -1.381242275238037,
+          -0.0773344337940216,
+          -1.278536081314087
+        ],
+        "max": [
+          1.4456915855407715,
+          0.7629088163375854,
+          1.373783826828003
+        ],
+        "dimensions": [
+          2.8269338607788086,
+          0.8402432501316071,
+          2.65231990814209
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/fougere.lod0.glb",
+          "bytes": 56604,
+          "sha256": "6ee1e8f3d956d943cf073b5a6f853420349aee5de4fa8506fdfc1d9c073768f0",
+          "triangles": 288,
+          "primitives": 1,
+          "dimensions": [
+            2.82693,
+            0.84039,
+            2.65232
+          ],
+          "bounds": {
+            "min": [
+              -1.41347,
+              -0.00007,
+              -1.32616
+            ],
+            "max": [
+              1.41347,
+              0.84032,
+              1.32616
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/fougere.lod1.glb",
+          "bytes": 22384,
+          "sha256": "0d2e9dc2cbffc6dc4df7e512e8259eae185e644d44c9e93ed25fcf3fb219c5b1",
+          "triangles": 86,
+          "primitives": 1,
+          "dimensions": [
+            2.82693,
+            0.84039,
+            2.65232
+          ],
+          "bounds": {
+            "min": [
+              -1.41347,
+              -0.00007,
+              -1.32616
+            ],
+            "max": [
+              1.41347,
+              0.84032,
+              1.32616
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        2.82693,
+        0.84039,
+        2.65232
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/Fern_1.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "rocher-moyen",
+      "name": "Rocher moyen",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/Rock_Medium_1.gltf",
+      "sourceSha256": "5d1ab1fa03218f4a908728ed0eabe6486344a7e4f510b0d3d6f837fd1d011bd8",
+      "sourceTriangles": 342,
+      "sourceBounds": {
+        "min": [
+          -1.7272872924804688,
+          -0.27113133668899536,
+          -1.1498832702636719
+        ],
+        "max": [
+          1.4978611469268799,
+          1.988665223121643,
+          1.8392531871795654
+        ],
+        "dimensions": [
+          3.2251484394073486,
+          2.2597965598106384,
+          2.9891364574432373
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/rocher-moyen.lod0.glb",
+          "bytes": 27180,
+          "sha256": "d91c20c28cae4e3b69238520b757cf4166c8df5cf8f865b0dd004f0d11b3eb0a",
+          "triangles": 342,
+          "primitives": 1,
+          "dimensions": [
+            3.22515,
+            2.25968,
+            2.98932
+          ],
+          "bounds": {
+            "min": [
+              -1.61257,
+              0.00006,
+              -1.49466
+            ],
+            "max": [
+              1.61257,
+              2.25974,
+              1.49466
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/rocher-moyen.lod1.glb",
+          "bytes": 12792,
+          "sha256": "380170fb4a950f867ba880498aae7df67e91cf5bb2fa2abd2f243d44f6b12878",
+          "triangles": 102,
+          "primitives": 1,
+          "dimensions": [
+            3.22515,
+            2.20614,
+            2.98932
+          ],
+          "bounds": {
+            "min": [
+              -1.61257,
+              0.0145,
+              -1.49466
+            ],
+            "max": [
+              1.61257,
+              2.22064,
+              1.49466
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        3.22515,
+        2.25968,
+        2.98932
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/Rock_Medium_1.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
+    },
+    {
+      "id": "rocher-plat",
+      "name": "Rocher plat",
+      "category": "vegetation",
+      "provider": "quaternius-nature",
+      "unit": "m",
+      "pivot": "centre-au-sol",
+      "upAxis": "Y",
+      "sourceModel": "stylized-nature-megakit/glTF/Rock_Medium_3.gltf",
+      "sourceSha256": "9a575b911372cf91693aa3a56aea8137ec2251c2b99fb34a31272ee64503047f",
+      "sourceTriangles": 522,
+      "sourceBounds": {
+        "min": [
+          -1.8242793083190918,
+          -0.31564441323280334,
+          -0.8904620409011841
+        ],
+        "max": [
+          1.5958054065704346,
+          2.000638246536255,
+          2.5856480598449707
+        ],
+        "dimensions": [
+          3.4200847148895264,
+          2.3162826597690582,
+          3.476110100746155
+        ]
+      },
+      "scaleApplied": 1,
+      "usage": "paysage",
+      "changes": [
+        "Conversion GLB autonome",
+        "Textures WebP plafonnées à 512 px",
+        "Recentrage au sol",
+        "Meshopt et niveaux de détail"
+      ],
+      "lods": [
+        {
+          "level": 0,
+          "path": "assets/library/models/vegetation/rocher-plat.lod0.glb",
+          "bytes": 29416,
+          "sha256": "736cff0c3244b4fb5c4c1b8585fbbbc0343ba510aa433a3fd15e92bd02e7a16c",
+          "triangles": 522,
+          "primitives": 1,
+          "dimensions": [
+            3.4201,
+            2.31628,
+            3.47611
+          ],
+          "bounds": {
+            "min": [
+              -1.71005,
+              0,
+              -1.73806
+            ],
+            "max": [
+              1.71005,
+              2.31628,
+              1.73806
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 512 px maximum"
+        },
+        {
+          "level": 1,
+          "path": "assets/library/models/vegetation/rocher-plat.lod1.glb",
+          "bytes": 13948,
+          "sha256": "8bf060976155067657b25ad2d00457c33e2d5498110e345c158665cfaed5d436",
+          "triangles": 168,
+          "primitives": 1,
+          "dimensions": [
+            3.40227,
+            2.27978,
+            3.47611
+          ],
+          "bounds": {
+            "min": [
+              -1.69221,
+              0.00236,
+              -1.73806
+            ],
+            "max": [
+              1.71007,
+              2.28214,
+              1.73806
+            ]
+          },
+          "compression": "EXT_meshopt_compression",
+          "textures": "WebP 256 px maximum"
+        }
+      ],
+      "dimensions": [
+        3.4201,
+        2.31628,
+        3.47611
+      ],
+      "license": "CC0-1.0",
+      "licenseVerified": true,
+      "licenseFile": "assets/library/licenses/quaternius-nature.txt",
+      "sourceUrl": "https://quaternius.com/packs/stylizednaturemegakit.html",
+      "sourceArchiveMember": "glTF/Rock_Medium_3.gltf",
+      "runtimeLod": null,
+      "forwardAxis": null
     }
   ],
   "icons": [
@@ -1548,8 +2598,8 @@
       "bytes": 339,
       "sha256": "58fc78c36761512b44fc92cb601de27776b228907a205002367da862049d7edb",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_e.svg",
@@ -1566,8 +2616,8 @@
       "bytes": 615,
       "sha256": "6c3ff0f55a95a22c0766de806108fd06f9a752974c8d379f70de9fe72f613039",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_c.svg",
@@ -1584,8 +2634,8 @@
       "bytes": 315,
       "sha256": "0596ce47bcce76145fee2b4ad30f6ada8951be167dd596b24e29a35a1e90a653",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_t.svg",
@@ -1602,8 +2652,8 @@
       "bytes": 310,
       "sha256": "a6d785532ab837ff751c8c45a2059f5a08841c8ff663c9e4a59228f22efcff41",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_v.svg",
@@ -1620,8 +2670,8 @@
       "bytes": 345,
       "sha256": "dfeaa0a33f6cc55987893a9cc77632011ed0c1bf6e33c01f3d0de8ec64606862",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_m.svg",
@@ -1638,8 +2688,8 @@
       "bytes": 574,
       "sha256": "eaf8f5515675607bb4e583e31a7d57bba6652926938079998e0b99532431e482",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_o.svg",
@@ -1656,8 +2706,8 @@
       "bytes": 585,
       "sha256": "398d9030c366f56e39ae92457d748e5bf159f6672342c3e376a3ee1eb0bab99a",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_p.svg",
@@ -1674,8 +2724,8 @@
       "bytes": 571,
       "sha256": "7ae887d80a5370cc25f4256e111d4a72e0830113cb9118b0bab75d351c924603",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_r.svg",
@@ -1692,8 +2742,8 @@
       "bytes": 382,
       "sha256": "30c1e7f3d120b8b60bca4e02a035805b0d923dfa6cc4e286a753142d102a0177",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_h.svg",
@@ -1710,8 +2760,8 @@
       "bytes": 327,
       "sha256": "14bc44182271abe273d58ac66bd1337cab3e9b8f3c86c9a8f8b7b1fe39c7b08a",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_f.svg",
@@ -1728,8 +2778,8 @@
       "bytes": 1013,
       "sha256": "877ed5d62b78a468a2206dd18530802a851e7f25efca2be99b90fac46c7ce02a",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_escape.svg",
@@ -1746,8 +2796,8 @@
       "bytes": 1497,
       "sha256": "7143bd165a266ed950705cb45bb678a32a70bda73b5de221985c3fa1d3d527be",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_shift.svg",
@@ -1764,8 +2814,8 @@
       "bytes": 2146,
       "sha256": "e6c3941bfae3a1db04c69792cbd550d45ab0756ecd747375e1a4cf8bdab96027",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_space.svg",
@@ -1782,8 +2832,8 @@
       "bytes": 1500,
       "sha256": "822abacef97c5bb74e5942e357c202fbec6abd9a6a3960f6be713f39ebc2a267",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_ctrl.svg",
@@ -1800,8 +2850,8 @@
       "bytes": 357,
       "sha256": "689d533faf0cf5310b39c075e39d2d8c05477cacb2947f33984533dbe2df11ba",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_w.svg",
@@ -1818,8 +2868,8 @@
       "bytes": 349,
       "sha256": "3ecc3176cd7361e42837b9348833aca8fac6c2ec33cb12f8101e84c0712d291d",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_a.svg",
@@ -1836,8 +2886,8 @@
       "bytes": 893,
       "sha256": "56cbeb694c9bb9a5276ba4720ac6c8918ee41628588db6fb94cc5f7a11e4ca3a",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_s.svg",
@@ -1854,8 +2904,8 @@
       "bytes": 496,
       "sha256": "009b3768692869e501c9389e99de91049058b7a8edfe41aee7d322970a3132d4",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_d.svg",
@@ -1872,8 +2922,8 @@
       "bytes": 327,
       "sha256": "d3678f98d7c041f1670352b933e7220770c2a7485b8bb159704e669d1653ebef",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_z.svg",
@@ -1890,8 +2940,8 @@
       "bytes": 638,
       "sha256": "1b99f67c6d1f638569829490b3661bfdea91a8b0583e4dba2bff9e17be12565b",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/keyboard_q.svg",
@@ -1908,8 +2958,8 @@
       "bytes": 1197,
       "sha256": "4b0d20b7ee578b0cd06b5c862530324dc70ad1bf8a2f8fd82943252729164e94",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/mouse_move.svg",
@@ -1926,8 +2976,8 @@
       "bytes": 842,
       "sha256": "65094eb243e10344f58427b26b40d7558ede0430b94fee81ab948fbf91d46130",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/mouse_left.svg",
@@ -1944,8 +2994,8 @@
       "bytes": 842,
       "sha256": "6dc4100175c2fe2c41637ff6503c6e4092d91e77bd13bf2ab118ae73e4a0c3eb",
       "dimensionsPixels": [
-        64.0,
-        64.0
+        64,
+        64
       ],
       "provider": "kenney-prompts",
       "sourceArchiveMember": "Keyboard & Mouse/Vector/mouse_scroll.svg",
@@ -1957,9 +3007,9 @@
     }
   ],
   "totals": {
-    "models": 13,
-    "modelVariants": 26,
-    "modelBytes": 1551504,
+    "models": 23,
+    "modelVariants": 46,
+    "modelBytes": 3617548,
     "horizonBytes": 152448,
     "icons": 23,
     "iconBytes": 16460

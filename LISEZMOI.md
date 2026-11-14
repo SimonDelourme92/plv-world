@@ -29,6 +29,13 @@ Les PLV de moins de 60 cm (largeur et profondeur) et 50 cm de haut sont rangées
 ## Rivière, lac et eau
 Une rivière avec un petit bras et une île, reliée à un lac, est creusée dans la zone x/z −500 à 0. L’eau (`assets/river/water.js`) est une surface unique au niveau −0,9 m : elle n’apparaît que là où le lit descend plus bas, avec berges peu profondes et claires, centre plus sombre, reflets du ciel et ondulations animées. Aucune texture. Elle suit le terrassement des lots. Marcher dans l’eau est possible (pas de nage ni de ralentissement pour l’instant). Si l’eau ne se charge pas, le lit sec reste affiché.
 
+## Paysage : cité, routes, forêts
+- **Cité** (x −200 → 400, z −300 → 200, 6 × 5 quartiers) : plate, réservée aux lots, décor futuriste uniquement ici.
+- **Campagne** autour : collines qui montent progressivement (jusqu’à ~30 m en bordure), rivière et lac inchangés.
+- **Routes** (`assets/roads/`) : boulevard en anneau posé dans les allées entre quartiers (il n’entre jamais dans un quartier), boucle de campagne, quatre liaisons, un pont sur la rivière. Le terrain est terrassé sous les chaussées. Les quartiers traversés par une route de campagne ne reçoivent jamais de lot ; aucun quartier de la cité n’est concerné.
+- **Végétation** (`assets/nature/`) : 13 modèles CC0 Quaternius (feuillus, pins, arbres tordus, arbre mort, buissons, fougère, rochers) répartis en forêts, clairières, lisières, bosquets, arbres isolés, berges et alignement du boulevard. Détail près de la caméra, silhouettes au loin. Réglage **Densité du décor** : Aucune / Faible / Moyenne / Haute. Les arbres s’effacent automatiquement sous tout lot ajouté.
+- Détails techniques et limites : `docs/PAYSAGE.md`.
+
 ## Bibliothèque d’assets 3D
 
 [Ouvrir le catalogue interactif](assets/library/catalogue.html) pour examiner les modèles, changer le niveau de détail, vérifier dimensions, poids, sources et licences. Il est aussi accessible depuis Réglages → Bibliothèque 3D. Aucun accès à l’inventaire local.

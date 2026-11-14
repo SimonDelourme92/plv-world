@@ -47,23 +47,27 @@ export function riverbedHeight(x,z,reservations=[]){
   return depth===0 ? 0 : -depth;
 }
 
-export function createRiverbed({THREE,scene,ground,reservations}){
+export function createRiverbed({THREE,scene,ground,reservations,surfaceHeight=null}){
   const root=new THREE.Group();root.name='Lit de rivière';const chunks=[];
   let protectedAreas=reservations();const height=(x,z)=>riverbedHeight(x,z,protectedAreas);
-  for(let z=RIVER_AREA.minZ;z<RIVER_AREA.maxZ;z+=100)for(let x=RIVER_AREA.minX;x<RIVER_AREA.maxX;x+=100){
-    const g=new THREE.PlaneGeometry(100,100,50,50);g.rotateX(-Math.PI/2);const pos=g.attributes.position,uv=g.attributes.uv;
-    for(let i=0;i<pos.count;i++){const wx=x+50+pos.getX(i),wz=z+50+pos.getZ(i);pos.setXYZ(i,wx,height(wx,wz),wz);uv.setXY(i,(wx+1000)/2000,1-(wz+1000)/2000);}
+  const sample=surfaceHeight?((x,z)=>surfaceHeight(x,z,height(x,z))):height;
+  const tile=surfaceHeight?100:100,steps=surfaceHeight?40:50;
+  const minX=surfaceHeight?-1000:RIVER_AREA.minX,maxX=surfaceHeight?1000:RIVER_AREA.maxX;
+  const minZ=surfaceHeight?-1000:RIVER_AREA.minZ,maxZ=surfaceHeight?1000:RIVER_AREA.maxZ;
+  for(let z=minZ;z<maxZ;z+=tile)for(let x=minX;x<maxX;x+=tile){
+    const g=new THREE.PlaneGeometry(tile,tile,steps,steps);g.rotateX(-Math.PI/2);const pos=g.attributes.position,uv=g.attributes.uv;
+    for(let i=0;i<pos.count;i++){const wx=x+tile/2+pos.getX(i),wz=z+tile/2+pos.getZ(i);pos.setXYZ(i,wx,sample(wx,wz),wz);uv.setXY(i,(wx+1000)/2000,1-(wz+1000)/2000);}
     g.computeVertexNormals();g.computeBoundingSphere();const mesh=new THREE.Mesh(g,ground.material);mesh.receiveShadow=true;root.add(mesh);chunks.push(mesh);
   }
   // Retire seulement le plan plat sous la géométrie du lit.
   ground.material.onBeforeCompile=shader=>{
     shader.vertexShader=shader.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vGroundWorld;').replace('#include <begin_vertex>','#include <begin_vertex>\nvGroundWorld=(modelMatrix*vec4(position,1.)).xyz;');
-    shader.fragmentShader=shader.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vGroundWorld;').replace('#include <clipping_planes_fragment>','#include <clipping_planes_fragment>\nif(vGroundWorld.x > -500.0 && vGroundWorld.x < 0.0 && vGroundWorld.z > -500.0 && vGroundWorld.z < 500.0 && vGroundWorld.y > -0.001) discard;');
+    shader.fragmentShader=shader.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vGroundWorld;').replace('#include <clipping_planes_fragment>',surfaceHeight?'#include <clipping_planes_fragment>\ndiscard;':'#include <clipping_planes_fragment>\nif(vGroundWorld.x > -500.0 && vGroundWorld.x < 0.0 && vGroundWorld.z > -500.0 && vGroundWorld.z < 500.0 && vGroundWorld.y > -0.001) discard;');
   };
   // Chunks need their own material: the hole applies only to the original plane.
   const riverMaterial=ground.material.clone();riverMaterial.onBeforeCompile=()=>{};riverMaterial.customProgramCacheKey=()=> 'riverbed-surface';
   for(const mesh of chunks)mesh.material=riverMaterial;
   ground.material.customProgramCacheKey=()=> 'riverbed-hole';ground.material.needsUpdate=true;scene.add(root);
   let water=null;try{water=createWater({THREE,scene,bounds:RIVER_AREA,height});}catch(e){console.warn('Eau indisponible : lit sec conservé.',e);}
-  return {height,root,get water(){return water;},refresh(){protectedAreas=reservations();for(const mesh of chunks){const p=mesh.geometry.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,height(p.getX(i),p.getZ(i)));p.needsUpdate=true;mesh.geometry.computeVertexNormals();mesh.geometry.computeBoundingSphere();}water?.refresh();},update(seconds){water?.update(seconds);},dispose(){water?.dispose();root.removeFromParent();for(const mesh of chunks)mesh.geometry.dispose();riverMaterial.dispose();ground.material.onBeforeCompile=()=>{};ground.material.needsUpdate=true;}};
+  return {height:sample,root,get water(){return water;},refresh(areas=null){protectedAreas=reservations();for(const mesh of chunks){if(areas&&!areas.some(b=>{const bb=mesh.geometry.boundingBox||(mesh.geometry.computeBoundingBox(),mesh.geometry.boundingBox);return b.max.x+20>bb.min.x&&b.min.x-20<bb.max.x&&b.max.z+20>bb.min.z&&b.min.z-20<bb.max.z;}))continue;const p=mesh.geometry.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,sample(p.getX(i),p.getZ(i)));p.needsUpdate=true;mesh.geometry.computeVertexNormals();mesh.geometry.computeBoundingSphere();mesh.geometry.computeBoundingBox();}water?.refresh();},update(seconds){water?.update(seconds);},dispose(){water?.dispose();root.removeFromParent();for(const mesh of chunks)mesh.geometry.dispose();riverMaterial.dispose();ground.material.onBeforeCompile=()=>{};ground.material.needsUpdate=true;}};
 }

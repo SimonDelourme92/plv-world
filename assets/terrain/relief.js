@@ -31,17 +31,23 @@ const distanceToBox = (x, z, box) => Math.hypot(
   Math.max(box.min.z - z, 0, z - box.max.z),
 );
 
+// La cité (quartiers des lots) reste plane ; le relief monte progressivement au-delà.
+export const RELIEF_CITY = { minX: -200, maxX: 400, minZ: -300, maxZ: 200 };
+const cityDistance = (x, z) => distanceToBox(x, z, { min: { x: RELIEF_CITY.minX, z: RELIEF_CITY.minZ }, max: { x: RELIEF_CITY.maxX, z: RELIEF_CITY.maxZ } });
+
 export function createRelief({ reservations = () => [] } = {}) {
   return (x, z) => {
     if (Math.abs(x) > WORLD_HALF || Math.abs(z) > WORLD_HALF) return 0;
+    const countryside = smooth(15, 230, cityDistance(x, z));
+    if (countryside === 0) return 0;
     const warpX = fbm(x * 0.0021 + 7.2, z * 0.0021 - 3.4) * 42;
     const warpZ = fbm(x * 0.0021 - 4.8, z * 0.0021 + 8.1) * 42;
     const wx = x + warpX, wz = z + warpZ;
     const region = smooth(0.12, 0.72, Math.max(Math.abs(fbm(wx * 0.0012, wz * 0.0012)), 0));
     const edge = smooth(420, 850, Math.max(Math.abs(x), Math.abs(z)));
-    const hills = fbm(wx * 0.0042, wz * 0.0042) * (2.5 + region * 8 + edge * 12);
-    const broad = fbm(wx * 0.0008 + 21, wz * 0.0008 - 15) * edge * 20;
-    let height = hills + broad;
+    const hills = fbm(wx * 0.0042, wz * 0.0042) * (5 + region * 11 + edge * 12);
+    const broad = (fbm(wx * 0.0011 + 21, wz * 0.0011 - 15) + 0.18) * (9 + edge * 18);
+    let height = (hills + broad) * countryside;
     for (const box of reservations()) {
       if (x >= box.min.x && x <= box.max.x && z >= box.min.z && z <= box.max.z) return 0;
       const d = distanceToBox(x, z, box);

@@ -37,15 +37,25 @@ Seules les versions **Standard gratuites** des packs Quaternius ont été utilis
 | Navette cargo | Kenney — Space Kit 2.0 | Horizon | CC0-1.0 |
 | Pavillon modulaire Astra | Quaternius — Modular Sci-Fi MegaKit Standard FREE | Réserve, consultable dans le catalogue | CC0-1.0 |
 | Pavillon spatial vitré | Kenney — Space Kit 2.0 | Réserve, consultable dans le catalogue | CC0-1.0 |
-| Arbre feuillu | Quaternius — Stylized Nature MegaKit Standard FREE | Réserve, consultable dans le catalogue | CC0-1.0 |
-| Pin | Quaternius — Stylized Nature MegaKit Standard FREE | Réserve, consultable dans le catalogue | CC0-1.0 |
-| Buisson | Quaternius — Stylized Nature MegaKit Standard FREE | Réserve, consultable dans le catalogue | CC0-1.0 |
+| Arbre feuillu | Quaternius — Stylized Nature MegaKit Standard FREE | Paysage | CC0-1.0 |
+| Pin | Quaternius — Stylized Nature MegaKit Standard FREE | Paysage | CC0-1.0 |
+| Buisson | Quaternius — Stylized Nature MegaKit Standard FREE | Paysage | CC0-1.0 |
+| Feuillu rond | Quaternius — Stylized Nature MegaKit Standard FREE (`CommonTree_1`) | Paysage | CC0-1.0 |
+| Feuillu élevé | Quaternius — Stylized Nature MegaKit Standard FREE (`CommonTree_4`) | Paysage | CC0-1.0 |
+| Pin touffu | Quaternius — Stylized Nature MegaKit Standard FREE (`Pine_4`) | Paysage | CC0-1.0 |
+| Arbre tordu | Quaternius — Stylized Nature MegaKit Standard FREE (`TwistedTree_1`) | Paysage | CC0-1.0 |
+| Arbre tordu large | Quaternius — Stylized Nature MegaKit Standard FREE (`TwistedTree_3`) | Paysage | CC0-1.0 |
+| Arbre mort | Quaternius — Stylized Nature MegaKit Standard FREE (`DeadTree_2`) | Paysage | CC0-1.0 |
+| Buisson fleuri | Quaternius — Stylized Nature MegaKit Standard FREE (`Bush_Common_Flowers`) | Paysage | CC0-1.0 |
+| Fougère | Quaternius — Stylized Nature MegaKit Standard FREE (`Fern_1`) | Paysage | CC0-1.0 |
+| Rocher moyen | Quaternius — Stylized Nature MegaKit Standard FREE (`Rock_Medium_1`) | Paysage | CC0-1.0 |
+| Rocher plat | Quaternius — Stylized Nature MegaKit Standard FREE (`Rock_Medium_3`) | Paysage | CC0-1.0 |
 
 Le pavillon Astra assemble sept types de composants Quaternius Modular Sci-Fi et Downtown : panneaux vitrés, angles, colonnes, sol, encadrement. Sa provenance détaillée par composant est inscrite au manifeste. Les peintures chaudes de certains modules sont harmonisées en métal clair, anthracite et cyan ; les UV et détails de panneaux sont conservés.
 
 Le relief est une **adaptation stylisée** de la capture Mountainside de Poly Haven : profil du fragment resculpté en crête, palette minérale bleutée, simplification et échelle de présentation. Il ne représente pas un massif topographique réel.
 
-Les trois végétaux Quaternius sont conservés pour une future composition ; ils ne remplacent pas le décor actuel dans cette PR. Les 23 pictogrammes viennent de Kenney Input Prompts et sont conservés sans modification dans des SVG distincts. Aucune police ou icône distante supplémentaire.
+Les treize végétaux et rochers Quaternius composent le paysage (forêts, lisières, berges, prairies). Ils sont extraits de la version Standard gratuite par `tools/asset-pipeline/build-vegetation.mjs` (pivot au sol, WebP, meshopt) ; seules les teintes de trois feuillages sont fixées à l’exécution (texture utilisée comme silhouette). Les 23 pictogrammes viennent de Kenney Input Prompts et sont conservés sans modification dans des SVG distincts. Aucune police ou icône distante supplémentaire.
 
 ## Logiciels
 
