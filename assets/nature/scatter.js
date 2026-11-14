@@ -6,7 +6,7 @@ export function scatterNature({ halfExtent = 1000, reservations = [], routes = [
     const gx = (i * 97) % (halfExtent * 2) - halfExtent, gz = (i * 193) % (halfExtent * 2) - halfExtent;
     const x = gx + (hash(i, 4) - .5) * 44, z = gz + (hash(i, 9) - .5) * 44;
     if (blocked(x, z) || Math.hypot(x, z) < 90) continue;
-    result.push({ x, z, species: Math.floor(hash(i, 12) * 3), scale: .78 + hash(i, 18) * .5, rotation: hash(i, 23) * Math.PI * 2 });
+    result.push({ x, z, species: Math.floor(hash(i, 12) * 10), scale: .72 + hash(i, 18) * .68, rotation: hash(i, 23) * Math.PI * 2 });
   }
   return result;
 }

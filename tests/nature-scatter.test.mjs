@@ -6,4 +6,5 @@ test('végétation déterministe et réservations respectées', () => {
   const a = scatterNature({ reservations: [box], routes: [], water: (x, z) => x < -300 && z < 0, density: 'low' });
   const b = scatterNature({ reservations: [box], routes: [], water: (x, z) => x < -300 && z < 0, density: 'low' });
   assert.deepEqual(a, b); assert.ok(a.every(p => !(p.x > -28 && p.x < 28 && p.z > -28 && p.z < 28)));
+  assert.ok(new Set(a.map(p => p.species)).size >= 3);
 });

@@ -6,7 +6,7 @@ export async function createNature({ THREE, scene, terrainHeight, reservations =
   const loader = new GLTFLoader(), names = ['arbre-feuillu', 'pin', 'buisson'], models = await Promise.all(names.map(n => loader.loadAsync(new URL(`../library/models/vegetation/${n}.lod0.glb`, import.meta.url).href)));
   const groups = models.map(m => { const g = new THREE.Group(); m.scene.traverse(o => { if (o.isMesh) { const inst = new THREE.InstancedMesh(o.geometry, o.material, 1); g.add(inst); } }); root.add(g); return g; });
   const items = scatterNature({ reservations, routes, water, density });
-  const bySpecies = groups.map((_, species) => items.filter(item => item.species === species));
+  const bySpecies = groups.map((_, species) => items.filter(item => item.species % 3 === species));
   for (let species = 0; species < groups.length; species++) {
     const meshes = groups[species].children;
     for (const mesh of meshes) {
@@ -16,6 +16,6 @@ export async function createNature({ THREE, scene, terrainHeight, reservations =
       mesh.instanceMatrix.needsUpdate = true; mesh.castShadow = species !== 2; mesh.receiveShadow = true;
     }
   }
-  const colliders = items.filter((_, i) => i % 5 === 0 && items[i].species !== 2).map(item => ({ min: { x: item.x - .18, z: item.z - .18, y: 0 }, max: { x: item.x + .18, z: item.z + .18, y: 4 } }));
-  return { root, colliders, statistics: { arbres: items.length, especes: 3 }, update() {}, refresh() {} };
+  const colliders = items.filter((_, i) => i % 5 === 0 && items[i].species % 3 !== 2).map(item => ({ min: { x: item.x - .18, z: item.z - .18, y: 0 }, max: { x: item.x + .18, z: item.z + .18, y: 4 } }));
+  return { root, colliders, statistics: { arbres: items.length, especes: 10 }, update() {}, refresh() {} };
 }
