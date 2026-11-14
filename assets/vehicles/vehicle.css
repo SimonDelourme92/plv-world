@@ -81,6 +81,48 @@
   padding: 3px 6px;
   font-size: 9px;
 }
+.vehicle-live-audio {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 7px;
+  margin: 0 2px 4px;
+  padding: 8px 9px;
+  border: 1px solid #a5c8d329;
+  border-radius: 8px;
+  background: #12212ad9;
+  color: #b2c9d5;
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+}
+.vehicle-live-audio label,
+.vehicle-live-audio small {
+  font-size: 8px;
+  white-space: nowrap;
+}
+.vehicle-live-audio label {
+  letter-spacing: .08em;
+}
+.vehicle-live-audio label b {
+  color: #d8edf0;
+  font-size: 9px;
+}
+.vehicle-live-audio input {
+  width: 100%;
+  min-width: 52px;
+  height: 18px;
+  margin: 0;
+  accent-color: #a8e3e9;
+  cursor: ew-resize;
+  pointer-events: auto;
+}
+.vehicle-live-audio input:focus-visible {
+  outline: 2px solid #a8e3e9;
+  outline-offset: 2px;
+}
+.vehicle-live-audio small {
+  color: #91aebc;
+}
 .vehicle-settings {
   margin-top: 24px;
   padding-top: 8px;
