@@ -92,3 +92,10 @@ L'ambiance intermittente (brise et oiseaux) et la couche harmonique du moteur so
 
 ## Visiteurs piétons
 Les visiteurs réutilisent le personnage « Rigged T-Pose Human Male w/ 50 Face Blendshapes » de Mike Alger, CC BY 4.0, et la Universal Animation Library de Quaternius, CC0, déjà crédités dans la section personnage. Leurs animations sont recalées une seule fois et les géométries sont partagées entre les personnages ; aucun modèle externe supplémentaire n'est ajouté.
+
+### Visiteurs animés Innerscene (Maya, Sam et Harper)
+
+- [Maya — marche détendue](https://www.innerscene.com/tools/library/3d-parts/relaxed-walk-maya-3d-person-animated-2c6669a2), [Sam — marche détendue](https://www.innerscene.com/tools/library/3d-parts/relaxed-walk-sam-3d-person-animated-732f1206), [Harper — marche détendue](https://www.innerscene.com/tools/library/3d-parts/relaxed-walk-harper-3d-person-animated-b504cbac) : Innerscene, modèles dérivés d’assets MakeHuman/MPFB et animations originales, licence [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Pages et licences consultées le 14 novembre 2026.
+- Fichiers `assets/npc/models/{maya,sam,harper}.glb` : textures redimensionnées à 1 024 px maximum ; textures opaques converties en JPEG. Géométrie, squelette et animation conservés.
+
+- [Jordan — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-jordan-3d-person-animated-911f1584), [Sam — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-sam-3d-person-animated-dc23800f), [Maya — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-maya-3d-person-animated-1499b2fd), [Harper — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-harper-3d-person-animated-797e1e2a) : Innerscene, dérivés de MakeHuman/MPFB, personnages et animations CC0 1.0 ; textures limitées à 1 024 px, textures opaques converties en JPEG. Licences consultées le 14 novembre 2026.
