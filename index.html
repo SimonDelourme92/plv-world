@@ -106,8 +106,8 @@ const skyCanvas=makeCanvas(8,512), skyCtx=skyCanvas.getContext('2d');const skyGr
 // AMBIANCE — ciel HDRI facultatif et environnement préfiltré, jamais par frame.
 // Clés distinctes de l’ancien ciel distant : aucun changement du schéma IndexedDB.
 const HDR_ASSETS=Object.freeze([
- {url:'assets/ciel/coucher_soleil_1k.hdr',key:'asset:sky:coucher-soleil-1k-v1',nom:'Coucher de soleil'},
- {url:'assets/ciel/ciel_nuageux_1k.hdr',key:'asset:sky:ciel-nuageux-1k-v1',nom:'Ciel nuageux'}
+ {url:'assets/ciel/ciel_nuageux_1k.hdr',key:'asset:sky:ciel-nuageux-1k-v1',nom:'Ciel nuageux'},
+ {url:'assets/ciel/coucher_soleil_1k.hdr',key:'asset:sky:coucher-soleil-1k-v1',nom:'Coucher de soleil'}
 ]);
 let hdrAsset=HDR_ASSETS[0];
 const sunDirection=new THREE.Vector3(-.72,.38,.48).normalize(),hdrSunDirection=sunDirection.clone();
@@ -130,10 +130,10 @@ function applyAtmosphere(){for(const r of records)r.level=-2;const isMap=mapActi
  sun.color.setHex(modern?(isNight?0x7aa6d9:PALETTE.sun):0xfff3db);sun.intensity=modern?(isNight?.16:1.55-.25*evening):1.35;if(!modern){sun.position.set(-25,45,20);sun.target.position.set(0,0,0);}else{sun.target.position.set(camera.position.x,0,camera.position.z);sun.position.copy(lightDirection()).multiplyScalar(75).add(sun.target.position);}
  fog.color.setHex(modern?(isNight?0x6f8398:PALETTE.haze):PALETTE.legacyFog);fog.near=cfg.distance*(modern?.48:.60);fog.far=cfg.distance;
  // Le HDRI éclaire et se reflète ; son décor photographique ne remplace pas la cité.
- scene.background=isMap?mapBg:legacy?skyTexture:new THREE.Color(isNight?0x62778f:PALETTE.haze);
+ const showSky=hasHDR&&!isNight&&hdrAsset?.nom==='Ciel nuageux';scene.background=isMap?mapBg:legacy?skyTexture:showSky?hdriTexture:new THREE.Color(isNight?0x62778f:PALETTE.haze);
  scene.environment=modern?(hasHDR?hdriEnv:proceduralEnv):null;scene.environmentIntensity=modern?(isNight?.14:(hasHDR?.55:.42)):1;scene.backgroundIntensity=1;
  // Dégradé à faible coût par pixel ; Sky sert seulement au calcul des reflets de secours.
- gradientSphere.material.uniforms.sunDir.value.copy(lightDirection());gradientSphere.visible=modern&&!isNight;if(skyMesh)skyMesh.visible=false;
+ gradientSphere.material.uniforms.sunDir.value.copy(lightDirection());gradientSphere.visible=modern&&!isNight&&!showSky;if(skyMesh)skyMesh.visible=false;
  const enabled=!isMap&&cfg.shadows&&(legacy?false:cfg.quality!=='low');renderer.shadowMap.enabled=enabled;sun.castShadow=enabled;renderer.shadowMap.autoUpdate=false;shadowDirty=true;renderer.shadowMap.needsUpdate=enabled;
  sun.shadow.radius=cfg.quality==='high'?3:2;const size=cfg.quality==='high'?2048:1024;if(sun.shadow.mapSize.x!==size){sun.shadow.map?.dispose();sun.shadow.map=null;sun.shadow.mapSize.set(size,size);}
  const extent=cfg.quality==='high'?42:30;Object.assign(sun.shadow.camera,{left:-extent,right:extent,top:extent,bottom:-extent,near:1,far:155});sun.shadow.camera.updateProjectionMatrix();

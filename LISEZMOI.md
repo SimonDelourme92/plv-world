@@ -57,9 +57,9 @@ Dans le menu, **Découvrir le Parvis Méridien** ouvre une vue d’ensemble au s
 Analyse, périmètre et validation : [docs/QUARTIER_PILOTE.md](docs/QUARTIER_PILOTE.md). Sources et licences : [CREDITS.md](CREDITS.md).
 
 ## Ciel et éclairage
-L’éclairage et les reflets de fin d’après-midi chargent `assets/ciel/coucher_soleil_1k.hdr`. Si ce fichier est indisponible ou invalide, le ciel nuageux local prend le relais, puis le ciel procédural. Le ciel visible reste procédural pour éviter les bâtiments photographiés du HDRI derrière la cité. Le soleil est adouci et la lumière ambiante du HDRI préfiltrée une seule fois au chargement. Aucun appel à Poly Haven n’est nécessaire.
+Le ciel visible est le HDRI **Ciel nuageux** (`assets/ciel/ciel_nuageux_1k.hdr`, Poly Haven, CC0) : ciel bleu et nuages, sans bâtiment. Il éclaire aussi la scène et se reflète dans la voiture et dans l’eau. Le HDRI « coucher de soleil » est gardé en secours pour l’éclairage seulement : son décor montre des bâtiments vénitiens et n’est jamais affiché en fond. Si aucun HDRI ne charge, le ciel procédural prend le relais ; la nuit, le ciel reste uni.
 
-Les réglages HDRI, exposition, heure, ombres et ancien rendu restent disponibles. Le cache local utilise des clés propres à ces fichiers, sans modifier les lots, les sauvegardes ni le schéma IndexedDB. Three.js reste chargé depuis le CDN.
+Les réglages HDRI, exposition, heure, ombres et ancien rendu restent disponibles. Three.js reste chargé depuis le CDN.
 
 ## Règles pour les assistants (ChatGPT, Claude…)
 1. **Aucun asset en base64 dans le code.** Tout fichier binaire va dans `assets/` et se charge par chemin relatif (`fetch`, loaders three.js).
