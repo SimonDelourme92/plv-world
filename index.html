@@ -525,6 +525,8 @@ function ensurePlayerOutside(){if(mode==='car'){if(carBlocked(camera.position.x,
 function home(){camera.position.set(start.x,EYE,start.z);camera.rotation.set(0,0,0,'YXZ');vertical=0;onGround=true;}
 // Lit sec : le sol et les déplacements partagent la même altitude.
 try{const [{createRiverbed},{createRelief}]=await Promise.all([import('./assets/river/riverbed.js'),import('./assets/terrain/relief.js')]);const reservations=()=>[...obstacles,...records.map(r=>r.bounds)];terrain=createRiverbed({THREE,scene,ground,reservations});const relief=createRelief({reservations});terrainSampler=(x,z)=>{const bed=terrain.height(x,z);return bed<0.05?bed:bed+relief(x,z);};}catch(e){console.warn('Relief ou lit de rivière indisponible : terrain plat conservé.',e);}
+let roadsLandscape=null;
+try{const {createRoads}=await import('./assets/roads/roads.js');roadsLandscape=createRoads({THREE,scene,heightAt:terrainHeight,reservations:records.map(r=>r.bounds),water:(x,z)=>terrainHeight(x,z)<-0.7});}catch(e){console.warn('Routes indisponibles : monde sans routes conservé.',e);}
 home();
 // ============================================================================
 // DÉCOR VIVANT — phase 3 : props futuristes instanciés, chunks visibles de près.
