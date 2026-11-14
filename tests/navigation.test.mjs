@@ -16,18 +16,13 @@ test("walking route connects distant districts and avoids a building footprint",
   }
 });
 
-test("vehicle route stays on the street grid and snaps to accessible road parking", () => {
-  const route = router.route({ x: -76, z: -73 }, { x: 68, z: 62 }, { mode: "car" });
+test("vehicle routes across open ground while avoiding buildings", () => {
+  const building = { min: { x: -10, z: -40, y: 0 }, max: { x: 10, z: 30, y: 18 } };
+  const destination = { x: 68, z: 62 };
+  const route = router.route({ x: -76, z: -73 }, destination, { mode: "car", obstacles: [building] });
   assert.ok(route);
-  assert.equal(route.mode, "car");
-  const end = route.points.at(-1);
-  const roadOffset = Math.min(Math.abs(end.x % 100), Math.abs(end.z % 100));
-  assert.ok(roadOffset <= 0.1, `parking endpoint should lie on a 100 m street axis, got ${JSON.stringify(end)}`);
-  for (const point of route.points.slice(1, -1)) {
-    const dx = Math.abs(((point.x + 100) % 100));
-    const dz = Math.abs(((point.z + 100) % 100));
-    assert.ok(Math.min(dx, 100 - dx, dz, 100 - dz) <= 5.1);
-  }
+  assert.deepEqual(route.points.at(-1), destination);
+  for (const p of route.points) assert.ok(p.x <= building.min.x || p.x >= building.max.x || p.z <= building.min.z || p.z >= building.max.z);
 });
 
 test("replanning from a point along the route produces a shorter remaining trip", () => {

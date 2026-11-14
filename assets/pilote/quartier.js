@@ -55,23 +55,6 @@ export function createPilotDistrict({THREE,scene,mergeGeometries,onChange=()=>{}
    carrier.position.set(x,y,z);carrier.rotation.set(0,rotation,tilt);carrier.scale.set(w,h,d);carrier.updateMatrix();
    batches.get(key).matrices.push(carrier.matrix.clone());
   }
-  // Dalle affleurante : pas de marche invisible pour le contrôleur de déplacement.
-  part('paving',50,.012,50,91,.004,91);
-  part('road',50,.03,50,13,.004,91);
-  // La croix est découpée : aucune dalle coplanaire en double à l’intersection.
-  part('road',24,.03,52,39,.004,11);part('road',76,.03,52,39,.004,11);
-  for(const x of [42.9,57.1])part('joint',x,.05,50,.12,.008,91);
-  for(const z of [45.9,58.1])part('joint',50,.05,z,91,.008,.12);
-  // Calepinage architectural, partagé et instancié (pas une grille mondiale).
-  for(let n=8;n<=92;n+=4){
-   part('joint',n,.05,27,.025,.008,36,true);
-   part('joint',n,.05,76,.025,.008,35,true);
-   part('joint',25,.05,n,35,.008,.025,true);
-   part('joint',76,.05,n,34,.008,.025,true);
-  }
-  // Cheminements lumineux fins et bandes de traversée, sans bloom.
-  for(const z of [4,96])for(let x=44;x<=56;x+=2)part('joint',x,.06,z,.8,.008,3,true);
-  for(const z of [44,60])for(const x of [15,85])part('light',x,.07,z,19,.012,.07);
   // Chaque édifice possède socle, atrium vitré, aile pleine, retrait et couronnement.
   for(const b of buildings){
    const {x,z,w,d,h,flip}=b;
