@@ -134,6 +134,50 @@ body.refined-ui {
   opacity: 0.5;
   margin-left: 12px;
 }
+.refined-ui .master-sound {
+  position: fixed;
+  z-index: 12;
+  left: 28px;
+  top: 138px;
+  width: 226px;
+  padding: 9px 12px 8px;
+  border-radius: 8px;
+  background: #101b24e8;
+  border-color: #def3ff24;
+  pointer-events: auto;
+}
+.refined-ui .master-sound label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #c4d8e2;
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+.refined-ui .master-sound label b {
+  color: #d9eef0;
+  font-size: 10px;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+.refined-ui .master-sound input {
+  display: block;
+  width: 100%;
+  height: 17px;
+  margin: 2px 0 0;
+  accent-color: #a8e3e9;
+  cursor: ew-resize;
+  pointer-events: auto;
+}
+.refined-ui .master-sound small {
+  display: block;
+  color: #91aebc;
+  font-size: 8px;
+  line-height: 1.2;
+}
+.refined-ui canvas.world {
+  cursor: default;
+}
 .refined-ui #bottom {
   bottom: 22px;
   background: none;
@@ -551,6 +595,11 @@ body.refined-ui {
   background: #a8dfe8;
 }
 @media (max-width: 760px) {
+  .refined-ui .master-sound {
+    left: 8px;
+    top: 126px;
+    width: min(208px, 55vw);
+  }
   .refined-ui #pause {
     padding: 12px;
   }

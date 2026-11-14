@@ -112,7 +112,7 @@ export function createInterface() {
   const extra = document.createElement("p");
   extra.className = "menu-intro";
   extra.textContent =
-    "Échap libère la souris et ouvre le menu. H affiche cette aide. Les raccourcis restent inactifs pendant la saisie dans les formulaires.";
+    "Le curseur reste disponible pendant l’exploration. Déplacez-le sur le monde pour orienter la caméra ; la barre SON GÉNÉRAL ajuste aussi le son de la voiture.";
   helpPage.append(extra);
   const footer = document.createElement("div");
   footer.className = "menu-footer";
@@ -159,7 +159,7 @@ export function createInterface() {
   rail.insertBefore(resume, footer);
   const pointerNote = document.createElement("p");
   pointerNote.className = "pointer-menu-note";
-  pointerNote.textContent = "Échap libère la souris pour parcourir les menus. Cliquez sur Explorer / reprendre pour revenir au jeu.";
+  pointerNote.textContent = "Souris libre pendant l’exploration : déplacez-la sur le monde pour regarder autour. Réglez le son avec la barre en haut à gauche.";
   rail.insertBefore(pointerNote, footer);
   $("lotFocus").querySelector(".focusHint").textContent =
     "E / clic · examiner la production";
@@ -169,7 +169,7 @@ export function createInterface() {
     "Glisser pour déplacer · molette pour zoomer";
   // Rendre les touches lisibles plutôt qu'afficher une longue ligne permanente.
   const entries = [
-    ["ZQSD / WASD", "Marcher · souris pour regarder"],
+    ["ZQSD / WASD", "Marcher · déplacer la souris sur le monde pour regarder"],
     ["Maj", "Courir · accélérer en drone"],
     ["Espace", "Sauter · monter en drone · freiner en voiture"],
     ["E / clic", "Examiner la production visée"],
@@ -182,7 +182,7 @@ export function createInterface() {
     ["R", "Rechercher une production"],
     ["H", "Afficher cette aide"],
     ["F", "Afficher / masquer les mesures"],
-    ["Échap", "Pause · libérer la souris"],
+    ["Échap", "Pause / menu"],
     ["Molette", "Zoom externe · vitesse drone · zoom carte"],
     ["Ctrl", "Descendre en drone"],
   ];

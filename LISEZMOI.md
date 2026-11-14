@@ -34,7 +34,7 @@ Les modèles du catalogue composent les alignements de pins, les jardins de feui
 ## Interface, commandes et horizon
 Le menu distingue **Explorer**, **Inventaire**, **Réglages** et **Commandes**. Les mesures techniques sont masquées au départ et accessibles avec **F**. L’aide complète s’ouvre avec **H** ; les formulaires conservent la saisie normale.
 
-ZQSD / WASD et souris pour marcher ; Maj pour courir, Espace pour sauter, **E** ou clic pour examiner une PLV. **C** prend / quitte le véhicule et restitue le point de vue précédent. **T** change de vue, **V** bascule en drone, **M** ouvre la carte, **O** le mode photo, **P** capture l’écran, Échap ouvre le menu. Sur la carte, la téléportation demande **Maj + clic** ; un clic sur un lot ouvre sa fiche.
+ZQSD / WASD pour marcher ; pointeur visible et libre, déplacer la souris sur le monde pour orienter la caméra et cliquer directement sur l’interface. La barre **Son général** en exploration règle ensemble l’ambiance et la voiture. Maj pour courir, Espace pour sauter, **E** ou clic pour examiner une PLV. **C** prend / quitte le véhicule et restitue le point de vue précédent. **T** change de vue, **V** bascule en drone, **M** ouvre la carte, **O** le mode photo, **P** capture l’écran, Échap ouvre le menu. Sur la carte, la téléportation demande **Maj + clic** ; un clic sur un lot ouvre sa fiche.
 
 La sensibilité souris et l’horizon sont réglables dans **Réglages**. Le fond réunit une skyline, deux reliefs lointains et quelques navettes, sans occuper de surface d’exposition. Sources, vérifications et limites de performance : [docs/CORRECTION_INTERFACE_HORIZON.md](docs/CORRECTION_INTERFACE_HORIZON.md).
 
