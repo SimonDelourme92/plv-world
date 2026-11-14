@@ -1,0 +1,31 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "OP NISHA 2026 – comptoir 2 gradins (Éditions de l'Opportun)",
+  "typeModele": "comptoir-carton",
+  "glb": "PLV_OP_NISHA_2026_Comptoir.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.57,
+    "p": 0.315,
+    "h": 0.583
+  },
+  "capacite_livres": 12,
+  "facings": 2,
+  "matieres": {
+    "caisson": "Microbis EE blanc couché / écru, FSC mixte 70 %",
+    "escalier": "Microbis EE blanc couché / écru, sans impression",
+    "fronton": "Microbis EE, numérique recto ; dos du fronton kraft brut non imprimé"
+  },
+  "crea": [
+    {
+      "face": "avant",
+      "nom": "Fronton Romance – Éditions jaspage fantôme (NM20237 V2)"
+    }
+  ],
+  "source": "Configurateur PLV 3D · OP NISHA 2026 (comptoir microbis EE, fronton jaspage fantôme)",
+  "export": "2026-11-14"
+}
