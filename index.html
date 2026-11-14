@@ -295,9 +295,26 @@ async function addEmbeddedQSJ(state){
  return {...state,CATALOGUE:catalogue,LOTS:lots,models:nextModels};
 }
 
+// MODÈLES FOURNIS — colonnes ajoutées au catalogue depuis assets/plv/, sans aucun lot (les quantités se saisissent dans l'outil).
+// Chaque modèle n'est proposé qu'une fois par navigateur : un modèle supprimé du catalogue ne revient pas.
+const EMBEDDED_MODELS=['PLV_Nine_Gorman_2026_Colonne','PLV_Chattam_Morsures_Colonne'],EMBEDDED_KEY='plvworld.modeles-fournis.v1';
+async function addEmbeddedCatalog(state){let done=new Set();try{done=new Set(JSON.parse(localStorage.getItem(EMBEDDED_KEY)||'[]'));}catch(e){}
+ let catalogue=state.CATALOGUE,nextModels=state.models,changed=false;
+ for(const name of EMBEDDED_MODELS){if(done.has(name))continue;
+  try{const [mr,gr]=await Promise.all([fetch('assets/plv/'+name+'.meta.json'),fetch('assets/plv/'+name+'.glb')]);if(!mr.ok||!gr.ok)throw Error('fichier introuvable');const meta=await mr.json(),blob=new Blob([await gr.blob()],{type:'model/gltf-binary'});
+   if(meta.format!=='plv-meta'||meta.version!==1)throw Error('meta invalide');
+   if(Object.values(catalogue).some(d=>d.forme==='modele'&&d.meta?.glb===meta.glb)){done.add(name);continue;}
+   const bundle=await decodeModel(blob),measured={...bundle.size};disposeModel(bundle);
+   if(!['l','p','h'].every(k=>Math.abs(Number(meta.dims[k])/measured[k]-1)<=.02))console.warn('Dimensions meta / GLB différentes (> 2 %) pour '+name,meta.dims,measured);
+   const nom=str(meta.nom,160),slug=nom.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'modele';let id=slug;while(Object.hasOwn(catalogue,id))id=slug+'_'+uuid();
+   const modelId=uuid();nextModels=new Map(nextModels);nextModels.set(modelId,{name:meta.glb,blob,meta});catalogue={...catalogue,[id]:{nom,dims:{...meta.dims},couleur:'#e8d6b5',forme:'modele',modelId,metric:true,physicalDims:measured,meta}};changed=true;done.add(name);
+  }catch(e){console.warn('Modèle fourni ignoré : '+name,e);}
+ }
+ try{localStorage.setItem(EMBEDDED_KEY,JSON.stringify([...done]));}catch(e){}
+ return changed?{...state,CATALOGUE:catalogue,models:nextModels}:state;}
 async function initializeData(){try{db=await openDB();let data=await readDB();if(!data){let legacy=null;try{const raw=localStorage.getItem(STORAGE);if(raw)legacy=JSON.parse(raw);}catch(e){throw Error('Ancienne sauvegarde illisible : '+e.message);}
- const initial={...currentState(),...(legacy||{}),models:new Map()};const s=normalizeState(legacy?initial:await addEmbeddedQSJ(initial));const plan=buildPlan(s.LOTS,s.grouping,s.CATALOGUE);const cache=await prepareModels(s);const stamp=await writeDB(s);installState(s,plan,cache,stamp);if(legacy)$('status').textContent='Ancienne sauvegarde migrée vers IndexedDB.';
- }else{const s=normalizeState(data),plan=buildPlan(s.LOTS,s.grouping,s.CATALOGUE),cache=await prepareModels(s);models=data.models;const stamp=s.corbeille.length!==(data.corbeille||[]).length?await writeDB(s):data.lastSaved;installState(s,plan,cache,stamp);}
+ const initial={...currentState(),...(legacy||{}),models:new Map()};const s=normalizeState(legacy?initial:await addEmbeddedCatalog(await addEmbeddedQSJ(initial)));const plan=buildPlan(s.LOTS,s.grouping,s.CATALOGUE);const cache=await prepareModels(s);const stamp=await writeDB(s);installState(s,plan,cache,stamp);if(legacy)$('status').textContent='Ancienne sauvegarde migrée vers IndexedDB.';
+ }else{const raw=await addEmbeddedCatalog(data).catch(()=>data),s=normalizeState(raw),plan=buildPlan(s.LOTS,s.grouping,s.CATALOGUE),cache=await prepareModels(s);models=data.models;const stamp=raw!==data||s.corbeille.length!==(data.corbeille||[]).length?await writeDB(s):data.lastSaved;installState(s,plan,cache,stamp);}
  }catch(e){if(db)db.close();db=null;saveIndicator('Stockage non chargé');$('status').textContent='Stockage : '+e.message+' — les données existantes ne sont pas écrasées.';}}
 // MODÈLES GLB — fusion par matériau, géométrie statique normalisée à un cube centré.
 function checkGLB(bytes){const v=new DataView(bytes);if(bytes.byteLength<20||v.getUint32(0,true)!==0x46546c67||v.getUint32(4,true)!==2||v.getUint32(8,true)!==bytes.byteLength)throw Error('Fichier GLB 2.0 invalide.');const len=v.getUint32(12,true);if(v.getUint32(16,true)!==0x4e4f534a||20+len>bytes.byteLength)throw Error('En-tête JSON GLB invalide.');const j=JSON.parse(new TextDecoder().decode(new Uint8Array(bytes,20,len)));for(const x of [...(j.buffers||[]),...(j.images||[])])if(x.uri&&!x.uri.startsWith('data:'))throw Error('Le GLB doit intégrer toutes ses ressources (aucun fichier externe).');return j;}
