@@ -286,8 +286,8 @@ export function createCrowd({
               near.bounds.max.z - near.bounds.min.z,
             ) *
               0.5 +
-            5 +
-            random() * 24
+            12 +
+            random() * 35
           : 25 + random() * 55,
         x = cx + Math.cos(a) * r,
         z = cz + Math.sin(a) * r;
