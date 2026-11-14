@@ -1,0 +1,24 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "Colonne 4 cases – Nine Gorman 2026",
+  "op": "Nine Gorman 2026",
+  "editeur": "Albin Michel",
+  "typeModele": "colonne-jade-4",
+  "glb": "PLV_Nine_Gorman_2026_Colonne.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.24,
+    "p": 0.433,
+    "h": 1.541
+  },
+  "capacite_livres": null,
+  "livres": "non inclus",
+  "matieres": "Microbis couché 1 face (verso blanc non couché), 4 mm",
+  "fabricant": "Jade PLV",
+  "source": "Configurateur PLV 3D",
+  "export": "2026-11-14"
+}
