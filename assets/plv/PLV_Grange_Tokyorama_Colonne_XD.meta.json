@@ -1,0 +1,25 @@
+{
+  "format": "plv-meta",
+  "version": 1,
+  "nom": "Colonne 4 cases XD – Grangé, Tokyorama",
+  "op": "Tokyorama – JC Grangé",
+  "editeur": "Albin Michel",
+  "typeModele": "colonne-xd-4",
+  "glb": "PLV_Grange_Tokyorama_Colonne_XD.glb",
+  "unite": "m",
+  "origine": "centre au sol",
+  "axeVertical": "Y",
+  "faceClient": "+Z",
+  "dims": {
+    "l": 0.257,
+    "p": 0.435,
+    "h": 1.62
+  },
+  "capacite_livres": null,
+  "livres": "non inclus",
+  "matieres": "Microbis kraft, fronton blanc non couché imprimé, languettes et rivets",
+  "fabricant": "Xavier Dumont",
+  "categorie": "sol",
+  "source": "Configurateur PLV 3D",
+  "export": "2026-11-14"
+}
