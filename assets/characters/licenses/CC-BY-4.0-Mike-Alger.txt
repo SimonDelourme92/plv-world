@@ -1,0 +1,7 @@
+This work is based on "Rigged T-Pose Human Male w 50 Face Blendshapes"
+(https://sketchfab.com/3d-models/rigged-t-pose-human-male-w-50-face-blendshapes-cc7e4596bcd145208a6992c757854c07)
+by Mike Alger (https://sketchfab.com/mikealger), licensed under CC BY 4.0
+(http://creativecommons.org/licenses/by/4.0/).
+
+The model was supplied by the user. It is rescaled in the game to a height
+of approximately 1.80 m. No model textures are redistributed separately.

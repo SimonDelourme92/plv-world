@@ -27,6 +27,10 @@ Audit, provenance, optimisation, captures et validation : [docs/BIBLIOTHEQUE_ASS
 
 La voiture utilise la berline de Comrade1280 (CC BY 4.0), en anthracite et à l’échelle réelle. C pour entrer/sortir, ZQSD/WASD pour conduire, Espace pour le frein à main, B pour le klaxon, L pour les phares et N pour couper/réactiver le son du véhicule. Volume indépendant dans Réglages → Audio du véhicule ; le son nécessite un premier clic ou une touche dans Chrome. [Sources, captures et contrôles](docs/BERLINE_CONDUITE_AUDIO.md).
 
+## Personnage humain et son d’exploration
+
+La vue à la troisième personne utilise le modèle de Mike Alger (CC BY 4.0) et les clips marche, sprint et saut de la Universal Animation Library de Quaternius (CC0). Ils sont stockés séparément dans `assets/characters/`. L’animation est retargetée sur le squelette du modèle lors du chargement ; le modèle procédural existant reste un repli si les GLB ne se chargent pas. Les réglages audio anciens sont migrés vers le son d’ambiance activé par défaut ; un choix de mute effectué dans cette version est conservé. La barre **Son général** règle l’ambiance et la voiture, et 0 % coupe les deux. Chrome démarre la lecture après une première interaction.
+
 ## Jardins et pavillons
 
 Les modèles du catalogue composent les alignements de pins, les jardins de feuillus, les massifs et trois pavillons du quartier pilote. Les bordures voisines reçoivent des buissons compacts ; tous les emplacements PLV restent disponibles. [Périmètre et vérifications](docs/AMENAGEMENT_JARDINS.md).
