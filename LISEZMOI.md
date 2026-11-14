@@ -75,3 +75,6 @@ Ciels : Poly Haven (CC0). Textures : ambientCG (CC0). Décor : Kenney (voir lice
 
 ## Feuille de route
 Voir **FEUILLE_DE_ROUTE.md** (version détaillée « un monde qui claque »).
+
+## Proposition Technoparc (branche de prévisualisation)
+Les boutons **Domaine pilote** et **Domaine · drone** présentent une zone de 300 × 300 m. Cette proposition attend validation avant fusion. Les boutons **Zoom + / −** fonctionnent en exploration. Le fond sonore continu est remplacé par de rares brises et chants ; la sonorité moteur a été réaccordée. Voir [le périmètre et les contrôles](docs/TERRAIN_PILOTE.md).
