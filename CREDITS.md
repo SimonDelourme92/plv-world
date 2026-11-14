@@ -67,3 +67,9 @@ Les captures de validation utilisent uniquement le contenu de démonstration dé
 ## Utilisation paysagère du catalogue
 
 Les pins, feuillus, buissons, pavillons Astra et pavillons spatiaux vitrés déjà référencés ci-dessus sont réutilisés pour le Parvis Méridien et les bordures voisines. Aucun nouvel asset tiers : les licences CC0 et preuves du manifeste existant restent applicables.
+
+## Berline contemporaine et audio de conduite
+
+- **Modèle et textures** : « [Generic passenger car pack](https://sketchfab.com/3d-models/generic-passenger-car-pack-20f9af9b8a404d5cb022ac6fe87f21f5) » par [Comrade1280](https://sketchfab.com/comrade1280), **CC BY 4.0**. [Miroir documenté TUM-VT](https://github.com/TUM-VT/Sumonity-PassengerCars/tree/92be5975162ff9348c96d76dd6077321dce013dc), commit épinglé. Modifications : berline extraite, 4,70 m, anthracite/PBR, pivots de roues et optiques séparées, compression Meshopt, WebP, deux LOD. Attribution disponible dans Réglages → Audio du véhicule et [page de crédits](assets/vehicles/credits.html). Preuves et licence dans `assets/vehicles/licenses/`.
+- **Échantillons audio** : « [Car Sound Effects Pack (Low Quality)](https://opengameart.org/content/car-sound-effects-pack-low-quality) » par **GGBotNet**, **CC0 1.0**. Ralenti, moteur, démarrage, arrêt et klaxon ; mono 24 kHz, raccords cosinus, Vorbis. Preuve et licence dans `assets/audio/vehicle/licenses/`. Les échantillons ont été enregistrés au téléphone ; ils sont complétés par des couches originales Web Audio (combustion, roulement, vent, pneus). L’extrait de validation utilise ces mêmes sources.
+- Le code de préparation, les contrôleurs et la synthèse sont des contributions originales de cette étape. Le décodeur Meshoptimizer MIT et three.js MIT sont réutilisés ; voir leurs crédits ci-dessus. Aucun modèle BMW/Audi, aucune marque de constructeur ajoutée, aucun asset payant ou confidentiel.

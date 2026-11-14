@@ -1,0 +1,10 @@
+{
+  "audio": {
+    "samplesReady": true,
+    "rms": 0.08410986151841955,
+    "peak": 0.6823762059211731,
+    "maxAdjacentDelta": 0.2805012837052345
+  },
+  "mute": 0,
+  "errors": []
+}

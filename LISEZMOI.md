@@ -23,6 +23,10 @@ La sélection compte 13 modèles et 23 icônes professionnelles. Huit modèles a
 
 Audit, provenance, optimisation, captures et validation : [docs/BIBLIOTHEQUE_ASSETS.md](docs/BIBLIOTHEQUE_ASSETS.md). Les étapes interface, bibliothèque et aménagement sont intégrées dans cet ordre.
 
+## Berline et conduite
+
+La voiture utilise la berline de Comrade1280 (CC BY 4.0), en anthracite et à l’échelle réelle. C pour entrer/sortir, ZQSD/WASD pour conduire, Espace pour le frein à main, B pour le klaxon, L pour les phares et N pour couper/réactiver le son du véhicule. Volume indépendant dans Réglages → Audio du véhicule ; le son nécessite un premier clic ou une touche dans Chrome. [Sources, captures et contrôles](docs/BERLINE_CONDUITE_AUDIO.md).
+
 ## Jardins et pavillons
 
 Les modèles du catalogue composent les alignements de pins, les jardins de feuillus, les massifs et trois pavillons du quartier pilote. Les bordures voisines reçoivent des buissons compacts ; tous les emplacements PLV restent disponibles. [Périmètre et vérifications](docs/AMENAGEMENT_JARDINS.md).

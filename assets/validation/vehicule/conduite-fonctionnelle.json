@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "forward": {
+      "speed": 15.36735735768944,
+      "z": 367.1224060061051,
+      "wheel": -5.988787446863952,
+      "gear": 2
+    },
+    "turn": {
+      "yaw": -0.46100683417483324,
+      "steer": 0.1682076771844535,
+      "slip": 0.2175085087125014
+    },
+    "handbrake": 0,
+    "reverse": -4.248422070639368,
+    "wall": {
+      "z": 48.89152932598056,
+      "speed": 0,
+      "blocked": true
+    },
+    "lotCollision": true,
+    "border": true
+  },
+  "errors": [],
+  "warnings": []
+}

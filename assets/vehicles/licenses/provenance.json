@@ -1,0 +1,54 @@
+{
+  "source": "https://sketchfab.com/3d-models/generic-passenger-car-pack-20f9af9b8a404d5cb022ac6fe87f21f5",
+  "title": "Generic passenger car pack",
+  "author": "Comrade1280",
+  "authorUrl": "https://sketchfab.com/comrade1280",
+  "license": {
+    "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+    "label": "CC Attribution",
+    "fullName": "Creative Commons Attribution",
+    "requirements": "Author must be credited. Commercial use is allowed.",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "slug": "by"
+  },
+  "downloadable": true,
+  "downloadApiResult": "401 : Authentication credentials were not provided.",
+  "mirrorCommit": "92be5975162ff9348c96d76dd6077321dce013dc",
+  "files": [
+    {
+      "file": "sedan.fbx",
+      "sha256": "7f68fc4cf82d8e222e295365c52484ae637da8171c79bd50e04889c712e8d3d5",
+      "bytes": 311516
+    },
+    {
+      "file": "SedanYellow.png",
+      "sha256": "0e5d03b212d1a68ba791dff72b3bfdd1e4746d609a88a67019b67100ce5f2583",
+      "bytes": 1053432
+    },
+    {
+      "file": "Sedan_Glossiness.png",
+      "sha256": "1590e6372f2d7697c63d11e08da66de884da4852c080a94aaddabb9347b7f6e7",
+      "bytes": 34259
+    },
+    {
+      "file": "Sedan_Metallic.png",
+      "sha256": "66fc232219da3f02d960cc1d69397c5808210f25ace2eafcff4d3e950913b407",
+      "bytes": 37129
+    },
+    {
+      "file": "Wheel_A_Diffuse.png",
+      "sha256": "fbffb44f731bfebd1bbb17878b66d4ca5432a56c32dabf994989c17dfe9f1ea8",
+      "bytes": 659616
+    },
+    {
+      "file": "Wheel_A_Metallic.png",
+      "sha256": "2423aaf4055ac502c0be97118396fbb6ab97e431c422cee4ab954627d0f8b861",
+      "bytes": 36366
+    },
+    {
+      "file": "lights.jpg",
+      "sha256": "707a32a6cde0f25ca2ff426e3370c39fcfe4092bf25fafaacf1f7ea69f6d9375",
+      "bytes": 883147
+    }
+  ]
+}

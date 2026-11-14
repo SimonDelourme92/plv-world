@@ -1,0 +1,16 @@
+{
+  "title": "Car Sound Effects Pack (Low Quality)",
+  "author": "GGBotNet",
+  "source": "https://opengameart.org/content/car-sound-effects-pack-low-quality",
+  "license": "CC0-1.0",
+  "archive": "https://opengameart.org/sites/default/files/car_sound_effects_pack.zip",
+  "sha256": "8c9b3e378fc23bdabb7e417308db88a415bff1eec409529c99b63fd5612cd887",
+  "originalFiles": [
+    "Car_Engine_Loop.ogg",
+    "Car_Engine_Loop_2.ogg",
+    "Car_Engine_Start_Up.ogg",
+    "Car_Engine_Turning_Off.ogg",
+    "Car_Horn.ogg"
+  ],
+  "modifications": "Raccords de boucles, conversion mono 24 kHz et réencodage Vorbis ; couches synthétiques originales."
+}

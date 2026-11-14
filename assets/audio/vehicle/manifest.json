@@ -1,0 +1,38 @@
+{
+  "author": "GGBotNet",
+  "license": "CC0-1.0",
+  "source": "https://opengameart.org/content/car-sound-effects-pack-low-quality",
+  "modifications": "Mono 24 kHz, raccords cosinus aux boucles moteur et klaxon, fondus transitoires, encodage Vorbis. Couches Web Audio originales pour combustion, pneus, route et vent.",
+  "files": [
+    {
+      "id": "idle",
+      "path": "assets/audio/vehicle/idle.ogg",
+      "bytes": 21575,
+      "sha256": "f61ecf12ae55c48d29169dfa0d21f61e873f37924a6712050fed45a243564bcc"
+    },
+    {
+      "id": "engine",
+      "path": "assets/audio/vehicle/engine.ogg",
+      "bytes": 29156,
+      "sha256": "e157e05084b7ff38b3a670d7ef3aafb33cc68bbd93911ef2644e0cdc711abf84"
+    },
+    {
+      "id": "start",
+      "path": "assets/audio/vehicle/start.ogg",
+      "bytes": 17165,
+      "sha256": "16006a0c1b81eeddbb3ae5237f5325a5e369ec85e36bc982c11993bf41d17d8d"
+    },
+    {
+      "id": "stop",
+      "path": "assets/audio/vehicle/stop.ogg",
+      "bytes": 16255,
+      "sha256": "0d58527cace49588943a588c0abe84ed7ecbec8f5ff4aa5a3a56a3878dca6484"
+    },
+    {
+      "id": "horn",
+      "path": "assets/audio/vehicle/horn.ogg",
+      "bytes": 6000,
+      "sha256": "22b8c61cb8b87b7294ddc9938891e5b47c6e8429a6433696b60e5a86da9914cb"
+    }
+  ]
+}
