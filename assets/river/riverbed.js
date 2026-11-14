@@ -1,3 +1,4 @@
+import { createWater } from './water.js';
 // Plan de rivière, en mètres. Les parties profondes restent accessibles à pied.
 export const RIVER_AREA = { minX: -500, maxX: 0, minZ: -500, maxZ: 500 };
 const main = [
@@ -47,7 +48,7 @@ export function riverbedHeight(x,z,reservations=[]){
 }
 
 export function createRiverbed({THREE,scene,ground,reservations}){
-  const root=new THREE.Group();root.name='Lit de rivière sans eau';const chunks=[];
+  const root=new THREE.Group();root.name='Lit de rivière';const chunks=[];
   let protectedAreas=reservations();const height=(x,z)=>riverbedHeight(x,z,protectedAreas);
   for(let z=RIVER_AREA.minZ;z<RIVER_AREA.maxZ;z+=100)for(let x=RIVER_AREA.minX;x<RIVER_AREA.maxX;x+=100){
     const g=new THREE.PlaneGeometry(100,100,50,50);g.rotateX(-Math.PI/2);const pos=g.attributes.position,uv=g.attributes.uv;
@@ -63,5 +64,6 @@ export function createRiverbed({THREE,scene,ground,reservations}){
   const riverMaterial=ground.material.clone();riverMaterial.onBeforeCompile=()=>{};riverMaterial.customProgramCacheKey=()=> 'riverbed-surface';
   for(const mesh of chunks)mesh.material=riverMaterial;
   ground.material.customProgramCacheKey=()=> 'riverbed-hole';ground.material.needsUpdate=true;scene.add(root);
-  return {height,root,refresh(){protectedAreas=reservations();for(const mesh of chunks){const p=mesh.geometry.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,height(p.getX(i),p.getZ(i)));p.needsUpdate=true;mesh.geometry.computeVertexNormals();mesh.geometry.computeBoundingSphere();}},update(){},dispose(){root.removeFromParent();for(const mesh of chunks)mesh.geometry.dispose();riverMaterial.dispose();ground.material.onBeforeCompile=()=>{};ground.material.needsUpdate=true;}};
+  let water=null;try{water=createWater({THREE,scene,bounds:RIVER_AREA,height});}catch(e){console.warn('Eau indisponible : lit sec conservé.',e);}
+  return {height,root,get water(){return water;},refresh(){protectedAreas=reservations();for(const mesh of chunks){const p=mesh.geometry.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,height(p.getX(i),p.getZ(i)));p.needsUpdate=true;mesh.geometry.computeVertexNormals();mesh.geometry.computeBoundingSphere();}water?.refresh();},update(seconds){water?.update(seconds);},dispose(){water?.dispose();root.removeFromParent();for(const mesh of chunks)mesh.geometry.dispose();riverMaterial.dispose();ground.material.onBeforeCompile=()=>{};ground.material.needsUpdate=true;}};
 }

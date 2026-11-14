@@ -10,10 +10,18 @@ Les lots, l'historique, les modèles importés et les créas sont stockés **dan
 ```
 index.html            application (HTML + JS, three.js r183 via CDN)
 assets/plv/           modèles de PLV (.glb + .meta.json) — Boîte QSJ chargée au démarrage
-assets/ciel/          ciels HDRI (Poly Haven, CC0)
-assets/textures/      textures sol 1K couleur / normal / rugosité (ambientCG, CC0)
-assets/decor/         modèles low-poly Kenney (.glb, texture intégrée) — voir LICENSE_Kenney.md
+assets/terrain/       relief et textures du domaine pilote
+assets/river/         lit de la rivière et du lac (riverbed.js) + eau (water.js)
+assets/vehicles/      berline, dynamique de conduite   assets/audio/  sons du véhicule
+assets/characters/    personnage et animations         assets/ciel/   ciels HDRI (CC0)
+assets/library/       bibliothèque 3D et catalogue     assets/decor/  modèles Kenney (CC0)
+assets/validation/    captures et mesures de validation
+docs/                 audits et notes par étape        tests/         tests automatiques
+tools/                pipelines de préparation des assets (usage assistant uniquement)
 ```
+
+## Rivière, lac et eau
+Une rivière avec un petit bras et une île, reliée à un lac, est creusée dans la zone x/z −500 à 0. L’eau (`assets/river/water.js`) est une surface unique au niveau −0,9 m : elle n’apparaît que là où le lit descend plus bas, avec berges peu profondes et claires, centre plus sombre, reflets du ciel et ondulations animées. Aucune texture. Elle suit le terrassement des lots. Marcher dans l’eau est possible (pas de nage ni de ralentissement pour l’instant). Si l’eau ne se charge pas, le lit sec reste affiché.
 
 ## Bibliothèque d’assets 3D
 
@@ -31,9 +39,7 @@ La voiture utilise la berline de Comrade1280 (CC BY 4.0), en anthracite et à l�
 
 La vue à la troisième personne utilise le modèle de Mike Alger (CC BY 4.0) et les clips marche, sprint et saut de la Universal Animation Library de Quaternius (CC0). Ils sont stockés séparément dans `assets/characters/`. L’animation est retargetée sur le squelette du modèle lors du chargement ; le modèle procédural existant reste un repli si les GLB ne se chargent pas. Les anciens réglages audio sont migrés vers une nouvelle commande générale avec le son activé par défaut ; un mute choisi dans la version actuelle est conservé. La barre **Son général** règle l’ambiance et la voiture, et 0 % coupe les deux. Chrome démarre la lecture après une première interaction.
 
-## Jardins et pavillons
-
-Les modèles de jardins et de pavillons restent dans le catalogue. Ils ne sont plus placés dans le monde : la pelouse a été dégagée à la demande de l’utilisateur. [Périmètre et vérifications](docs/AMENAGEMENT_JARDINS.md).
+Les modèles de jardins et de pavillons restent au catalogue mais ne sont plus placés : la pelouse est dégagée. [Détails](docs/AMENAGEMENT_JARDINS.md).
 
 ## Interface, commandes et horizon
 Le menu distingue **Explorer**, **Inventaire**, **Réglages** et **Commandes**. Les mesures techniques sont masquées au départ et accessibles avec **F**. L’aide complète s’ouvre avec **H** ; les formulaires conservent la saisie normale.

@@ -4,6 +4,12 @@ Objectif de Simon : un rendu de **jeu vidéo moderne** — une voiture qui claqu
 
 Direction artistique retenue : **stylisé haut de gamme** (type Fortnite / Zelda BOTW / jeux mobiles AAA) plutôt que photoréaliste : plus beau, plus léger, plus cohérent avec des assets gratuits.
 
+## État au 14/11/2026
+**Fait :** ciel HDRI local et lumière de fin d'après-midi · personnage 3e personne animé (marche, course, saut) · berline avec conduite et son · relief du domaine pilote · rivière, lac, île et eau animée · GPS, carte, mini-carte, mode photo, visite guidée · bibliothèque 3D et catalogue · sauvegarde / restauration JSON.
+**Retiré volontairement :** jardins, pavillons, skyline, éléments du Parvis Méridien (pelouse dégagée à la demande de Simon).
+**Pas fait :** post-traitement (bloom, SMAA) · PNJ et voitures PNJ · cycle jour / nuit · textures KTX2 · sauvegarde ZIP · formulaire de lot simplifié · tests du cœur métier (lots, sauvegarde, import GLB).
+Les phases ci-dessous sont l'ancien plan : à relire avec cet état, pas comme une liste à refaire.
+
 ## Règles pour chaque étape
 - Une étape = une pull request, testée sur le lien, validée par Simon avant la suivante.
 - Assets uniquement sous licence libre (CC0 de préférence), rangés dans `assets/…`, crédités dans `CREDITS.md`. Jamais de base64.
