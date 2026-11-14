@@ -108,12 +108,29 @@ export async function loadHuman(THREE, GLTFLoader, parent) {
   }
   const sourceMixer = new THREE.AnimationMixer(library.scene);
   const actionMixer = new THREE.AnimationMixer(root);
-  const armCorrectionAxis = new THREE.Vector3(0, 0, 1);
-  const armCorrectionTemp = new THREE.Quaternion();
-  const armCorrections = [
-    ["mixamorig_LeftArm_011", new THREE.Quaternion().setFromAxisAngle(armCorrectionAxis, 1.05)],
-    ["mixamorig_RightArm_035", new THREE.Quaternion().setFromAxisAngle(armCorrectionAxis, -1.05)],
+  // Bras : le retargeting laisse les bras tendus vers l'avant. On les repose le long du corps,
+  // dans le repère du personnage (qui tourne sur lui-même), avec un balancement calé sur les jambes.
+  const armParts = [
+    { side: 1, arm: "mixamorig_LeftArm_011", fore: "mixamorig_LeftForeArm_012", hand: "mixamorig_LeftHand_013" },
+    { side: -1, arm: "mixamorig_RightArm_035", fore: "mixamorig_RightForeArm_036", hand: "mixamorig_RightHand_037" },
   ];
+  const footL = targetBones.get("mixamorig_LeftFoot_064"), footR = targetBones.get("mixamorig_RightFoot_059");
+  const avatarFrame = new THREE.Quaternion(), avatarFrameInverse = new THREE.Quaternion();
+  const p0 = new THREE.Vector3(), p1 = new THREE.Vector3(), cur = new THREE.Vector3(), want = new THREE.Vector3();
+  const delta = new THREE.Quaternion(), parentQ = new THREE.Quaternion(), corr = new THREE.Quaternion();
+  const aim = (bone, child, dirLocal) => {
+    bone.updateWorldMatrix(true, true);
+    bone.getWorldPosition(p0);
+    child.getWorldPosition(p1);
+    cur.copy(p1).sub(p0).normalize();
+    want.copy(dirLocal).normalize().applyQuaternion(avatarFrame);
+    delta.setFromUnitVectors(cur, want);
+    bone.parent.getWorldQuaternion(parentQ);
+    corr.copy(parentQ).invert().multiply(delta).multiply(parentQ);
+    bone.quaternion.premultiply(corr);
+    bone.updateWorldMatrix(false, true);
+  };
+  let armSwing = 0;
   const actions = {};
   const clipByName = new Map(library.animations.map((clip) => [clip.name, clip]));
   for (const [state, clipName] of Object.entries(CLIPS)) {
@@ -218,16 +235,26 @@ export async function loadHuman(THREE, GLTFLoader, parent) {
           actions.run.setEffectiveTimeScale(THREE.MathUtils.clamp(speed / 4.95, 0.78, 1.35));
       }
       actionMixer.update(dt);
-      // The uploaded Mixamo rig uses a T-pose, while the UAL mannequin idles
-      // with its upper arms closer to the torso. Preserve that relaxed stance
-      // after the clip's per-frame bone rotations have been applied.
-      for (const [name, worldCorrection] of armCorrections) {
-        const bone = targetBones.get(name);
-        if (!bone) continue;
-        const parentWorld = bone.parent.getWorldQuaternion(new THREE.Quaternion());
-        armCorrectionTemp.copy(parentWorld).invert()
-          .multiply(worldCorrection).multiply(parentWorld);
-        bone.quaternion.premultiply(armCorrectionTemp);
+      // Bras le long du corps. Le personnage regarde vers -Z dans son repère (voir root.rotation.y).
+      parent.updateWorldMatrix(true, false);
+      parent.getWorldQuaternion(avatarFrame);
+      avatarFrameInverse.copy(avatarFrame).invert();
+      root.updateMatrixWorld(true);
+      const targetSwing = active === "run" ? 0.9 : active === "walk" ? 0.5 : 0;
+      armSwing += (targetSwing - armSwing) * Math.min(1, dt * 8);
+      let phase = 0;
+      if (footL && footR && armSwing > 0.01) {
+        footL.getWorldPosition(p0);
+        footR.getWorldPosition(p1);
+        phase = THREE.MathUtils.clamp(p0.sub(p1).applyQuaternion(avatarFrameInverse).z / 0.5, -1, 1);
+      }
+      for (const { side, arm, fore } of armParts) {
+        const bone = targetBones.get(arm), forearm = targetBones.get(fore);
+        const hand = targetBones.get(side === 1 ? "mixamorig_LeftHand_013" : "mixamorig_RightHand_037");
+        if (!bone || !forearm || !hand) continue;
+        const a = armSwing * phase * side; // + = bras vers l'avant
+        aim(bone, forearm, want.set(side * 0.12, -1, -a * 0.55));
+        aim(forearm, hand, want.set(side * 0.05, -0.9, -(0.3 + 0.35 * Math.max(0, a))));
       }
     },
     dispose() {
