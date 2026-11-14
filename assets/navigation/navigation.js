@@ -6,6 +6,7 @@ export class NavigationRouter {
     this.cellSize = cellSize;
     this.districtSize = districtSize;
     this.width = Math.floor((halfExtent * 2) / cellSize) + 1;
+    this.roads = [];
   }
 
   route(start, destination, { mode = "walk", obstacles = [], maxVisited = 80000 } = {}) {
@@ -80,7 +81,16 @@ export class NavigationRouter {
         if (nx < 0 || nz < 0 || nx >= width || nz >= width || !clear(nx, nz)) continue;
         if (!segmentClear(pointAt(x, z), pointAt(nx, nz))) continue;
         const next = toIndex(nx, nz); if (closed[next]) continue;
-        const candidate = costs[id] + 1;
+        let roadBonus = 0;
+        if (vehicle && this.roads.length) {
+          const p = pointAt(nx, nz);
+          for (const road of this.roads) for (let i = 1; i < road.points.length; i++) {
+            const a = road.points[i - 1], b = road.points[i], dx = b.x - a.x, dz = b.z - a.z, l2 = dx * dx + dz * dz;
+            const t = l2 ? Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.z - a.z) * dz) / l2)) : 0;
+            if (Math.hypot(p.x - a.x - t * dx, p.z - a.z - t * dz) < 9) { roadBonus = .55; break; }
+          }
+        }
+        const candidate = costs[id] + 1 - roadBonus;
         if (candidate >= costs[next]) continue;
         costs[next] = candidate; previous[next] = id; push(next);
       }

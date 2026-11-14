@@ -16,5 +16,6 @@ export async function createNature({ THREE, scene, terrainHeight, reservations =
       mesh.instanceMatrix.needsUpdate = true; mesh.castShadow = species !== 2; mesh.receiveShadow = true;
     }
   }
-  return { root, statistics: { arbres: items.length, especes: 3 }, update() {}, refresh() {} };
+  const colliders = items.filter((_, i) => i % 5 === 0 && items[i].species !== 2).map(item => ({ min: { x: item.x - .18, z: item.z - .18, y: 0 }, max: { x: item.x + .18, z: item.z + .18, y: 4 } }));
+  return { root, colliders, statistics: { arbres: items.length, especes: 3 }, update() {}, refresh() {} };
 }
