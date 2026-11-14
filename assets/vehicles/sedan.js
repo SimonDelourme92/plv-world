@@ -1,4 +1,4 @@
-import { AssetLibrary } from "../library/manager.js";
+import { AssetLibrary } from "../library/manager.js?v=vehicule-1";
 export async function loadSedan(THREE, parent) {
   const library = new AssetLibrary({
     manifestUrl: new URL("./manifest.json", import.meta.url),
