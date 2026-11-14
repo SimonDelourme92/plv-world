@@ -33,7 +33,7 @@ La vue à la troisième personne utilise le modèle de Mike Alger (CC BY 4.0) et
 
 ## Jardins et pavillons
 
-Les modèles du catalogue composent les alignements de pins, les jardins de feuillus, les massifs et trois pavillons du quartier pilote. Les bordures voisines reçoivent des buissons compacts ; tous les emplacements PLV restent disponibles. [Périmètre et vérifications](docs/AMENAGEMENT_JARDINS.md).
+Les modèles de jardins et de pavillons restent dans le catalogue. Ils ne sont plus placés dans le monde : la pelouse a été dégagée à la demande de l’utilisateur. [Périmètre et vérifications](docs/AMENAGEMENT_JARDINS.md).
 
 ## Interface, commandes et horizon
 Le menu distingue **Explorer**, **Inventaire**, **Réglages** et **Commandes**. Les mesures techniques sont masquées au départ et accessibles avec **F**. L’aide complète s’ouvre avec **H** ; les formulaires conservent la saisie normale.
@@ -46,7 +46,7 @@ La sensibilité souris et l’horizon sont réglables dans **Réglages**. Le cie
 Depuis la recherche, l’historique ou la fiche d’un lot, **GPS** définit un itinéraire sans déplacer le personnage ; **Téléporter** reste une action séparée. Un clic sur un lot de la carte ouvre aussi sa fiche, où l’itinéraire GPS est disponible. Le trajet est recalculé à pied ou en voiture lorsque le mode change ou que l’on s’écarte du parcours. La carte et la mini-carte affichent le chemin, et le panneau GPS indique la distance, l’estimation et la prochaine direction. Le guidage lumineux au sol peut être désactivé depuis ce panneau. Le parcours se termine automatiquement à l’arrivée. À pied comme en voiture, le GPS traverse maintenant les espaces ouverts en évitant les obstacles.
 
 ## Quartier pilote — Parvis Méridien
-Dans le menu, **Découvrir le Parvis Méridien** ouvre une vue d’ensemble au sol. La place centrale accueille une proposition architecturale limitée : portique, six bâtiments, galeries, jardins et mobilier. Les PLV restent dans leurs quartiers d’exposition, à leurs dimensions réelles. Le reste du monde attend validation.
+Dans le menu, **Découvrir le Parvis Méridien** ouvre une vue d’ensemble au sol. Les éléments architecturaux et paysagers de cette ancienne proposition sont retirés de la scène. Les PLV restent dans leurs quartiers d’exposition, à leurs dimensions réelles.
 
 Analyse, périmètre et validation : [docs/QUARTIER_PILOTE.md](docs/QUARTIER_PILOTE.md). Sources et licences : [CREDITS.md](CREDITS.md).
 
