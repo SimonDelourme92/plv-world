@@ -77,34 +77,38 @@ export function createCrowd({
       elapsed: 0,
     };
   });
-  const people = Array.from({ length: 40 }, (_, i) => ({
-    evadePoint: { x: 0, z: 0 },
-    buddy: i % 5 === 1 ? i - 1 : -1,
-    pairPoint: { x: 0, z: 0 },
-    pairPath: [null, null],
-    headTurn: 0,
-    id: i,
-    x: 0,
-    z: 0,
-    y: 0,
-    yaw: 0,
-    speed: 1.1 + random() * 0.4,
-    scale: 0.92 + random() * 0.14,
-    color: new THREE.Color(PALETTE[i % 8]),
-    active: false,
-    lot: null,
-    history: [],
-    path: null,
-    index: 0,
-    waiting: false,
-    stop: 0,
-    anim: "idle",
-    phase: random() * 6,
-    rank: 0,
-    nextSim: 0,
-    lastSim: 0,
-    slot: -1,
-  }));
+  const people = Array.from({ length: 40 }, (_, i) => {
+    const paletteIndex = Math.floor(random() * PALETTE.length);
+    return {
+      evadePoint: { x: 0, z: 0 },
+      buddy: i > 0 && random() < 0.2 ? i - 1 : -1,
+      pairPoint: { x: 0, z: 0 },
+      pairPath: [null, null],
+      headTurn: 0,
+      id: i,
+      x: 0,
+      z: 0,
+      y: 0,
+      yaw: 0,
+      speed: 1.1 + random() * 0.4,
+      scale: 0.92 + random() * 0.14,
+      paletteIndex,
+      color: new THREE.Color(PALETTE[paletteIndex]),
+      active: false,
+      lot: null,
+      history: [],
+      path: null,
+      index: 0,
+      waiting: false,
+      stop: 0,
+      anim: "idle",
+      phase: random() * 6,
+      rank: 0,
+      nextSim: 0,
+      lastSim: 0,
+      slot: -1,
+    };
+  });
   for (let i = 0; i < people.length; i++) simple.setColorAt(i, people[i].color);
   if (simple.instanceColor) simple.instanceColor.needsUpdate = true;
   const dummy = new THREE.Object3D(),
@@ -589,7 +593,7 @@ export function createCrowd({
         slot.root.position.set(p.x, p.y, p.z);
         slot.root.rotation.y = p.yaw + Math.PI;
         slot.root.scale.setScalar(kit.template.scale.x * p.scale);
-        const paletteIndex = p.id % 8;
+        const paletteIndex = p.paletteIndex;
         if (slot.paletteIndex !== paletteIndex) {
           const palette = kit.palettes.get(PALETTE[paletteIndex]);
           for (let j = 0; j < slot.meshes.length; j++)
