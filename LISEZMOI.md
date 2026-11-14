@@ -41,6 +41,10 @@ Audit, provenance, optimisation, captures et validation : [docs/BIBLIOTHEQUE_ASS
 
 La voiture utilise la berline de Comrade1280 (CC BY 4.0), en anthracite et à l’échelle réelle. C pour entrer/sortir, ZQSD/WASD pour conduire, Espace pour le frein à main, B pour le klaxon, L pour les phares et N pour couper/réactiver le son du véhicule. Volume indépendant dans Réglages → Audio du véhicule ; le son nécessite un premier clic ou une touche dans Chrome. [Sources, captures et contrôles](docs/BERLINE_CONDUITE_AUDIO.md).
 
+## Crash des PLV en voiture
+
+En voiture, les PLV ne bloquent plus : chaque exemplaire touché (et les montants/tablettes des racks) devient un débris physique (`assets/crash/crash.js`). Au-delà de ~30 km/h et 3 exemplaires touchés, ralenti cinéma 2,8 s avec bandes noires et compteur. Tout revient en place après ~16 s (pas pendant que la voiture est à moins de 7 m). Rien n’est sauvegardé ; à pied, les collisions restent normales.
+
 ## Personnage humain et son d’exploration
 
 La vue à la troisième personne utilise le modèle de Mike Alger (CC BY 4.0) et les clips marche, sprint et saut de la Universal Animation Library de Quaternius (CC0). Ils sont stockés séparément dans `assets/characters/`. L’animation est retargetée sur le squelette du modèle lors du chargement ; le modèle procédural existant reste un repli si les GLB ne se chargent pas. Les anciens réglages audio sont migrés vers une nouvelle commande générale avec le son activé par défaut ; un mute choisi dans la version actuelle est conservé. La barre **Son général** règle l’ambiance et la voiture, et 0 % coupe les deux. Chrome démarre la lecture après une première interaction.
