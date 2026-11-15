@@ -126,4 +126,20 @@ Textures réduites en WebP 512 px (couleur et normale) dans `assets/city/tex/` ;
 | dalle | concrete_floor_02 (désaturée) | CC0-1.0 |
 | trottoir | concrete_pavement_02 | CC0-1.0 |
 
-Architecture : bâtiments originaux inspirés de projets publiés (tour Occitanie, Atlassian Central, Rocket & Tigerli, Urban Forest, CapitaSpring, Google Bay View, W350, Pertamina Energy Tower) ; aucune donnée ni maquette de ces projets n’est réutilisée.
+Architecture : bâtiments originaux inspirés de projets publiés (tour Occitanie, Atlassian Central, Rocket & Tigerli, Urban Forest, CapitaSpring, Google Bay View, W350, Pertamina Energy Tower, 350 Park Avenue) ; aucune donnée ni maquette de ces projets n’est réutilisée.
+
+## Quartier vivant — façades Poly Haven (CC0)
+
+Textures diffuses réduites en WebP 512 px dans `assets/city/ftex/` (auteurs et liens dans `assets/city/ftex/sources.json`). Les fenêtres, vitrines, enseignes et volets sont dessinés par le jeu par-dessus.
+
+| Texture Poly Haven | Usage | Licence |
+|---|---|---|
+| beige_wall_001 | pierre, ocre | CC0-1.0 |
+| white_plaster_02 | enduit blanc | CC0-1.0 |
+| red_brick_03 | brique rouge | CC0-1.0 |
+| brick_wall_006 | brique claire | CC0-1.0 |
+| raw_plank_wall | bardage bois | CC0-1.0 |
+| painted_plaster_wall | enduit gris, sauge | CC0-1.0 |
+| red_plaster_weathered | enduit terre cuite | CC0-1.0 |
+| stone_brick_wall_001 | fontaine | CC0-1.0 |
+| cobblestone_floor_001 | pavés de la place | CC0-1.0 |

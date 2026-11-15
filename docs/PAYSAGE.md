@@ -12,9 +12,13 @@ Les lots existants ne bougent pas : le plan des lots est inchangé, seuls les qu
 
 ## Quartier solarpunk
 
-- `assets/city/layout.js` (pur, testé) : emprise de la dalle, bâtiments (emprises solides), rues, rond-point, quartiers réservés.
+- `assets/city/layout.js` (pur, testé) : emprise de la dalle, tours (emprises solides), rues, tram, La Flèche, quartiers réservés.
 - `assets/city/solarpunk.js` : construction 3D ; détails (intérieurs, plantes, mobilier, arbres d’alignement) visibles à moins de 350 m ; verre transparent sans réfraction ; végétation légère sur les bâtiments.
+- `assets/city/quartier-plan.js` (pur, testé) : îlots d’habitation générés de façon déterministe (graine fixe), place des Fontaines, emprises de collision des immeubles, de La Flèche et de la fontaine.
+- `assets/city/quartier.js` : construction 3D du quartier vivant. Façades = texture CC0 + fenêtres dessinées sur canvas (tuile 4 travées × 3 étages) ; géométries fusionnées par matériau ; végétation légère (couleurs de sommets) sauf le grand feuillu CC0 près de la caméra ; passants, voitures, mobilier et grands arbres détaillés à moins de 260 m.
+- Plan « dalle serrée » : plus de rond-point, Phare en (300, −386) avec un jardin réduit à 6 m, La Flèche en (300, −505), boulevard de tram (z −309 → −343) à la place de l’avenue nord.
 - La route sud a été déviée pour longer le quartier par l’ouest.
+- Mesure en jeu (Chrome logiciel) : depuis le point de départ ~1,2 M triangles / 170 appels (contre ~1,0 M / 122 avant) ; vue drone sur le quartier ~1,8 M triangles.
 - Mesure en jeu (navigateur automatisé) : ~1,4 M triangles pour une vue complète avec le quartier.
 
 ## Modules
