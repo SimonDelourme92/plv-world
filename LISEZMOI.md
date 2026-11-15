@@ -29,6 +29,21 @@ Les PLV de moins de 60 cm (largeur et profondeur) et 50 cm de haut sont rangées
 ## Rivière, lac et eau
 Une rivière avec un petit bras et une île, reliée à un lac, est creusée dans la zone x/z −500 à 0. L’eau (`assets/river/water.js`) est une surface unique au niveau −0,9 m : elle n’apparaît que là où le lit descend plus bas, avec berges peu profondes et claires, centre plus sombre, reflets du ciel et ondulations animées. Aucune texture. Elle suit le terrassement des lots. Marcher dans l’eau est possible (pas de nage ni de ralentissement pour l’instant). Si l’eau ne se charge pas, le lit sec reste affiché.
 
+## Quartier solarpunk (au sud de la cité)
+Accroché au boulevard sud, sur une dalle béton de 550 × 260 m (`assets/city/`). Sept bâtiments inspirés de projets réels, remodelés :
+
+| Bâtiment | Hauteur | D’après |
+|---|---|---|
+| La Spirale (verre transparent, ruban-jardin) | 150 m | Tour Occitanie, Toulouse |
+| La Ruche (exosquelette acier, habitats bois) | 172 m | Atlassian Central, Sydney |
+| La Fusée (façade plissée terre cuite) | 100 m | Rocket & Tigerli, Winterthur |
+| Les Racines (sur troncs, balcons ondulants) | 125 m | Urban Forest, Brisbane |
+| L’Oasis (lames qui s’ouvrent sur des jardins) | 280 m | CapitaSpring, Singapour |
+| La Canopée (tentes en écailles solaires) | 18 m | Google Bay View |
+| Le Phare (résille bois, entonnoir à vent) | 400 m | W350 Tokyo + Pertamina Energy Tower |
+
+Rues de 10 m avec trottoirs, passages piétons, lampadaires solaires, arbres d’alignement, rond-point autour du Phare, passerelle entre la Spirale et la Ruche. Les bâtiments sont solides (à pied et en voiture), on passe sous les Racines. Les intérieurs et plantes ne s’affichent qu’à moins de 350 m. Les quartiers de 100 m couverts par la dalle ne reçoivent jamais de lot (premier concerné : 43ᵉ rang d’attribution). Textures Poly Haven CC0 en WebP 512 px (`assets/city/tex/sources.json`).
+
 ## Paysage : cité, routes, forêts
 - **Cité** (x −200 → 400, z −300 → 200, 6 × 5 quartiers) : plate, réservée aux lots, décor futuriste uniquement ici.
 - **Campagne** autour : collines qui montent progressivement (jusqu’à ~30 m en bordure), rivière et lac inchangés.

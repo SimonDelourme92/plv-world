@@ -1,0 +1,56 @@
+{
+ "bois-terrasse": {
+  "polyhaven": "wood_floor_deck",
+  "url": "https://polyhaven.com/a/wood_floor_deck",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ },
+ "contreplaque": {
+  "polyhaven": "plywood",
+  "url": "https://polyhaven.com/a/plywood",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ },
+ "lamelle": {
+  "polyhaven": "brown_planks_05",
+  "url": "https://polyhaven.com/a/brown_planks_05",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ },
+ "beton": {
+  "polyhaven": "brushed_concrete",
+  "url": "https://polyhaven.com/a/brushed_concrete",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ },
+ "pelouse": {
+  "polyhaven": "aerial_grass_rock",
+  "url": "https://polyhaven.com/a/aerial_grass_rock",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ },
+ "terre-cuite": {
+  "polyhaven": "terracotta_floor_tiles",
+  "url": "https://polyhaven.com/a/terracotta_floor_tiles",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ },
+ "asphalte": {
+  "polyhaven": "asphalt_02",
+  "url": "https://polyhaven.com/a/asphalt_02",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ },
+ "dalle": {
+  "polyhaven": "concrete_floor_02",
+  "url": "https://polyhaven.com/a/concrete_floor_02",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP , désaturée"
+ },
+ "trottoir": {
+  "polyhaven": "concrete_pavement_02",
+  "url": "https://polyhaven.com/a/concrete_pavement_02",
+  "licence": "CC0-1.0",
+  "adaptation": "512 px WebP"
+ }
+}

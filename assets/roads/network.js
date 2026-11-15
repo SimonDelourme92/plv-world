@@ -56,7 +56,8 @@ const LOOP = [
 const LINKS = [
   { id: 'route-nord', ctrl: [{ x: 300, z: 200 }, { x: 296, z: 270 }, { x: 250, z: 380 }, { x: 290, z: 520 }, { x: 330, z: 650 }] },
   { id: 'route-est', ctrl: [{ x: 400, z: 0 }, { x: 470, z: -4 }, { x: 585, z: 40 }, { x: 700, z: 30 }] },
-  { id: 'route-sud', ctrl: [{ x: 100, z: -300 }, { x: 104, z: -370 }, { x: 58, z: -478 }, { x: 82, z: -570 }] },
+  // Longe le quartier solarpunk par l'ouest (le quartier occupe x -165 → 385 au sud de la cité).
+  { id: 'route-sud', ctrl: [{ x: -180, z: -300 }, { x: -186, z: -372 }, { x: -205, z: -470 }, { x: -190, z: -575 }, { x: -175, z: -640 }] },
   { id: 'route-ouest', ctrl: [{ x: -200, z: 60 }, { x: -255, z: 74 }, { x: -318, z: 90 }, { x: -372, z: 84 }, { x: -425, z: 70 }, { x: -490, z: 38 }, { x: -575, z: 6 }, { x: -650, z: -30 }] },
 ];
 
