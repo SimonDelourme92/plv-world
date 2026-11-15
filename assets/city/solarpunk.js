@@ -1,10 +1,10 @@
-// Quartier solarpunk : 7 bâtiments inspirés de projets réels, dalle béton, rues, rond-point.
+// Quartier solarpunk : 7 bâtiments inspirés de projets réels, dalle béton, rues (rond-point optionnel).
 // Version jeu des rendus de concept : verre transparent sans réfraction, végétation légère
 // sur les bâtiments, détails fins (intérieurs, plantes, mobilier) affichés seulement de près.
 // Textures Poly Haven (CC0) en WebP 512 px : voir tex/sources.json.
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
-import { BUILDINGS, STREETS, ROUNDABOUT, CROSSINGS, STREET, SOLAR_BOX, SLAB_TOP } from './layout.js';
+import { BUILDINGS, STREETS, ROUNDABOUT, CROSSINGS, STREET, SOLAR_BOX, SLAB_TOP, PHARE_GARDEN } from './layout.js';
 
 const FINE_DISTANCE = 350; // m : intérieurs, plantes, mobilier
 
@@ -273,8 +273,8 @@ export async function createSolarDistrict({ THREE, scene }) {
     add(mcyl(r1 + 1.5, r1 + 1.5, 1, 40), M.white, x, crown, z); add(mcyl(r1 * 0.5, r1 * 0.5, 1, 40), M.bed, x, crown + 44, z);
     for (const dd of [-7, 0, 7]) for (const yb of [crown + 3, crown + 20]) { const ax = Math.cos(0.6) * dd, az = -Math.sin(0.6) * dd; add(new THREE.CylinderGeometry(0.25, 0.25, 15, 8), M.steel, x + ax, yb + 7.5, z + az); for (let b = 0; b < 3; b++) { const bl = add(new THREE.BoxGeometry(0.15, 12, 1.4), M.white, x + ax + Math.cos(b * 2.09) * 2.2, yb + 7.5, z + az + Math.sin(b * 2.09) * 2.2); bl.rotation.set(0, -b * 2.09, 0.3); } }
     add(new THREE.CylinderGeometry(0.3, 1.2, 14, 12), M.steel, x, crown + 51, z); add(new THREE.SphereGeometry(1.1, 16, 12), M.beacon, x, crown + 58.5, z, { cast: false });
-    add(new THREE.RingGeometry(r0 + 2, r0 + 22, 64).rotateX(-Math.PI / 2), M.bed, x, SLAB_TOP + 0.03, z, { cast: false });
-    detail(() => { for (let k = 0; k < 36; k++) { const a = k / 36 * 6.28, r = r0 + rr(6, 20); plant(k % 3 ? 'feuillu-eleve' : 'buisson-fleuri', x + Math.cos(a) * r, SLAB_TOP, z + Math.sin(a) * r, k % 3 ? rr(0.8, 1) : 1.2); } });
+    const GR = PHARE_GARDEN; add(new THREE.RingGeometry(r0 + 2, r0 + GR, 64).rotateX(-Math.PI / 2), M.bed, x, SLAB_TOP + 0.03, z, { cast: false });
+    detail(() => { for (let k = 0; k < 36; k++) { const a = k / 36 * 6.28, r = r0 + Math.min(GR - 2, rr(6, 20)); plant(k % 3 ? 'feuillu-eleve' : 'buisson-fleuri', x + Math.cos(a) * r, SLAB_TOP, z + Math.sin(a) * r, k % 3 ? rr(0.8, 1) : 1.2); } });
     add(new THREE.LatheGeometry([new THREE.Vector2(r0, 9), new THREE.Vector2(r0 + 12, 7.5), new THREE.Vector2(r0 + 12, 7.9), new THREE.Vector2(r0, 9.4)], 64), M.glulam, x, 0, z);
     void H;
   });
@@ -311,7 +311,7 @@ export async function createSolarDistrict({ THREE, scene }) {
       for (const t of [s0 + 2.2, s1 - 2.2]) for (let k = -4; k <= 4; k++) marks.push(r.ns ? mat4(ax + k * 1.05, Y + 0.07, t, 0, 0.55, 0.01, 3.2) : mat4(t, Y + 0.07, az + k * 1.05, 0, 3.2, 0.01, 0.55));
     }
   }
-  { const ring = (r0, r1, y, mat) => { const g = new THREE.RingGeometry(r0, r1, 112, 1).rotateX(-Math.PI / 2), uv = g.attributes.uv, p = g.attributes.position; for (let i = 0; i < uv.count; i++) uv.setXY(i, p.getX(i), p.getZ(i)); return add(g, mat, RB.x, y, RB.z, { cast: false }); };
+  if (RB) { const ring = (r0, r1, y, mat) => { const g = new THREE.RingGeometry(r0, r1, 112, 1).rotateX(-Math.PI / 2), uv = g.attributes.uv, p = g.attributes.position; for (let i = 0; i < uv.count; i++) uv.setXY(i, p.getX(i), p.getZ(i)); return add(g, mat, RB.x, y, RB.z, { cast: false }); };
     ring(RB.r - RW / 2, RB.r + RW / 2, Y + 0.02, M.asphalt); ring(RB.r - RW / 2 - SW, RB.r - RW / 2, Y + 0.16, M.sidewalk); ring(RB.r + RW / 2, RB.r + RW / 2 + SW, Y + 0.16, M.sidewalk);
     for (let k = 0; k < 52; k++) { const a = k / 52 * Math.PI * 2; marks.push(mat4(RB.x + Math.cos(a) * RB.r, Y + 0.07, RB.z + Math.sin(a) * RB.r, -a, 0.15, 0.01, 3)); }
     for (let k = 0; k < 12; k++) { const a = k / 12 * Math.PI * 2 + 0.2; lamps.push([RB.x + Math.cos(a) * (RB.r + RW / 2 + SW - 0.4), RB.z + Math.sin(a) * (RB.r + RW / 2 + SW - 0.4), -a - Math.PI / 2]); } }

@@ -30,7 +30,7 @@ Les PLV de moins de 60 cm (largeur et profondeur) et 50 cm de haut sont rangées
 Une rivière avec un petit bras et une île, reliée à un lac, est creusée dans la zone x/z −500 à 0. L’eau (`assets/river/water.js`) est une surface unique au niveau −0,9 m : elle n’apparaît que là où le lit descend plus bas, avec berges peu profondes et claires, centre plus sombre, reflets du ciel et ondulations animées. Aucune texture. Elle suit le terrassement des lots. Marcher dans l’eau est possible (pas de nage ni de ralentissement pour l’instant). Si l’eau ne se charge pas, le lit sec reste affiché.
 
 ## Quartier solarpunk (au sud de la cité)
-Accroché au boulevard sud, sur une dalle béton de 550 × 260 m (`assets/city/`). Sept bâtiments inspirés de projets réels, remodelés :
+Accroché au boulevard sud, sur une dalle béton de 550 × 260 m (`assets/city/`). Huit tours inspirées de projets réels, remodelées :
 
 | Bâtiment | Hauteur | D’après |
 |---|---|---|
@@ -42,7 +42,11 @@ Accroché au boulevard sud, sur une dalle béton de 550 × 260 m (`assets/city/`
 | La Canopée (tentes en écailles solaires) | 18 m | Google Bay View |
 | Le Phare (résille bois, entonnoir à vent) | 400 m | W350 Tokyo + Pertamina Energy Tower |
 
-Rues de 10 m avec trottoirs, passages piétons, lampadaires solaires, arbres d’alignement, rond-point autour du Phare, passerelle entre la Spirale et la Ruche. Les bâtiments sont solides (à pied et en voiture), on passe sous les Racines. Les intérieurs et plantes ne s’affichent qu’à moins de 350 m. Les quartiers de 100 m couverts par la dalle ne reçoivent jamais de lot (premier concerné : 43ᵉ rang d’attribution). Textures Poly Haven CC0 en WebP 512 px (`assets/city/tex/sources.json`).
+| La Flèche (fûts en gradins, losanges bronze, couronne en biseau, socle sur colonnes en V) | 700 m | 350 Park Avenue, New York (base ×3) |
+
+**Quartier vivant (plan « dalle serrée »)** : 128 immeubles d’habitation mitoyens de R+4 à R+9 (9 styles de façade : pierre et toit à la Mansart, brique, enduits, bois…), commerces et stores en rez-de-chaussée, toits végétalisés, solaires ou en terrasse, ruelles plantées entre les rangées. Boulevard de tramway au nord (double voie engazonnée, 3 arrêts avec abribus, 2 rames). Place des Fontaines (mail planté, fontaine, marché, terrasses, bouche de passage souterrain). Le rond-point a disparu, le Phare est remonté au nord-est, La Flèche occupe le coin sud-est. Passants, voitures et mobilier ne s’affichent qu’à moins de 260 m du quartier.
+
+Rues de 10 m avec trottoirs, passages piétons, lampadaires solaires, arbres d’alignement, passerelle entre la Spirale et la Ruche. Tous les bâtiments sont solides (à pied et en voiture), on passe sous les Racines et sous le socle de La Flèche (entre ses colonnes). Les intérieurs et plantes des tours ne s’affichent qu’à moins de 350 m. Les quartiers de 100 m couverts par la dalle ne reçoivent jamais de lot (premier concerné : 43ᵉ rang d’attribution). Textures Poly Haven CC0 en WebP 512 px (`assets/city/tex/sources.json`).
 
 ## Paysage : cité, routes, forêts
 - **Cité** (x −200 → 400, z −300 → 200, 6 × 5 quartiers) : plate, réservée aux lots, décor futuriste uniquement ici.

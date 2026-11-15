@@ -1,0 +1,94 @@
+{
+ "beige_wall_001": {
+  "polyhaven": "beige_wall_001",
+  "url": "https://polyhaven.com/a/beige_wall_001",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Dimitrios Savva",
+   "Rico Cilliers"
+  ],
+  "taille_reelle_m": 3.0,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "white_plaster_02": {
+  "polyhaven": "white_plaster_02",
+  "url": "https://polyhaven.com/a/white_plaster_02",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Rob Tuytel"
+  ],
+  "taille_reelle_m": 1.0,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "red_brick_03": {
+  "polyhaven": "red_brick_03",
+  "url": "https://polyhaven.com/a/red_brick_03",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Rob Tuytel"
+  ],
+  "taille_reelle_m": 1.0,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "brick_wall_006": {
+  "polyhaven": "brick_wall_006",
+  "url": "https://polyhaven.com/a/brick_wall_006",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Jan Burghardt"
+  ],
+  "taille_reelle_m": 3.0,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "raw_plank_wall": {
+  "polyhaven": "raw_plank_wall",
+  "url": "https://polyhaven.com/a/raw_plank_wall",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Dimitrios Savva"
+  ],
+  "taille_reelle_m": 1.87,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "painted_plaster_wall": {
+  "polyhaven": "painted_plaster_wall",
+  "url": "https://polyhaven.com/a/painted_plaster_wall",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Amal Kumar"
+  ],
+  "taille_reelle_m": 2.0,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "red_plaster_weathered": {
+  "polyhaven": "red_plaster_weathered",
+  "url": "https://polyhaven.com/a/red_plaster_weathered",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Amal Kumar"
+  ],
+  "taille_reelle_m": 2.0,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "stone_brick_wall_001": {
+  "polyhaven": "stone_brick_wall_001",
+  "url": "https://polyhaven.com/a/stone_brick_wall_001",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Dimitrios Savva",
+   "Rico Cilliers"
+  ],
+  "taille_reelle_m": 2.5,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ },
+ "cobblestone_floor_001": {
+  "polyhaven": "cobblestone_floor_001",
+  "url": "https://polyhaven.com/a/cobblestone_floor_001",
+  "licence": "CC0-1.0",
+  "auteurs": [
+   "Rob Tuytel"
+  ],
+  "taille_reelle_m": 2.4,
+  "adaptation": "diffuse 1k → 512 px WebP ; fenêtres et vitrines dessinées par le jeu"
+ }
+}

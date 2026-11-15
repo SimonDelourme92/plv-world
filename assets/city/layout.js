@@ -13,21 +13,33 @@ export const BUILDINGS = [
   { id: 'racines', nom: 'Les Racines', x: -100, z: -400, h: 125, solids: [-1, 0, 1].flatMap(i => [-0.5, 0.5].map(j => box(-100 + i * 13, -400 + j * 12, 3.6, 3.6, 15))) },
   { id: 'oasis', nom: "L'Oasis", x: -95, z: -520, h: 280, solids: [box(-95, -520, 33, 33, 280)] },
   { id: 'canopee', nom: 'La Canopée', x: 115, z: -522, h: 18, solids: [box(115, -522, 121, 65, 18)] },
-  { id: 'phare', nom: 'Le Phare', x: 300, z: -470, h: 400, solids: [box(300, -470, 62, 62, 400)] },
+  { id: 'phare', nom: 'Le Phare', x: 300, z: -386, h: 400, solids: [box(300, -386, 62, 62, 400)] },
 ];
 
 // Rues : 10 m de chaussée, 2,5 m de trottoir. ns = nord-sud.
+// Plan « dalle serrée » : le rond-point a disparu, le Phare est remonté, La Flèche occupe le coin sud-est
+// et un boulevard de tramway remplace l'avenue nord.
 export const STREET = { width: 10, sidewalk: 2.5 };
 export const STREETS = [
-  { a: [-150, -335], b: [300, -335], ns: false, nom: 'Avenue des Jardins' },
-  { a: [-150, -470], b: [229, -470], ns: false, nom: 'Avenue du Phare' },
-  { a: [-150, -304], b: [-150, -470], ns: true },
-  { a: [40, -304], b: [40, -545], ns: true },
-  { a: [210, -304], b: [210, -470], ns: true },
-  { a: [300, -335], b: [300, -399], ns: true, spur: true },
+  { a: [-150, -343], b: [-150, -470], ns: true },
+  { a: [40, -343], b: [40, -566], ns: true },
+  { a: [210, -343], b: [210, -566], ns: true },
+  { a: [-150, -470], b: [210, -470], ns: false, nom: 'Avenue de la Flèche' },
+  { a: [210, -437], b: [385, -437], ns: false, nom: 'Rue du Phare' },
 ];
-export const ROUNDABOUT = { x: 300, z: -470, r: 66 };
-export const CROSSINGS = [[-150, -335], [40, -335], [210, -335], [300, -335], [-150, -470], [40, -470], [210, -470]];
+export const ROUNDABOUT = null;
+export const CROSSINGS = [[-150, -470], [40, -470], [210, -470], [210, -437]];
+export const PHARE_GARDEN = 6; // largeur (m) du jardin circulaire au pied du Phare
+
+// Boulevard du tramway (est-ouest, bord nord de la dalle) : trottoir 4 | chaussée 6,5 | quai 3 | voies 7 | quai 3 | chaussée 6,5 | trottoir 4.
+export const TRAM = { z: -326, x0: -165, x1: 385, stops: [-60, 125, 300], half: 17 };
+
+// La Flèche (700 m) — d'après 350 Park Avenue (Foster + Partners), base ×3. Socle levé sur colonnes en V.
+export const FLECHE = (() => {
+  const x = 300, z = -505, base = 36, solids = [box(x, z, 84, 84, base - 3)];
+  for (const [nx, nz] of [[0, 1], [0, -1], [1, 0], [-1, 0]]) for (let k = 0; k < 5; k++) { const s = -48 + k * 24; solids.push(box(x + nx * 54 + (nz ? s : 0), z + nz * 54 + (nx ? s : 0), 2.6, 2.6, 14)); }
+  return { id: 'fleche', nom: 'La Flèche', x, z, h: 700, base, solids };
+})();
 
 export const insideSolar = (x, z, margin = 0) => x > SOLAR_BOX.minX - margin && x < SOLAR_BOX.maxX + margin && z > SOLAR_BOX.minZ - margin && z < SOLAR_BOX.maxZ + margin;
 // Quartiers de 100 m touchés par le quartier solarpunk : exclus des futurs lots.
