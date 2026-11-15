@@ -109,3 +109,21 @@ Les visiteurs réutilisent le personnage « Rigged T-Pose Human Male w/ 50 Face 
 - Fichiers `assets/npc/models/{maya,sam,harper}.glb` : textures redimensionnées à 1 024 px maximum ; textures opaques converties en JPEG. Géométrie, squelette et animation conservés.
 
 - [Jordan — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-jordan-3d-person-animated-911f1584), [Sam — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-sam-3d-person-animated-dc23800f), [Maya — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-maya-3d-person-animated-1499b2fd), [Harper — collection de locomotion](https://www.innerscene.com/tools/library/3d-parts/locomotion-collection-harper-3d-person-animated-797e1e2a) : Innerscene, dérivés de MakeHuman/MPFB, personnages et animations CC0 1.0 ; textures limitées à 1 024 px, textures opaques converties en JPEG. Licences consultées le 14 novembre 2026.
+
+## Quartier solarpunk — textures Poly Haven (CC0)
+
+Textures réduites en WebP 512 px (couleur et normale) dans `assets/city/tex/` ; détail et liens dans `assets/city/tex/sources.json`.
+
+| Fichier | Texture Poly Haven | Licence |
+|---|---|---|
+| bois-terrasse | wood_floor_deck | CC0-1.0 |
+| contreplaque | plywood | CC0-1.0 |
+| lamelle | brown_planks_05 | CC0-1.0 |
+| beton | brushed_concrete | CC0-1.0 |
+| pelouse | aerial_grass_rock | CC0-1.0 |
+| terre-cuite | terracotta_floor_tiles | CC0-1.0 |
+| asphalte | asphalt_02 | CC0-1.0 |
+| dalle | concrete_floor_02 (désaturée) | CC0-1.0 |
+| trottoir | concrete_pavement_02 | CC0-1.0 |
+
+Architecture : bâtiments originaux inspirés de projets publiés (tour Occitanie, Atlassian Central, Rocket & Tigerli, Urban Forest, CapitaSpring, Google Bay View, W350, Pertamina Energy Tower) ; aucune donnée ni maquette de ces projets n’est réutilisée.

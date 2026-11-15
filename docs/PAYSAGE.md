@@ -10,6 +10,13 @@
 
 Les lots existants ne bougent pas : le plan des lots est inchangé, seuls les quartiers **traversés par une route de campagne** sont retirés de la liste des quartiers disponibles. Aucun n’appartient à la cité ; le premier quartier exclu arrive au 23ᵉ rang d’attribution (test `roads-network.test.mjs`).
 
+## Quartier solarpunk
+
+- `assets/city/layout.js` (pur, testé) : emprise de la dalle, bâtiments (emprises solides), rues, rond-point, quartiers réservés.
+- `assets/city/solarpunk.js` : construction 3D ; détails (intérieurs, plantes, mobilier, arbres d’alignement) visibles à moins de 350 m ; verre transparent sans réfraction ; végétation légère sur les bâtiments.
+- La route sud a été déviée pour longer le quartier par l’ouest.
+- Mesure en jeu (navigateur automatisé) : ~1,4 M triangles pour une vue complète avec le quartier.
+
 ## Modules
 
 - `assets/terrain/relief.js` — bruit multi-octaves déterministe. Nul dans la cité, il monte sur 15 → 230 m au-delà. Les lots et repères restent aplanis (réservations).
