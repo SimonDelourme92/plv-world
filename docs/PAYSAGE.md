@@ -18,6 +18,7 @@ Les lots existants ne bougent pas : le plan des lots est inchangé, seuls les qu
 - `assets/city/quartier.js` : construction 3D du quartier vivant. Façades = texture CC0 + fenêtres dessinées sur canvas (tuile 4 travées × 3 étages) ; géométries fusionnées par matériau ; végétation légère (couleurs de sommets) sauf le grand feuillu CC0 près de la caméra ; passants, voitures, mobilier et grands arbres détaillés à moins de 260 m.
 - Plan « dalle serrée » : plus de rond-point, Phare en (300, −386) avec un jardin réduit à 6 m, La Flèche en (300, −505), boulevard de tram (z −309 → −343) à la place de l’avenue nord.
 - La route sud a été déviée pour longer le quartier par l’ouest.
+- ATLAS (`assets/city/atlas-layout.js`, pur et testé ; `assets/city/atlas.js`) : centre (536, −195), rotation π/2, parvis x 414 → 658, z −363 → −27 ; terrain aplani (réservation) et plancher à 0,05 m ; végétation exclue ; montants fins, passants et garde-corps visibles à moins de ~540 m du centre. Mesure : ~1,3 M triangles en vue drone sur ATLAS.
 - Mesure en jeu (Chrome logiciel) : depuis le point de départ ~1,2 M triangles / 170 appels (contre ~1,0 M / 122 avant) ; vue drone sur le quartier ~1,8 M triangles.
 - Mesure en jeu (navigateur automatisé) : ~1,4 M triangles pour une vue complète avec le quartier.
 

@@ -143,3 +143,8 @@ Textures diffuses réduites en WebP 512 px dans `assets/city/ftex/` (auteurs et 
 | red_plaster_weathered | enduit terre cuite | CC0-1.0 |
 | stone_brick_wall_001 | fontaine | CC0-1.0 |
 | cobblestone_floor_001 | pavés de la place | CC0-1.0 |
+
+
+## ATLAS
+
+Conception : Simon Delourme (étude « ATLAS / Les montagnes suspendues », three.js), inspirée du projet KING Toronto (BIG) ; aucune donnée ni maquette de ce projet n’est réutilisée. Aucune texture externe.

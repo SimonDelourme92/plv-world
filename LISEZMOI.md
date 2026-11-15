@@ -48,6 +48,9 @@ Accroché au boulevard sud, sur une dalle béton de 550 × 260 m (`assets/city/`
 
 Rues de 10 m avec trottoirs, passages piétons, lampadaires solaires, arbres d’alignement, passerelle entre la Spirale et la Ruche. Tous les bâtiments sont solides (à pied et en voiture), on passe sous les Racines et sous le socle de La Flèche (entre ses colonnes). Les intérieurs et plantes des tours ne s’affichent qu’à moins de 350 m. Les quartiers de 100 m couverts par la dalle ne reçoivent jamais de lot (premier concerné : 43ᵉ rang d’attribution). Textures Poly Haven CC0 en WebP 512 px (`assets/city/tex/sources.json`).
 
+## ATLAS (à l’est du quartier solarpunk)
+Étude de Simon (« Les montagnes suspendues », inspiration KING Toronto / BIG) intégrée telle quelle (`assets/city/atlas.js`, `atlas-layout.js`) : 306 × 198 m, 163 m de haut, 4 sommets de modules vitrés de 9 m, 620 terrasses plantées, socle surélevé de 17,5 m sur piliers ramifiés. Posé à 30 m à l’est de la dalle, tourné d’un quart de tour (le long côté nord-sud), sur un parvis plat de 244 × 336 m avec jardins, bassin et escaliers vers le socle. On marche dessous entre les piliers ; la masse, les piliers, les noyaux et les marches sont solides. Le contexte de la maquette (routes, immeubles gris) n’est pas repris. Les quartiers de 100 m couverts par le parvis ne reçoivent jamais de lot (premier concerné : 51ᵉ rang d’attribution).
+
 ## Paysage : cité, routes, forêts
 - **Cité** (x −200 → 400, z −300 → 200, 6 × 5 quartiers) : plate, réservée aux lots, décor futuriste uniquement ici.
 - **Campagne** autour : collines qui montent progressivement (jusqu’à ~30 m en bordure), rivière et lac inchangés.
