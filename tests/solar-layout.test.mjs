@@ -59,3 +59,11 @@ test('quartiers réservés : jamais dans la cité, loin dans l\'ordre d\'attribu
   assert.ok(order.findIndex(i => blocked.has(i)) >= 40);
   for (const i of blocked) { const z = -1000 + Math.floor(i / 20) * 100; assert.ok(z + 100 <= CITY.minZ, 'quartier de cité réservé : ' + i); }
 });
+
+test('La Canopée se visite : 4 portes de 8 m, intérieur libre, toiture solide', () => {
+  const c = BUILDINGS.find(b => b.id === 'canopee'), inside = (x, y, z) => c.solids.some(s => x > s.min.x && x < s.max.x && y > s.min.y && y < s.max.y && z > s.min.z && z < s.max.z);
+  for (const [dx, dz] of [[0, 1], [0, -1], [1, 0], [-1, 0]]) for (let d = -6; d <= 5; d += 0.5) for (const s of [-3, 0, 3]) assert.ok(!inside(c.x + dx * (60 + d) + (dz ? s : 0), 1.2, c.z + dz * (32 + d) + (dx ? s : 0)), 'porte bouchée'); // on franchit le seuil
+  assert.ok(!inside(c.x + 20, 1.2, c.z + 18) && !inside(c.x - 20, 1.2, c.z - 18), 'allées intérieures libres');
+  assert.ok(inside(c.x + 30, 1.2, c.z + 32) && inside(c.x + 60, 1.2, c.z + 20), 'façades vitrées solides hors portes');
+  assert.ok(inside(c.x + 20, 10, c.z), 'toiture solide');
+});

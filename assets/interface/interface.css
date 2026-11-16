@@ -115,7 +115,10 @@ body.refined-ui {
   top: 26px;
   right: 28px;
   gap: 6px;
-  max-width: 60vw;
+  max-width: 76vw;
+}
+.refined-ui #toolbar #fullscreenBtn kbd {
+  margin-left: 6px;
 }
 .refined-ui #toolbar button {
   padding: 9px 12px;

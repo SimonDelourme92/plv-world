@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import crypto from "node:crypto";
-import { SedanDynamics } from "../assets/vehicles/dynamics.js";
+import { SedanDynamics, TOP, TOP_BOOST } from "../assets/vehicles/dynamics.js";
 const drive = (d, seconds, input, blocked = () => false, dt = 1 / 60) => {
   for (let t = 0; t < seconds; t += dt) d.step(dt, input, blocked);
 };
@@ -11,7 +11,7 @@ test("Accélération progressive, freinage, marche arrière et limites", () => {
   drive(d, 0.2, { forward: true });
   assert(d.speed > 0 && d.speed < 0.6);
   drive(d, 20, { forward: true });
-  assert(d.speed > 23 && d.speed <= 30.56);
+  assert(d.speed * 3.6 >= 185 && d.speed <= TOP, 'pointe ' + d.speed * 3.6);
   assert(d.gear >= 2 && d.rpm < 6500);
   const fast = d.speed;
   drive(d, 1, { reverse: true });
@@ -19,6 +19,16 @@ test("Accélération progressive, freinage, marche arrière et limites", () => {
   drive(d, 5, { reverse: true });
   assert(d.speed < 0 && d.speed >= -7);
   assert.equal(d.gear, -1);
+});
+test("Vitesse de pointe réaliste : 190 km/h, 230 km/h avec Maj", () => {
+  assert.equal(Math.round(TOP * 3.6), 190);
+  assert.equal(Math.round(TOP_BOOST * 3.6), 230);
+  const d = new SedanDynamics();
+  drive(d, 6, { forward: true });
+  assert(d.speed * 3.6 > 90, "0 à 100 km/h en 6 s environ");
+  const b = new SedanDynamics();
+  drive(b, 60, { forward: true, boost: true });
+  assert(Math.abs(b.speed - TOP_BOOST) < 0.01 && b.rpm < 6200);
 });
 test("Direction adaptée à la vitesse, dérapage limité, frein à main et patinage", () => {
   const slow = new SedanDynamics();
@@ -59,7 +69,7 @@ test("Intégration stable à 30 et 60 Hz, roues et réinitialisation", () => {
   drive(a, 8, { forward: true }, undefined, 1 / 60);
   drive(b, 8, { forward: true }, undefined, 1 / 30);
   assert(Math.abs(a.speed - b.speed) < 0.2);
-  assert(Math.abs(a.z - b.z) < 1);
+  assert(Math.abs(a.z - b.z) < Math.abs(a.z) * 0.01 + 0.5); // 1 % : un pas de plus à 30 Hz selon l’arrondi de la boucle
   assert.notEqual(a.wheelAngle, 0);
   a.reset(4, 9, 1);
   assert.equal(a.speed, 0);
