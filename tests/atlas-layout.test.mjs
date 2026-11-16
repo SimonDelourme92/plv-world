@@ -33,3 +33,19 @@ test('ATLAS : quartiers réservés hors cité et loin dans l’ordre d’attribu
   assert.ok(order.findIndex(i => blocked.has(i)) >= 40);
   for (const i of blocked) { const x = -1000 + (i % 20) * 100; assert.ok(x >= CITY.maxX, 'quartier de cité réservé : ' + i); }
 });
+
+test('ATLAS : emplacements de rangement des PLV sous la masse, libres de tout pilier', async () => {
+  const { ATLAS_SLOTS, atlasHeights, NX, NZ, CELL } = await import('../assets/city/atlas-layout.js');
+  const solids = atlasSolids().filter(s => s.min.y < 3), h = atlasHeights();
+  for (const s of ATLAS_SLOTS) {
+    const r = [s.x, s.x + s.w, s.z, s.z + s.d];
+    for (const o of solids) assert.ok(!(r[0] < o.max.x + 1 && r[1] > o.min.x - 1 && r[2] < o.max.z + 1 && r[3] > o.min.z - 1), `${s.id} touche un pilier, un noyau ou une marche`);
+    // chaque coin est sous un module habité (pas dans la cour ouverte ni hors emprise)
+    for (const [x, z] of [[r[0], r[2]], [r[1], r[2]], [r[0], r[3]], [r[1], r[3]], [(r[0] + r[1]) / 2, (r[2] + r[3]) / 2]]) {
+      const lx = -(z - (-195)), lz = x - 536, i = Math.round(lx / CELL + (NX - 1) / 2), j = Math.round(lz / CELL + (NZ - 1) / 2);
+      assert.ok(h.has(i + ',' + j), `${s.id} : (${x}, ${z}) n’est pas sous le bâtiment`);
+    }
+  }
+  // le lot actuel (84 × 44 m) tient dans le premier emplacement
+  assert.ok(ATLAS_SLOTS[0].w >= 84 && ATLAS_SLOTS[0].d >= 44);
+});
