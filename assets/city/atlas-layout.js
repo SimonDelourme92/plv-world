@@ -45,6 +45,15 @@ export function atlasSolids() {
   return out;
 }
 
+// Rangement provisoire des PLV sous ATLAS : rectangles libres sous la masse (hors cour ouverte),
+// entre les piliers, les noyaux et les escaliers. x, z = coin minimal ; w le long de x, d le long de z.
+export const ATLAS_SLOTS = [
+  { id: 'sud', x: 500, z: -112, w: 84, d: 44 },
+  { id: 'nord', x: 500, z: -322, w: 84, d: 44 },
+  { id: 'ouest', x: 440, z: -226, w: 56, d: 62 },
+  { id: 'est', x: 576, z: -226, w: 56, d: 62 },
+];
+
 export const insideAtlas = (x, z, m = 0) => x > ATLAS_PLAZA.minX - m && x < ATLAS_PLAZA.maxX + m && z > ATLAS_PLAZA.minZ - m && z < ATLAS_PLAZA.maxZ + m;
 // Quartiers de 100 m touchés par le parvis : exclus des futurs lots.
 export function atlasDistricts({ half = 1000, cell = 100, border = 4.6 } = {}) {
