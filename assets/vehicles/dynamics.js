@@ -1,4 +1,6 @@
 // Arcade au sol uniquement. Les collisions restent fournies par le moteur PLV WORLD.
+// Vitesse de pointe : 190 km/h (230 km/h avec Maj).
+export const TOP = 52.78, TOP_BOOST = 63.89;
 export class SedanDynamics {
   constructor() {
     this.x = 0;
@@ -46,9 +48,9 @@ export class SedanDynamics {
     if (braking) acceleration = -Math.sign(this.speed) * 10.5;
     else if (f)
       acceleration =
-        5.6 *
+        6.2 *
         this.throttle *
-        Math.max(0.12, 1 - Math.abs(this.speed) / (input.boost ? 38.9 : 30.56));
+        Math.max(0.1, 1 - (Math.abs(this.speed) / (input.boost ? TOP_BOOST : TOP)) ** 2);
     else if (b)
       acceleration =
         -3.6 * this.throttle * Math.max(0, 1 - Math.abs(this.speed) / 7);
@@ -60,7 +62,7 @@ export class SedanDynamics {
     this.speed += acceleration * dt;
     if ((braking || h || !requested) && before * this.speed < 0) this.speed = 0;
     if (Math.abs(this.speed) < 0.025 && !requested) this.speed = 0;
-    this.speed = Math.max(-7, Math.min(input.boost ? 38.9 : 30.56, this.speed));
+    this.speed = Math.max(-7, Math.min(input.boost ? TOP_BOOST : TOP, this.speed));
     const limit = 0.54 / (1 + Math.abs(this.speed) * 0.13),
       targetSteer = Math.max(-1, Math.min(1, input.turn || 0)) * limit;
     this.steer += (targetSteer - this.steer) * (1 - Math.exp(-dt * 7));

@@ -4,7 +4,7 @@
 // Textures Poly Haven (CC0) en WebP 512 px : voir tex/sources.json.
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
-import { BUILDINGS, STREETS, ROUNDABOUT, CROSSINGS, STREET, SOLAR_BOX, SLAB_TOP, PHARE_GARDEN } from './layout.js';
+import { BUILDINGS, STREETS, ROUNDABOUT, CROSSINGS, STREET, SOLAR_BOX, SLAB_TOP, PHARE_GARDEN, CANOPEE } from './layout.js';
 
 const FINE_DISTANCE = 350; // m : intérieurs, plantes, mobilier
 
@@ -238,8 +238,13 @@ export async function createSolarDistrict({ THREE, scene }) {
     for (const [px, pz] of peaks) { const h = roofH(px, pz); add(mcyl(5, 5.6, 2.2, 32, true), M.glass, x + px, h + 0.6, z + pz, { cast: false }).renderOrder = 2; add(mcyl(6.2, 6.2, 0.35, 32), M.scales, x + px, h + 1.9, z + pz); }
     const perim = [], edge = (a, b, n) => { for (let k = 0; k < n; k++) { const t0 = k / n, t1 = (k + 1) / n, u0 = a[0] + (b[0] - a[0]) * t0, v0 = a[1] + (b[1] - a[1]) * t0, u1 = a[0] + (b[0] - a[0]) * t1, v1 = a[1] + (b[1] - a[1]) * t1; perim.push([[x + u0, 0, z + v0], [x + u1, 0, z + v1], [x + u1, roofH(u1, v1) - 0.3, z + v1], [x + u0, roofH(u0, v0) - 0.3, z + v0]]); } };
     edge([-hw, hd], [hw, hd], 60); edge([hw, hd], [hw, -hd], 30); edge([hw, -hd], [-hw, -hd], 60); edge([-hw, -hd], [-hw, hd], 30);
+    // Portes de 8 m au milieu de chaque côté : le vitrage ne commence qu'au-dessus de l'imposte (4,2 m).
+    const DOOR = CANOPEE.door / 2, isDoor = q => { const mu = (q[0][0] + q[1][0]) / 2 - x, mv = (q[0][2] + q[1][2]) / 2 - z; return Math.abs(Math.abs(mv) - hd) < 0.1 ? Math.abs(mu) < DOOR : Math.abs(mv) < DOOR; };
+    for (const q of perim) if (isDoor(q)) { q[0][1] = 4.2; q[1][1] = 4.2; }
     const gw = quadMesh(perim, M.glass); gw.castShadow = false; gw.renderOrder = 2;
-    const mul = perim.filter((_, i) => i % 2 === 0).map(([a]) => { const h = roofH(a[0] - x, a[2] - z); return mat4(a[0], h / 2, a[2], 0, 0.14, h, 0.14); }); inst(UNIT, M.white, mul);
+    const mul = perim.filter((q, i) => i % 2 === 0 && !isDoor(q)).map(([a]) => { const h = roofH(a[0] - x, a[2] - z); return mat4(a[0], h / 2, a[2], 0, 0.14, h, 0.14); }); inst(UNIT, M.white, mul);
+    const frames = []; for (const [nx, nz] of [[0, 1], [0, -1], [1, 0], [-1, 0]]) { const cx = x + nx * hw, cz = z + nz * hd; for (const s of [-1, 1]) frames.push(mat4(cx + (nz ? s * DOOR : 0), 2.1, cz + (nx ? s * DOOR : 0), 0, 0.3, 4.2, 0.3)); frames.push(mat4(cx, 4.2, cz, 0, nz ? CANOPEE.door + 0.6 : 0.35, 0.35, nx ? CANOPEE.door + 0.6 : 0.35)); }
+    inst(UNIT, M.white, frames);
     add(mbox(L, 0.2, D), M.polished, x, SLAB_TOP + 0.1, z, { cast: false });
     const cols = []; for (let i = -4; i <= 4; i++) for (let j = -2; j <= 2; j++) { const u = i * 12.5, v = j * 12; if (peaks.some(([px, pz]) => Math.hypot(u - px, v - pz) < 7)) continue; cols.push(mat4(x + u, roofH(u, v) / 2, z + v, 0, 0.32, roofH(u, v), 0.32)); }
     inst(new THREE.CylinderGeometry(0.5, 0.5, 1, 10), M.white, cols);

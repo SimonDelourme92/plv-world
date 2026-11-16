@@ -130,6 +130,7 @@ export function createInterface() {
   $("hud").querySelector("h1").textContent = "PLV / WORLD";
   $("photoModeBtn").innerHTML = "Photo <kbd>O</kbd>";
   $("mapBtn").innerHTML = "Carte <kbd>M</kbd>";
+  $("fullscreenBtn").innerHTML = '<span aria-hidden="true" style="font-size:15px">⛶</span> <kbd>G</kbd>';
   $("searchBtn").innerHTML = "Rechercher <kbd>R</kbd>";
   $("pauseBtn").innerHTML = "Menu <kbd>Échap</kbd>";
   // La capture rapide reste disponible dans Explorer et sur P.

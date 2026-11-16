@@ -11,6 +11,10 @@ const SLOWMO_REAL = 2.8; // durée réelle du ralenti (s)
 const COOLDOWN = 5; // secondes entre deux ralentis
 const CAR_HALF_W = 1.09, CAR_HALF_L = 2.39, CAR_H = 1.5;
 
+// Masses (kg) : voiture et PLV vides (carton ou métal léger), estimées d'après le volume de la boîte englobante.
+export const CAR_MASS = 1500, RACK_MASS = 12;
+export const plvMass = lc => Math.min(25, Math.max(0.2, 8 * lc.hx * lc.hy * lc.hz * 12));
+
 export function createCrash({ THREE, scene, records, terrainHeight, unitBox, getVolume = () => 1 }) {
   const root = new THREE.Group();
   root.name = "crash-debris";
@@ -128,7 +132,7 @@ export function createCrash({ THREE, scene, records, terrainHeight, unitBox, get
     if (s < 0.8) return 1;
     const c = Math.cos(yaw), sn = Math.sin(yaw), car = { x, z, yaw, speed };
     const reach = CAR_HALF_L + 1.5;
-    let keep = 1, hits = 0;
+    let hitMass = 0, hits = 0;
     for (const r of records) {
       if (r.isTest || r.level < 0) continue;
       const b = r.bounds;
@@ -144,7 +148,7 @@ export function createCrash({ THREE, scene, records, terrainHeight, unitBox, get
             if (!hitsCar(x, z, c, sn, p[k], p[k + 2], p[k + 3], p[k + 5], 0.05)) continue;
             spawn(rc, i, r, car, false);
             rackHit = true;
-            keep *= 0.985;
+            hitMass += RACK_MASS;
           }
         }
       }
@@ -158,8 +162,7 @@ export function createCrash({ THREE, scene, records, terrainHeight, unitBox, get
         spawn(lc, i, r, car, loose);
         if (direct) {
           hits++;
-          const vol = 8 * lc.hx * lc.hy * lc.hz;
-          keep *= 1 - Math.min(0.08, 0.006 + vol * 0.12);
+          hitMass += plvMass(lc);
         }
       }
     }
@@ -179,7 +182,9 @@ export function createCrash({ THREE, scene, records, terrainHeight, unitBox, get
       if (!cinematic && cooldown <= 0 && s >= SLOWMO_SPEED && burst >= SLOWMO_HITS) startCinematic(car);
       if (cinematic) cinematic.count += hits;
     }
-    return Math.max(0.55, keep);
+    // Choc mou : la voiture (≈ 1,5 t) emporte ce qu'elle percute. Quantité de mouvement conservée :
+    // v' = v · M / (M + m). Une colonne vide de 3 kg ne coûte que 0,2 % de vitesse.
+    return hitMass ? CAR_MASS / (CAR_MASS + hitMass) : 1;
   }
 
   // ---- physique des débris (dt déjà ralenti)

@@ -6,13 +6,31 @@ export const SLAB_TOP = 0.05;
 
 // Bâtiments : centre, hauteur, emprises solides (boîtes) pour les collisions à pied et en voiture.
 const box = (x, z, w, d, h) => ({ min: { x: x - w / 2, y: 0, z: z - d / 2 }, max: { x: x + w / 2, y: h, z: z + d / 2 } });
+// La Canopée se visite : façades vitrées percées de 4 portes de 8 m (une par côté), toiture solide
+// au-dessus de 6,4 m, et à l'intérieur les îlots en lamellé-collé, les jardinières et les poteaux.
+export const CANOPEE = { L: 120, D: 64, door: 8, roofFrom: 6.4 };
+export function canopeeSolids(x, z) {
+  const { L, D, door, roofFrom } = CANOPEE, hw = L / 2, hd = D / 2, t = 0.4, H = 6.6, out = [];
+  const wall = (x0, x1, z0, z1) => out.push({ min: { x: x0, y: 0, z: z0 }, max: { x: x1, y: H, z: z1 } });
+  for (const s of [1, -1]) {
+    wall(x - hw, x - door / 2, z + s * hd - t / 2, z + s * hd + t / 2); wall(x + door / 2, x + hw, z + s * hd - t / 2, z + s * hd + t / 2);
+    wall(x + s * hw - t / 2, x + s * hw + t / 2, z - hd, z - door / 2); wall(x + s * hw - t / 2, x + s * hw + t / 2, z + door / 2, z + hd);
+  }
+  out.push({ min: { x: x - hw - 3, y: roofFrom, z: z - hd - 3 }, max: { x: x + hw + 3, y: 18.4, z: z + hd + 3 } });
+  for (let k = 0; k < 8; k++) { const u = -48 + k * 13.5, v = (k % 2 ? 1 : -1) * 6; out.push({ min: { x: x + u - 3.7, y: 0, z: z + v - 2.7 }, max: { x: x + u + 3.7, y: 3.75, z: z + v + 2.7 } }); }
+  const peaks = [[-38, 0], [0, 0], [38, 0]];
+  for (const [px, pz] of peaks) out.push({ min: { x: x + px - 4, y: 0, z: z + pz - 4 }, max: { x: x + px + 4, y: 0.75, z: z + pz + 4 } });
+  for (let i = -4; i <= 4; i++) for (let j = -2; j <= 2; j++) { const u = i * 12.5, v = j * 12; if (peaks.some(([px, pz]) => Math.hypot(u - px, v - pz) < 7)) continue; out.push({ min: { x: x + u - 0.2, y: 0, z: z + v - 0.2 }, max: { x: x + u + 0.2, y: roofFrom, z: z + v + 0.2 } }); }
+  return out;
+}
+
 export const BUILDINGS = [
   { id: 'spirale', nom: 'La Spirale', x: -15, z: -400, h: 150, solids: [box(-15, -400, 31, 31, 150)] },
   { id: 'ruche', nom: 'La Ruche', x: 90, z: -400, h: 172, solids: [box(90, -400, 35, 35, 172)] },
   { id: 'fusee', nom: 'La Fusée', x: 160, z: -400, h: 100, solids: [box(160, -400, 34, 34, 100)] },
   { id: 'racines', nom: 'Les Racines', x: -100, z: -400, h: 125, solids: [-1, 0, 1].flatMap(i => [-0.5, 0.5].map(j => box(-100 + i * 13, -400 + j * 12, 3.6, 3.6, 15))) },
   { id: 'oasis', nom: "L'Oasis", x: -95, z: -520, h: 280, solids: [box(-95, -520, 33, 33, 280)] },
-  { id: 'canopee', nom: 'La Canopée', x: 115, z: -522, h: 18, solids: [box(115, -522, 121, 65, 18)] },
+  { id: 'canopee', nom: 'La Canopée', x: 115, z: -522, h: 18, solids: canopeeSolids(115, -522) },
   { id: 'phare', nom: 'Le Phare', x: 300, z: -386, h: 400, solids: [box(300, -386, 62, 62, 400)] },
 ];
 
